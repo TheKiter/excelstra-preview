@@ -1,18 +1,34 @@
 /* ═══════════════ EXCELSTRA — cinematic dark luxury ═══════════════ */
 
 :root {
-  --bg: #fbf9f5;
-  --bg-panel: #f3efe6;
-  --bg-card: #ffffff;
-  --ink: #161513;
-  --ink-dim: #605c54;
-  --gold: #c9a869;
-  --gold-light: #dfc58d;
-  --gold-soft: rgba(201, 168, 105, 0.12);
-  --hair: rgba(22, 21, 19, 0.08);
-  --hair-gold: rgba(201, 168, 105, 0.28);
+  /* Official Excelstra Brand Palette — 60 / 25 / 15 Canon */
+  --bg: #F4F3F0;             /* Warm Neutral Canvas (60%) */
+  --bg-panel: #F8F7F5;       /* Light Beige surface */
+  --bg-card: #FFFFFF;        /* Pure White card interior */
+  --bg-parchment: #EFECE6;   /* Subtle parchment accent */
+
+  --ink: #000E21;            /* Deep Navy for primary headings & authority */
+  --ink-body: #1F2937;       /* High-legibility neutral dark for reading copy */
+  --ink-dim: #5A6A78;        /* Muted slate text */
+  --ink-subtle: #8A98A5;     /* Timestamps and subtle markers */
+
+  /* Deep Brand Tones (25% Weight) */
+  --navy: #000E21;          /* Corporate Authority Deep Navy */
+  --navy-light: #0A1E38;    /* Lighter Navy for contrast */
+  --navy-deep: #050A28;     /* Midnight Navy */
+  --green: #1D353C;         /* Signature Excelstra Green */
+  --green-dark: #14292F;    /* Supporting Deep Green */
+  --green-soft: rgba(29, 53, 60, 0.08);
+
+  /* Gold Accents (15% Weight — Kept Visually Scarce) */
+  --gold: #BF9B30;          /* Official Excelstra Gold */
+  --gold-light: #DABE81;    /* Subtle Gold Highlight */
+  --gold-soft: rgba(191, 155, 48, 0.14);
+  --hair-gold: rgba(191, 155, 48, 0.28);
+  --hair: rgba(0, 14, 33, 0.08);
+
   --serif: 'Lora', Georgia, serif;
-  --sans: 'Inter', -apple-system, sans-serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -172,28 +188,30 @@ button.btn:focus-visible, .btn:focus-visible {
 
 .btn-gold {
   background: var(--gold) !important;
-  color: #161513 !important;
+  color: var(--navy) !important;
   border-color: var(--gold) !important;
-  box-shadow: 0 4px 16px rgba(201, 168, 105, 0.24);
+  box-shadow: 0 4px 18px rgba(191, 155, 48, 0.28);
   font-weight: 600;
+  letter-spacing: 0.08em;
 }
 
 .btn-gold:hover {
-  background: #d8b979 !important;
-  border-color: #d8b979 !important;
-  color: #161513 !important;
-  box-shadow: 0 8px 24px rgba(201, 168, 105, 0.35);
+  background: var(--gold-light) !important;
+  border-color: var(--gold-light) !important;
+  color: var(--navy) !important;
+  box-shadow: 0 8px 24px rgba(191, 155, 48, 0.4);
   transform: translateY(-2px);
 }
 
 .btn-ghost {
   background: transparent !important;
-  color: var(--ink) !important;
-  border: 1px solid var(--ink) !important;
+  color: var(--navy) !important;
+  border: 1px solid var(--green) !important;
+  font-weight: 500;
 }
 
 .btn-ghost:hover {
-  background: rgba(154, 118, 56, 0.08) !important;
+  background: var(--green-soft) !important;
   border-color: var(--gold) !important;
   color: var(--gold) !important;
   transform: translateY(-2px);
@@ -1904,9 +1922,9 @@ body.home-page #nav:not(.solid) .nav-toggle span {
 
 /* ══════════ CREDIBILITY PEDIGREE STRIP ══════════ */
 .pedigree-strip {
-  background: #ffffff;
-  border-top: 1px solid var(--hair);
-  border-bottom: 1px solid var(--hair);
+  background: var(--bg-panel);
+  border-top: 1px solid var(--hair-gold);
+  border-bottom: 1px solid var(--hair-gold);
   padding: 2.5rem 0;
   position: relative;
   z-index: 20;
@@ -1921,11 +1939,12 @@ body.home-page #nav:not(.solid) .nav-toggle span {
   text-align: center;
 }
 .pedigree-label {
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
-  text-transform: none; font-size: 0.8rem; letter-spacing: 0.06em;
-  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
   font-family: var(--sans);
+  font-weight: 600;
   margin: 0;
 }
 .pedigree-names {
@@ -1941,7 +1960,7 @@ body.home-page #nav:not(.solid) .nav-toggle span {
 .pedigree-name {
   font-family: var(--serif);
   font-size: clamp(0.92rem, 1.3vw, 1.12rem);
-  color: #48443d;
+  color: var(--navy);
   letter-spacing: 0.04em;
   font-weight: 500;
   white-space: nowrap;
@@ -1951,7 +1970,7 @@ body.home-page #nav:not(.solid) .nav-toggle span {
   color: var(--gold);
 }
 .pedigree-dot {
-  color: rgba(201, 168, 105, 0.4);
+  color: var(--gold);
   font-size: 0.8rem;
 }
 
