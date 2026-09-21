@@ -291,6 +291,27 @@ button.btn:focus-visible, .btn:focus-visible {
   text-shadow: 0 1px 4px rgba(0,0,0,0.95), 0 2px 22px rgba(0,0,0,0.85);
 }
 
+/* Secondary CTA sits over cinematic footage — luxury frosted light back with blur for maximum contrast */
+.hero-ctas .btn-ghost {
+  background: rgba(248, 247, 245, 0.94) !important;
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  color: #000E21 !important;
+  border: 1px solid rgba(191, 155, 48, 0.45) !important;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  text-shadow: none !important;
+}
+
+.hero-ctas .btn-ghost:hover {
+  background: #FFFFFF !important;
+  border-color: #BF9B30 !important;
+  color: #000E21 !important;
+  box-shadow: 0 10px 30px rgba(191, 155, 48, 0.45);
+  transform: translateY(-2px);
+}
+
 .scroll-hint {
   position: absolute; bottom: 2.4rem; left: 50%;
   transform: translateX(-50%);

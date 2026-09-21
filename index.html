@@ -1175,6 +1175,23 @@
         clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
         clone.querySelectorAll('[data-editor-dirty]').forEach(el => el.removeAttribute('data-editor-dirty'));
 
+        // Purge third-party browser extension injections (Dashlane, LastPass, Grammarly, 1Password)
+        clone.querySelectorAll('[data-dashlanecreated], [id*="dashlane"], [class*="dashlane"], [data-lastpass-icon-root], grammarly-extension, [data-grammarly-part]').forEach(el => el.remove());
+
+        // Reset loader initial state
+        const loader = clone.querySelector('#loader');
+        if (loader) {
+          loader.classList.remove('done');
+          loader.style.opacity = '';
+          loader.style.visibility = '';
+        }
+        const loaderBar = clone.querySelector('#loaderBar');
+        if (loaderBar) loaderBar.style.width = '';
+        const loaderPct = clone.querySelector('#loaderPct');
+        if (loaderPct) loaderPct.textContent = '0%';
+        const bodyEl = clone.querySelector('body');
+        if (bodyEl && bodyEl.getAttribute('style') === '') bodyEl.removeAttribute('style');
+
         return '<!DOCTYPE html>\n' + clone.outerHTML + '\n';
       }
 
