@@ -20,11 +20,12 @@
   --green-dark: #14292F;    /* Supporting Deep Green */
   --green-soft: rgba(29, 53, 60, 0.08);
 
-  /* Gold Accents (15% Weight — Kept Visually Scarce) */
-  --gold: #BF9B30;          /* Official Excelstra Gold */
-  --gold-light: #DABE81;    /* Subtle Gold Highlight */
-  --gold-soft: rgba(191, 155, 48, 0.14);
-  --hair-gold: rgba(191, 155, 48, 0.28);
+  /* Gold Accents (Susie Version Palette) */
+  --gold: #c9a869;
+  --gold-light: #dfc58d;
+  --gold-hover: #d8b979;
+  --gold-soft: rgba(201, 168, 105, 0.12);
+  --hair-gold: rgba(201, 168, 105, 0.28);
   --hair: rgba(0, 14, 33, 0.08);
 
   --serif: 'Lora', Georgia, serif;
@@ -188,18 +189,18 @@ button.btn:focus-visible, .btn:focus-visible {
 
 .btn-gold {
   background: var(--gold) !important;
-  color: var(--navy) !important;
+  color: #161513 !important;
   border-color: var(--gold) !important;
-  box-shadow: 0 4px 18px rgba(191, 155, 48, 0.28);
+  box-shadow: 0 4px 16px rgba(201, 168, 105, 0.24);
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 
 .btn-gold:hover {
-  background: var(--gold-light) !important;
-  border-color: var(--gold-light) !important;
-  color: var(--navy) !important;
-  box-shadow: 0 8px 24px rgba(191, 155, 48, 0.4);
+  background: #d8b979 !important;
+  border-color: #d8b979 !important;
+  color: #161513 !important;
+  box-shadow: 0 8px 24px rgba(201, 168, 105, 0.35);
   transform: translateY(-2px);
 }
 
@@ -322,7 +323,7 @@ button.btn:focus-visible, .btn:focus-visible {
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   color: var(--navy) !important;
-  border: 1px solid rgba(191, 155, 48, 0.45) !important;
+  border: 1px solid rgba(201, 168, 105, 0.45) !important;
   font-weight: 600;
   letter-spacing: 0.12em;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
@@ -333,7 +334,7 @@ button.btn:focus-visible, .btn:focus-visible {
   background: #FFFFFF !important;
   border-color: var(--gold) !important;
   color: var(--navy) !important;
-  box-shadow: 0 10px 30px rgba(191, 155, 48, 0.45);
+  box-shadow: 0 10px 30px rgba(201, 168, 105, 0.45);
   transform: translateY(-2px);
 }
 
