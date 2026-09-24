@@ -250,6 +250,19 @@
       animation: pulseGlow 2s infinite ease-in-out;
     }
 
+    .dirty-pill.deploying {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.6);
+      color: #93c5fd;
+      animation: pulseGlow 1.2s infinite ease-in-out;
+    }
+
+    .dirty-pill.synced {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.6);
+      color: #34d399;
+    }
+
     @keyframes pulseGlow {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.75; }
@@ -844,16 +857,20 @@
       const btnTestToken = document.getElementById('btnTestToken');
       const tokenStatusText = document.getElementById('tokenStatusText');
 
-      // ── State Variables ──
+      // ── State Variables & Keys ──
       const REPO_OWNER = 'TheKiter';
       const REPO_NAME = 'excelstra-preview';
       const TARGET_BRANCH = 'main';
       const STORAGE_KEY = 'excelstra_preview_gh_token';
+      const DRAFT_PREFIX = 'excelstra_draft_v4_';
+      const ACTIVE_PAGE_KEY = 'excelstra_active_page';
+      const EDIT_MODE_KEY = 'excelstra_edit_mode_active';
 
       let isSyncScrolling = true;
       let activeScrollSource = null;
       let scrollTimeout = null;
       let toastTimeout = null;
+      let deployPollInterval = null;
 
       let isEditMode = false;
       let unsavedCount = 0;
@@ -870,30 +887,158 @@
         }, duration);
       }
 
-      // ── Synchronized Page Navigation ──
-      function loadPage(pageFile) {
-        if (unsavedCount > 0) {
-          const proceed = window.confirm('You have ' + unsavedCount + ' unsaved text changes on this page. Discard and switch pages?');
-          if (!proceed) {
-            return;
-          }
+      // ── Dirty Indicator ──
+      function updateDirtyIndicator(status = 'auto') {
+        if (status === 'deploying') {
+          dirtyCounter.textContent = 'Deploying (~45s)...';
+          dirtyCounter.className = 'dirty-pill deploying';
+          btnSavePublish.disabled = true;
+          return;
+        }
+        if (status === 'synced') {
+          dirtyCounter.textContent = 'Live Synced ✓';
+          dirtyCounter.className = 'dirty-pill synced';
+          btnSavePublish.disabled = true;
+          return;
         }
 
-        unsavedCount = 0;
+        if (unsavedCount > 0) {
+          dirtyCounter.textContent = unsavedCount + ' Unsaved (Draft Saved)';
+          dirtyCounter.className = 'dirty-pill dirty';
+          btnSavePublish.disabled = false;
+        } else {
+          dirtyCounter.textContent = 'Clean';
+          dirtyCounter.className = 'dirty-pill';
+          btnSavePublish.disabled = true;
+        }
+      }
+
+      // ── Stable Deterministic Node Key Generator ──
+      function getNodeKey(el, index) {
+        if (el.id) return 'id_' + el.id;
+        const parentWithId = el.closest('[id]');
+        if (parentWithId) {
+          const siblings = parentWithId.querySelectorAll(el.tagName);
+          const sibIdx = Array.prototype.indexOf.call(siblings, el);
+          return 'sec_' + parentWithId.id + '_' + el.tagName.toLowerCase() + '_' + sibIdx;
+        }
+        return 'idx_' + index + '_' + el.tagName.toLowerCase();
+      }
+
+      // ── Draft Persistence in LocalStorage ──
+      function saveCurrentDraft() {
+        const currentPage = pageSelect.value;
+        const doc = frameV4.contentDocument;
+        if (!doc) return;
+
+        const edits = {};
+        dirtyNodes.forEach(el => {
+          const key = el.getAttribute('data-editor-id');
+          if (key) {
+            edits[key] = el.innerHTML;
+          }
+        });
+
+        if (Object.keys(edits).length > 0) {
+          localStorage.setItem(DRAFT_PREFIX + currentPage, JSON.stringify({
+            page: currentPage,
+            updatedAt: Date.now(),
+            status: 'draft',
+            edits: edits
+          }));
+        } else {
+          localStorage.removeItem(DRAFT_PREFIX + currentPage);
+        }
+      }
+
+      function restoreDraftForFrame() {
+        try {
+          const currentPage = pageSelect.value;
+          const doc = frameV4.contentDocument;
+          if (!doc) return 0;
+
+          const candidates = doc.querySelectorAll(`
+            h1, h2, h3, h4, h5, h6,
+            p, li, blockquote, figcaption,
+            td, th,
+            .badge, .stat-num, .stat-cap, .stat-label, .btn, .hero-tag, .tag, .lead
+          `);
+
+          candidates.forEach((el, idx) => {
+            if (el.tagName === 'LI' && el.querySelector('p, h1, h2, h3, h4, h5, h6')) {
+              return;
+            }
+            const key = getNodeKey(el, idx);
+            el.setAttribute('data-editor-id', key);
+          });
+
+          const rawDraft = localStorage.getItem(DRAFT_PREFIX + currentPage);
+          if (!rawDraft) {
+            unsavedCount = 0;
+            dirtyNodes.clear();
+            updateDirtyIndicator();
+            return 0;
+          }
+
+          const draft = JSON.parse(rawDraft);
+          if (!draft || !draft.edits) return 0;
+
+          let restoredCount = 0;
+          candidates.forEach(el => {
+            const key = el.getAttribute('data-editor-id');
+            if (key && draft.edits[key] !== undefined && draft.edits[key] !== el.innerHTML) {
+              el.innerHTML = draft.edits[key];
+              el.setAttribute('data-editor-dirty', 'true');
+              dirtyNodes.add(el);
+              restoredCount++;
+            }
+          });
+
+          unsavedCount = dirtyNodes.size;
+          updateDirtyIndicator(draft.status === 'deploying' ? 'deploying' : 'draft');
+
+          if (restoredCount > 0) {
+            showToast('Restored ' + restoredCount + ' saved edits from local draft.', 'success', 3500);
+          }
+
+          if (draft.status === 'deploying') {
+            startDeployPoll(currentPage);
+          }
+
+          return restoredCount;
+        } catch (err) {
+          console.warn('Draft restoration error:', err);
+          return 0;
+        }
+      }
+
+      // ── Synchronized Page Navigation ──
+      function loadPage(pageFile, forceReload = false) {
+        localStorage.setItem(ACTIVE_PAGE_KEY, pageFile);
         dirtyNodes.clear();
+        unsavedCount = 0;
         updateDirtyIndicator();
 
+        const cacheBuster = '?t=' + Date.now();
         const v3Url = 'v3/' + pageFile;
-        const v4Url = 'v4/' + pageFile;
+        const v4Url = 'v4/' + pageFile + (forceReload ? cacheBuster : '');
 
         frameV3.src = v3Url;
         frameV4.src = v4Url;
 
         labelV3Path.textContent = v3Url;
-        labelV4Path.textContent = v4Url;
+        labelV4Path.textContent = 'v4/' + pageFile;
 
         linkStandaloneV3.href = v3Url;
-        linkStandaloneV4.href = v4Url;
+        linkStandaloneV4.href = 'v4/' + pageFile;
+
+        // Update URL query string without reloading page
+        try {
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('page', pageFile);
+          if (isEditMode) newUrl.searchParams.set('edit', 'true');
+          window.history.replaceState({}, '', newUrl);
+        } catch (e) {}
       }
 
       pageSelect.addEventListener('change', function () {
@@ -1009,18 +1154,6 @@
         }
       `;
 
-      function updateDirtyIndicator() {
-        if (unsavedCount > 0) {
-          dirtyCounter.textContent = unsavedCount + ' Unsaved';
-          dirtyCounter.className = 'dirty-pill dirty';
-          btnSavePublish.disabled = false;
-        } else {
-          dirtyCounter.textContent = 'Clean';
-          dirtyCounter.className = 'dirty-pill';
-          btnSavePublish.disabled = true;
-        }
-      }
-
       function injectEditorStyle(doc) {
         if (!doc) return;
         let style = doc.getElementById(EDITOR_STYLE_ID);
@@ -1046,22 +1179,25 @@
           const win = frameV4.contentWindow;
           if (!doc || !win) return;
 
+          // Always restore draft changes so edits remain visible even across refresh
+          restoreDraftForFrame();
+
+          const candidates = doc.querySelectorAll(`
+            h1, h2, h3, h4, h5, h6,
+            p, li, blockquote, figcaption,
+            td, th,
+            .badge, .stat-num, .stat-cap, .stat-label, .btn, .hero-tag, .tag, .lead
+          `);
+
           if (isEditMode) {
             injectEditorStyle(doc);
 
-            // Select semantic text and copy elements
-            const candidates = doc.querySelectorAll(`
-              h1, h2, h3, h4, h5, h6,
-              p, li, blockquote, figcaption,
-              td, th,
-              .badge, .stat-num, .stat-label, .btn, .hero-tag, .tag, .lead
-            `);
-
-            candidates.forEach(el => {
-              // Ensure we do not make large container divs or lists editable directly if their children are editable
+            candidates.forEach((el, idx) => {
               if (el.tagName === 'LI' && el.querySelector('p, h1, h2, h3, h4, h5, h6')) {
                 return;
               }
+              const key = getNodeKey(el, idx);
+              el.setAttribute('data-editor-id', key);
               el.setAttribute('contenteditable', 'true');
               el.setAttribute('data-editor-node', 'true');
               el.setAttribute('spellcheck', 'false');
@@ -1069,12 +1205,11 @@
               if (!el._editorBound) {
                 el._editorBound = true;
                 el.addEventListener('input', function () {
-                  if (!dirtyNodes.has(this)) {
-                    dirtyNodes.add(this);
-                    this.setAttribute('data-editor-dirty', 'true');
-                    unsavedCount = dirtyNodes.size;
-                    updateDirtyIndicator();
-                  }
+                  dirtyNodes.add(this);
+                  this.setAttribute('data-editor-dirty', 'true');
+                  unsavedCount = dirtyNodes.size;
+                  updateDirtyIndicator('draft');
+                  saveCurrentDraft();
                 });
               }
             });
@@ -1087,7 +1222,6 @@
                 const link = e.target.closest('a');
                 if (link) {
                   e.preventDefault();
-                  // Focus the editable element instead
                   const editable = e.target.closest('[contenteditable="true"]');
                   if (editable) editable.focus();
                 }
@@ -1109,11 +1243,9 @@
 
           } else {
             removeEditorStyle(doc);
-            const editables = doc.querySelectorAll('[data-editor-node="true"]');
-            editables.forEach(el => {
+            candidates.forEach(el => {
               el.removeAttribute('contenteditable');
               el.removeAttribute('data-editor-node');
-              el.removeAttribute('data-editor-dirty');
             });
           }
 
@@ -1122,36 +1254,38 @@
         }
       }
 
-      // Re-attach editor when frameV4 reloads or navigates
+      // Re-attach editor and restore drafts whenever frameV4 loads
       frameV4.addEventListener('load', function () {
         lastKnownSha = null;
-        if (isEditMode) {
-          attachEditorToFrame();
-        }
+        attachEditorToFrame();
       });
 
       // Toggle Edit Mode Button
       btnToggleEdit.addEventListener('click', function () {
         isEditMode = !isEditMode;
+        localStorage.setItem(EDIT_MODE_KEY, isEditMode ? 'true' : 'false');
         this.classList.toggle('active', isEditMode);
         this.querySelector('span').textContent = isEditMode ? 'Editing Active' : 'Edit Mode';
 
         attachEditorToFrame();
-        showToast(isEditMode ? 'Visual Edit Mode Enabled. Click any text to modify.' : 'Edit Mode Disabled');
+        showToast(isEditMode ? 'Visual Edit Mode Enabled. Click any text to modify.' : 'Edit Mode Disabled. Changes remain preserved.');
       });
 
       // Discard Changes Button
       btnDiscardChanges.addEventListener('click', function () {
-        if (unsavedCount === 0) {
-          showToast('No unsaved changes to discard.');
+        const currentPage = pageSelect.value;
+        const hasDraft = !!localStorage.getItem(DRAFT_PREFIX + currentPage);
+        if (unsavedCount === 0 && !hasDraft) {
+          showToast('No unsaved changes or drafts to discard.');
           return;
         }
-        if (window.confirm('Discard all ' + unsavedCount + ' unsaved edits and reload ' + pageSelect.value + '?')) {
-          unsavedCount = 0;
+        if (window.confirm('Discard all saved local edits on ' + currentPage + ' and reload the clean server version?')) {
+          localStorage.removeItem(DRAFT_PREFIX + currentPage);
           dirtyNodes.clear();
+          unsavedCount = 0;
           updateDirtyIndicator();
-          frameV4.contentWindow.location.reload();
-          showToast('Edits discarded. Page reloaded.');
+          frameV4.src = 'v4/' + currentPage + '?t=' + Date.now();
+          showToast('Edits discarded. Reloaded live version.');
         }
       });
 
@@ -1169,13 +1303,15 @@
           el.removeAttribute('contenteditable');
           el.removeAttribute('data-editor-node');
           el.removeAttribute('data-editor-dirty');
+          el.removeAttribute('data-editor-id');
           el.removeAttribute('spellcheck');
         });
 
         clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
         clone.querySelectorAll('[data-editor-dirty]').forEach(el => el.removeAttribute('data-editor-dirty'));
+        clone.querySelectorAll('[data-editor-id]').forEach(el => el.removeAttribute('data-editor-id'));
 
-        // Purge third-party browser extension injections (Dashlane, LastPass, Grammarly, 1Password)
+        // Purge third-party browser extension injections
         clone.querySelectorAll('[data-dashlanecreated], [id*="dashlane"], [class*="dashlane"], [data-lastpass-icon-root], grammarly-extension, [data-grammarly-part]').forEach(el => el.remove());
 
         // Reset loader initial state
@@ -1225,6 +1361,46 @@
 
       btnDownloadHtml.addEventListener('click', triggerHtmlDownload);
 
+      // ── Background GitHub Actions Deployment Polling ──
+      function startDeployPoll(pageFile) {
+        clearInterval(deployPollInterval);
+        const token = localStorage.getItem(STORAGE_KEY);
+        let attempts = 0;
+        const maxAttempts = 18; // ~90 seconds
+
+        deployPollInterval = setInterval(async () => {
+          attempts++;
+          try {
+            const headers = { 'Accept': 'application/vnd.github.v3+json' };
+            if (token) headers['Authorization'] = `Bearer ${token.trim()}`;
+
+            const resp = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runs?per_page=1`, { headers });
+            if (resp.ok) {
+              const data = await resp.json();
+              const latestRun = data.workflow_runs && data.workflow_runs[0];
+              if (latestRun && latestRun.status === 'completed' && latestRun.conclusion === 'success') {
+                clearInterval(deployPollInterval);
+                localStorage.removeItem(DRAFT_PREFIX + pageFile);
+                dirtyNodes.clear();
+                unsavedCount = 0;
+                updateDirtyIndicator('synced');
+                showToast('GitHub Pages deployment completed! Live server updated.', 'success', 5000);
+                frameV4.src = 'v4/' + pageFile + '?t=' + Date.now();
+                return;
+              }
+            }
+          } catch (e) {
+            console.warn('Deploy poll check:', e);
+          }
+
+          if (attempts >= maxAttempts) {
+            clearInterval(deployPollInterval);
+            updateDirtyIndicator('synced');
+            showToast('Deployment finished in background. You can refresh anytime.', 'info', 4000);
+          }
+        }, 5000);
+      }
+
       // ── GitHub API Commit & Publish ──
       async function saveAndPublish() {
         const token = localStorage.getItem(STORAGE_KEY);
@@ -1248,7 +1424,7 @@
 
         btnSavePublish.disabled = true;
         btnSavePublish.querySelector('span').textContent = 'Publishing...';
-        showToast('Publishing ' + currentPage + ' to GitHub...', 'info');
+        showToast('Committing ' + currentPage + ' to GitHub main branch...', 'info');
 
         try {
           // 1. Fetch current blob SHA if not already cached
@@ -1294,22 +1470,31 @@
           const putData = await putResp.json();
           lastKnownSha = putData.content ? putData.content.sha : null;
 
-          // Clear dirty state
-          unsavedCount = 0;
-          dirtyNodes.clear();
-          if (doc) {
-            doc.querySelectorAll('[data-editor-dirty]').forEach(el => el.removeAttribute('data-editor-dirty'));
-          }
-          updateDirtyIndicator();
+          // Preserve draft state as 'deploying' so refresh doesn't show old version during build
+          const edits = {};
+          dirtyNodes.forEach(el => {
+            const key = el.getAttribute('data-editor-id');
+            if (key) edits[key] = el.innerHTML;
+          });
+          localStorage.setItem(DRAFT_PREFIX + currentPage, JSON.stringify({
+            page: currentPage,
+            updatedAt: Date.now(),
+            status: 'deploying',
+            commitSha: lastKnownSha,
+            edits: edits
+          }));
 
-          showToast('Published to GitHub main branch. Deploying to go.excelstra.com/preview (~45s)', 'success', 5000);
+          updateDirtyIndicator('deploying');
+          showToast('Published to GitHub main branch! Building live deployment (~45s)...', 'success', 6000);
+
+          startDeployPoll(currentPage);
 
         } catch (err) {
           console.error('Publish error:', err);
           showToast('GitHub publish failed: ' + err.message, 'error', 6000);
+          updateDirtyIndicator('draft');
         } finally {
           btnSavePublish.querySelector('span').textContent = 'Save & Publish';
-          updateDirtyIndicator();
         }
       }
 
@@ -1419,12 +1604,34 @@
         }
       });
 
-      // Initial check on load
+      // ── Initial State Bootstrapping ──
       const savedToken = localStorage.getItem(STORAGE_KEY);
       if (savedToken) {
         btnOpenSettings.textContent = 'GitHub Key ✓';
       }
 
+      // Restore active page from URL search params or localStorage
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedPage = urlParams.get('page') || localStorage.getItem(ACTIVE_PAGE_KEY);
+        if (requestedPage && pageSelect.querySelector(`option[value="${requestedPage}"]`)) {
+          pageSelect.value = requestedPage;
+          loadPage(requestedPage, true);
+        } else {
+          loadPage('index.html', true);
+        }
+
+        // Restore Edit Mode if previously toggled
+        const shouldEdit = urlParams.get('edit') === 'true' || localStorage.getItem(EDIT_MODE_KEY) === 'true';
+        if (shouldEdit) {
+          isEditMode = true;
+          btnToggleEdit.classList.add('active');
+          btnToggleEdit.querySelector('span').textContent = 'Editing Active';
+        }
+      } catch (e) {
+        console.warn('Initial bootstrapping note:', e);
+        loadPage('index.html', true);
+      }
     })();
   </script>
 </body>
