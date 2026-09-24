@@ -679,7 +679,7 @@
         <span class="control-label">Page</span>
         <select id="pageSelect" class="page-select">
           <option value="index.html">Homepage (index.html)</option>
-          <option value="the-architecture.html">The Architecture (10 Levels)</option>
+          <option value="the-architecture.html">The Architecture</option>
           <option value="about-eunicia.html">About Eunicia Peret</option>
           <option value="mastermind.html">Mastermind Summit</option>
           <option value="member-stories.html">Member Stories</option>
@@ -925,9 +925,21 @@
         return 'idx_' + index + '_' + el.tagName.toLowerCase();
       }
 
+      function getFrameCurrentPage() {
+        try {
+          if (frameV4 && frameV4.contentWindow && frameV4.contentWindow.location) {
+            let path = frameV4.contentWindow.location.pathname;
+            let file = path.split('/').pop();
+            if (file && file.includes('?')) file = file.split('?')[0];
+            if (file && file.endsWith('.html')) return file;
+          }
+        } catch (e) {}
+        return pageSelect.value;
+      }
+
       // ── Draft Persistence in LocalStorage ──
       function saveCurrentDraft() {
-        const currentPage = pageSelect.value;
+        const currentPage = getFrameCurrentPage();
         const doc = frameV4.contentDocument;
         if (!doc) return;
 
@@ -953,7 +965,7 @@
 
       function restoreDraftForFrame() {
         try {
-          const currentPage = pageSelect.value;
+          const currentPage = getFrameCurrentPage();
           const doc = frameV4.contentDocument;
           if (!doc) return 0;
 
@@ -1254,8 +1266,28 @@
         }
       }
 
+      function syncPageSelectionFromFrame() {
+        const file = getFrameCurrentPage();
+        if (file && pageSelect.value !== file) {
+          const opt = Array.from(pageSelect.options).find(o => o.value === file);
+          if (opt) {
+            pageSelect.value = file;
+            localStorage.setItem(ACTIVE_PAGE_KEY, file);
+            labelV4Path.textContent = 'v4/' + file;
+            linkStandaloneV4.href = 'v4/' + file;
+            const v3Url = 'v3/' + file;
+            if (!frameV3.src.includes(file)) {
+              frameV3.src = v3Url;
+              labelV3Path.textContent = v3Url;
+              linkStandaloneV3.href = v3Url;
+            }
+          }
+        }
+      }
+
       // Re-attach editor and restore drafts whenever frameV4 loads
       frameV4.addEventListener('load', function () {
+        syncPageSelectionFromFrame();
         lastKnownSha = null;
         attachEditorToFrame();
       });
@@ -1273,7 +1305,7 @@
 
       // Discard Changes Button
       btnDiscardChanges.addEventListener('click', function () {
-        const currentPage = pageSelect.value;
+        const currentPage = getFrameCurrentPage();
         const hasDraft = !!localStorage.getItem(DRAFT_PREFIX + currentPage);
         if (unsavedCount === 0 && !hasDraft) {
           showToast('No unsaved changes or drafts to discard.');
@@ -1346,7 +1378,7 @@
         const doc = frameV4.contentDocument;
         if (!doc) return;
         const cleanHtml = serializeCleanProductionHtml(doc);
-        const currentPage = pageSelect.value;
+        const currentPage = getFrameCurrentPage();
         const blob = new Blob([cleanHtml], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -1404,7 +1436,9 @@
       // ── GitHub API Commit & Publish ──
       async function saveAndPublish() {
         const token = localStorage.getItem(STORAGE_KEY);
-        const currentPage = pageSelect.value;
+        const currentPage = getFrameCurrentPage();
+        pageSelect.value = currentPage;
+        labelV4Path.textContent = 'v4/' + currentPage;
         const filePath = 'v4/' + currentPage;
 
         if (!token) {

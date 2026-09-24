@@ -2,24 +2,37 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Membership · Engage the Firm · Excelstra</title>
-<meta name="description" content="Engage the Firm. Not Just an Advisor. One picture, brought together as one. Built around your financial situation and your plan.">
+<title>Excelstra · Integrated Wealth Strategy for Business Owners &amp; Families</title>
+<meta name="description" content="Excelstra brings your CPA, investment advisors, and estate counsel together under one coordinated strategy, aligning your wealth with your family and enterprise vision.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Excelstra · Wealth Integrators for the Discerning">
+<meta property="og:description" content="Discover what becomes possible when your tax, investment, and estate strategies are brought into one clear, coordinated view.">
+<meta property="og:image" content="share.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=4.3">
 </head>
-<body>
+<body class="home-page">
+
+<!-- ══════════ LOADER ══════════ -->
+<div id="loader" aria-hidden="true" class="">
+  <div class="loader-inner">
+    <img class="loader-mark" src="logo-black.png" alt="Excelstra">
+    <div class="loader-track"><div class="loader-bar" id="loaderBar" style=""></div></div>
+    <div class="loader-pct" id="loaderPct">0%</div>
+  </div>
+</div>
 
 <!-- ══════════ GLOBAL: PRIMARY NAVIGATION ══════════ -->
 <nav id="nav" class="solid">
   <div class="nav-inner">
     <a class="nav-logo" href="index.html"><img src="logo-black.png" alt="Excelstra"></a>
     <ul class="nav-links">
-      <li><a class="nav-link" href="index.html">Home</a></li>
+      <li><a class="nav-link active" href="index.html">Home</a></li>
       <li><a class="nav-link" href="the-architecture.html">The Architecture</a></li>
-      <li><a class="nav-link active" href="membership.html">Membership</a></li>
+      <li><a class="nav-link" href="membership.html">Membership</a></li>
       <li class="nav-dropdown">
         <a class="nav-link" href="events.html">Events</a>
         <ul class="nav-dropdown-menu">
@@ -41,9 +54,9 @@
 </nav>
 
 <div class="nav-mobile" id="navMobile">
-  <a href="index.html">Home</a>
+  <a class="active" href="index.html">Home</a>
   <a href="the-architecture.html">The Architecture</a>
-  <a class="active" href="membership.html">Membership</a>
+  <a href="membership.html">Membership</a>
   <a href="events.html">Events · True Wealth Mastery</a>
   <a href="mastermind.html">The Mastermind</a>
   <a href="speaking.html">Speaking</a>
@@ -52,148 +65,334 @@
   <a class="btn btn-gold" href="book-a-call.html">Request Private&nbsp;Consultation</a>
 </div>
 
-<main style="padding-top: 120px;">
+<!-- APPROVED ALTERNATE HERO COPY. RETAIN FOR REVIEW; DO NOT RENDER WITH THE SELECTED HERO.
+The Strategy Behind the Quietest Fortunes
+The families who keep what they build do not manage their wealth in pieces. They integrate it. In two minutes, see what that changes for you.
+[ Reveal My Integrated Strategy ]
+You Built the Fortune. Now Command the Strategy It Deserves.
+Tax, growth, and legacy, designed as one masterwork. Run your wealth through our calculator and see the whole picture, synchronized at last.
+[ Examine the Architecture ]
+Keep More. Grow More. Leave a Legacy They Will Speak of for Generations.
+Wealth integration turns three separate conversations into one extraordinary strategy. Discover what becomes possible in two minutes.
+[ Begin With the Calculator ]
+Wealth, Integrated. Life, Elevated. Legacy, Secured.
+For the self-made few who sense there is a higher altitude, and are ready to ascend to it.
+[ Run Your Wealth Assessment ]
+-->
 
-<!-- ══════════ HERO ══════════ -->
-<section class="sect sect-hermes-hero">
-  <div class="hermes-hero-backdrop" style="background-image: url('images/hermes-hero-membership.jpg');"></div>
-  <span class="ghost-num prlx" data-depth="0.08" aria-hidden="true" style="transform: translateY(-56.3px);">01</span>
-  <div class="wrap center">
-    <p class="eyebrow rv in">Membership</p>
-    <h1 class="h2 big rv in">Private Advisory Membership: Coordinated Stewardship.</h1>
-    <p class="hero-sub rv centered narrow-c in" style="margin-top:1.5rem;">
-      One picture, brought together as one. Because one size does not fit all, your engagement is built around your financial goals and your&nbsp;lifestyle.</p>
+<!-- ══════════ HERO  ·  SCROLL FILM OVERTURE ══════════ -->
+<section id="top" class="scroll-stage">
+  <div class="sticky-frame">
+    <canvas id="film" role="img" aria-label="Cinematic film: an expansive architectural overlook transitioning across mountain waters into an Italian harbor." width="1705" height="1113"></canvas>
+    <div class="film-vignette"></div>
+    <div class="film-grade"></div>
+    <div class="film-scrim" id="filmScrim" style="opacity: 1;"></div>
+
+    <div class="hero-copy stage" data-stage="0" style="opacity: 0; transform: translateY(-26px);">
+      <p class="eyebrow reveal-line">Excelstra</p>
+      <h1 class="hero-h">To Advise Is&nbsp;Common.<br><em>To Integrate Is&nbsp;Rare.</em></h1>
+    </div>
+
+    <div class="hero-copy stage" data-stage="1" style="opacity: 0; transform: translateY(-26px);">
+      <h2 class="hero-sub">You have advisors for the parts. Excelstra is the architect of the&nbsp;whole.<br><em>See what changes when your wealth is designed as&nbsp;one.</em></h2>
+    </div>
+
+    <div class="hero-copy stage active" data-stage="2" style="opacity: 1; transform: translateY(0px);">
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="the-architecture.html">See the&nbsp;Architecture</a>
+        <p class="cta-note">A confidential two-minute assessment for complete clarity across your wealth.</p>
+        <a class="btn btn-ghost btn-sm" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Begin Your Wealth&nbsp;Assessment</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint" id="scrollHint" style="opacity: 0;">
+      <span>Scroll</span>
+      <div class="scroll-hint-line"></div>
+    </div>
   </div>
 </section>
 
-<!-- ══════════ WHAT MEMBERSHIP IS ══════════ -->
-<section class="sect sect-panel" id="what-membership-is">
-  <span class="ghost-num prlx" data-depth="0.07" aria-hidden="true" style="transform: translateY(-48.4px);">02</span>
+<!-- ══════════ CREDIBILITY PEDIGREE STRIP ══════════ -->
+<div class="pedigree-strip rv in">
+  <div class="pedigree-inner">
+    <p class="pedigree-label">Advisory Pedigree Across Trusted Institutions &amp; Leadership Circles</p>
+    <ul class="pedigree-names">
+      <li class="pedigree-name">Deloitte</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">EY</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">Booz&amp;Co</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">Coca-Cola</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">Bank of America</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">American Express</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">Uber</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">Toyota</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">Marquis Who's Who</li>
+      <span class="pedigree-dot" aria-hidden="true">•</span>
+      <li class="pedigree-name">Fortune 500</li>
+    </ul>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════ SECTION 02 · WHO THIS IS FOR ══════════ -->
+<section class="sect" id="who-this-is-for">
+  <span class="ghost-num prlx" data-depth="0.09" aria-hidden="true" style="transform: translateY(-61.4px);">01</span>
   <div class="wrap">
     <div class="purpose-grid">
-      <p class="purpose-q rv in">The Partnership</p>
-      <h2 class="h2 rv lead-statement in">A Partnership in Strategic Wealth&nbsp;Governance.</h2>
+      <p class="purpose-q rv in">Who We Serve</p>
+      <h2 class="h2 rv lead-statement in">Designed for founders, business owners, and families whose balance sheets have outpaced casual&nbsp;management.</h2>
     </div>
     <div class="purpose-foot">
       <div>
-        <p class="body rv in">Membership is not a transactional consultation; it is an enduring advisory partnership and a place where you can feel like you belong. As statutory tax laws evolve, markets shift, and your personal and business wealth model reach new milestones, we move with your need to elevate how you grow and protect wealth.</p>
-        <p class="body rv in">You command the dream.&nbsp;</p><div><br></div><div>Excelstra provides the institutional design, technical disciplines, and execution cadence to bring your dream to reality.</div><p></p>
+        <p class="body rv in">Most of our members arrive with an accomplished team already in place. Their CPA files meticulous returns, their wealth manager handles portfolio allocations, and their attorney has established foundational trusts.</p>
+        <p class="body rv in">What is missing is rarely competence; it is communication. When specialists operate independently, tax strategies can conflict with investment timing, and long-term succession goals sit detached from current cash flow. We bring your advisory team together around one table, aligning their recommendations with your personal and family priorities.</p>
       </div>
       <div>
-        <p class="pull rv in">We lift the friction of inter-advisor coordination off your shoulders, delivering peace of mind grounded in mathematical clarity.</p>
+        <p class="pull rv in">This is for leaders who are ready to stop assembling their own strategy and start commanding one.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ YOUR ENGAGEMENT IS DESIGNED TO FIT YOU ══════════ -->
-<section class="sect" id="your-engagement-is-designed-to-fit-you">
-  <span class="ghost-num prlx" data-depth="0.09" aria-hidden="true" style="transform: translateY(-46.4px);">03</span>
+<!-- ══════════ SECTION 03 · WHAT WEALTH INTEGRATION IS ══════════ -->
+<section class="sect sect-panel" id="what-wealth-integration-is">
+  <span class="ghost-num prlx" data-depth="0.07" aria-hidden="true" style="transform: translateY(-48.6px);">02</span>
   <div class="wrap">
-    <p class="eyebrow rv in">Engagements</p>
-    <h2 class="h2 rv in">Your Engagement Is Designed to Fit&nbsp;You</h2>
-    <p class="body rv narrow-c in">
-      No two pictures are alike, so no two engagements are. Where you stand today, what you are building toward, and the plan it calls for decide the altitude at which we work together. Three engagements meet our members where they are at. Each opens the same way, with a clear read of your whole picture, then matches the depth of the work to your specific needs.
-    </p>
-
-    <div class="tiers-grid" data-stagger="">
-      <!-- Copper -->
-      <div class="tier-box rv in" style="transition-delay: 0ms;">
-        <span class="tier-kicker">The Foundation</span>
-        <h3 class="tier-heading">Copper</h3>
-        <p class="body" style="font-size:0.92rem; margin-bottom:1rem;">
-          For the leader bringing their picture together for the first time. A focused engagement that sets a strong baseline and a personal strategy across tax, portfolio, and the income that carries you forward.
-        </p>
-        <div class="tier-for">
-          <strong style="color:var(--gold);">Built for:</strong> individuals, families, and owners of growing or earlier-stage businesses, ready to design with intention.
-        </div>
-        <div class="tier-arc">
-          <strong style="color:var(--ink);">The arc:</strong> a six-month engagement with up to six private strategy sessions. We map your whole picture, build your personal plan, find the one or two moves that set the rest in motion, and introduce the tax and bookkeeping partners your plan calls for. You leave with a clear design and the first moves underway.
-        </div>
-      </div>
-
-      <!-- Gold -->
-      <div class="tier-box featured rv in" style="transition-delay: 110ms;">
-        <span class="tier-kicker">The Full Design</span>
-        <h3 class="tier-heading">Gold</h3>
-        <p class="body" style="font-size:0.92rem; margin-bottom:1rem;">
-          For the established owner requiring active multidisciplinary coordination across corporate entities, private market allocations, and strategic statutory tax mitigation throughout the operating calendar.
-        </p>
-        <div class="tier-for">
-          <strong style="color:var(--gold);">Built for:</strong> established business owners focused on lowering tax, growing the enterprise, and building long-term financial standing.
-        </div>
-        <div class="tier-arc">
-          <strong style="color:var(--ink);">The arc:</strong> a twelve-month engagement with up to sixteen private strategy sessions. We carry more of the work for you, coordinating most of the partner facilitation and the preparation behind the strategies we put in motion, with access to opportunities most owners rarely see and a standing invitation to the Excelstra roundtable.
-        </div>
-      </div>
-
-      <!-- Diamond -->
-      <div class="tier-box rv in" style="transition-delay: 220ms;">
-        <span class="tier-kicker">The Fullest Partnership</span>
-        <h3 class="tier-heading">Diamond</h3>
-        <p class="body" style="font-size:0.92rem; margin-bottom:1rem;">
-          For the principal requiring comprehensive family office coordination, dynastic trust governance, and enterprise exit engineering 24 to 60 months prior to liquidity.
-        </p>
-        <div class="tier-for">
-          <strong style="color:var(--gold);">Built for:</strong> established businesses and their owners focused on tax, growth, valuation, and a transition designed on their own terms.
-        </div>
-        <div class="tier-arc">
-          <strong style="color:var(--ink);">The arc:</strong> a twelve-month engagement at the fullest level, with up to thirty private strategy sessions. We carry the key partner facilitation and the in-scope preparation, design across the whole architecture, and hold the plan steady through each move of the year. The firm, beside you.
-        </div>
-      </div>
+    <p class="eyebrow rv in">What Wealth Integration Is</p>
+    <h2 class="h2 rv in">Wealth integration is the art of seeing your entire financial life as one living masterpiece, and designing each part to serve the whole.</h2>
+    
+    <div class="cols">
+      <p class="body rv in">Most fortunes are managed in fragments. A tax move here. An investment there. An estate document filed and forgotten. Each decision sound on its own, yet blind to the others.</p>
+      <p class="body rv in">Integration ends the fragmentation. We see the whole before we touch a single part. And in that view, opportunities surface that no specialist, working alone, could reveal. A tax strategy that funds your next acquisition. An investment structured years before an exit. A legacy designed while the business is still in its prime.</p>
     </div>
 
-    <!-- Continuance -->
-    <div class="continuance-card rv in">
-      <p class="eyebrow" style="margin-bottom:0.6rem;">Long-Term&nbsp;Partnership</p>
-      <h3 class="h3" style="font-size:1.6rem; color:var(--ink);">Continuance · Beyond The Membership.</h3>
-      <p class="body" style="max-width:72ch; margin-top:0.8rem;">
-        Wealth building evolves. Evolution requires the right architecture, the right team, and the right environment.&nbsp;</p>
-    </div>
-  </div>
-</section>
+    <p class="pull rv in" style="max-width:none; text-align:center; border-left:none; margin:3rem auto 3.5rem;">This is where wealth is integrated with intention, transformed with artistry, and delivered with mastery.</p>
 
-<!-- ══════════ WHO BELONGS ══════════ -->
-<section class="sect sect-light" id="who-belongs">
-  <span class="ghost-num prlx" data-depth="0.07" aria-hidden="true" style="transform: translateY(54px);">04</span>
-  <div class="wrap">
-    <div class="gather-grid">
-      <div class="gather-copy">
-        <p class="eyebrow rv in">Qualification</p>
-        <h2 class="h2 rv in">Who&nbsp;Belongs</h2>
-        <p class="body rv in">Membership is for self-made business owners with three to fifty million in company revenue, or households well into the high six figures, who are ready to stop assembling their own strategy and start commanding one delivered by a team.</p>
-        <p class="body rv in">Where you begin is a conversation. We design the engagement around your situation and your plan.</p>
-      </div>
-      <div class="rv in">
-        <div class="dossier">
-          <div class="dossier-meta">
-            <span>Profile Criteria</span>
-            <span>Threshold</span>
-          </div>
-          <div class="bignum inline">
-            <span class="bignum-fig sm">$3M – $50M</span>
-            <span class="bignum-cap">In company revenue or high-six-figure households</span>
-          </div>
+    <div class="rv in" style="margin-top:2rem;">
+      <p class="eyebrow center-sm">The Three Pillars</p>
+      <div class="pillars" data-stagger="">
+        <div class="pillar rv stagger-1 in" style="transition-delay: 0ms;">
+          <span class="pillar-ghost">I</span>
+          <h3 class="h3">Strategic Tax<br>Stewardship</h3>
+          <p class="pillar-lede">Keep More, With Integrity.</p>
+          <p class="body">The tax code rewards the strategist, not the filer. We treat your tax position as a source of freedom, uncovering the lawful strategies that stay hidden when your advisors work alone.&nbsp;</p><div><br></div><div>What you keep, you redeploy.&nbsp;</div><div><br></div><div>What you redeploy, compounds.</div><p></p>
+        </div>
+
+        <div class="pillar rv off-1 stagger-2 in" style="transition-delay: 110ms;">
+          <span class="pillar-ghost">II</span>
+          <h3 class="h3"><div>Wealth Amplification</div></h3>
+          <p class="pillar-lede">Grow More, With Intention.</p>
+          <p class="body">Your capital should answer to your vision, not a benchmark. We align each dollar with the life you are building and the exit you are aiming for, so your portfolio stops drifting and starts driving.&nbsp;</p><div><br></div><div>What you focus on, amplifies.</div><div><br></div><div>What amplifies, serves the life you are building.</div><p></p>
+        </div>
+
+        <div class="pillar rv off-2 stagger-3 in" style="transition-delay: 220ms;">
+          <span class="pillar-ghost">III</span>
+          <h3 class="h3"><div><span style="text-wrap-mode: nowrap;">Legacy-Centered</span></div><div><span style="text-wrap-mode: nowrap;">Exit Planning</span></div></h3>
+          <p class="pillar-lede"></p><div>Live More. Leave More.</div><p></p>
+          <p class="body">The sale is a single day. The legacy is the rest. We design your transition years in advance, so you leave on your terms, your family is secured, and your name means something for generations.&nbsp;</p><div><br></div><div>What you transition, transforms.&nbsp;</div><div><br></div><div>What you transform, endures.</div><p></p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ FIND YOUR ALTITUDE ══════════ -->
-<section class="sect sect-invite" id="find-your-altitude">
+<!-- ══════════ EDITORIAL PHOTO BREAK: ARCHITECTURAL INTERIOR ══════════ -->
+<div class="photo-break rv in">
+  <img src="images/editorial-interior.jpg" alt="Excelstra Wealth Architecture" loading="lazy" style="transform: translateY(-44.6px) scale(1.08);">
+  <div class="photo-break-scrim"></div>
+  <div class="photo-break-caption">
+    <p class="photo-break-quote">"When strategy, tax and wealth discussions share the same room, clarity becomes effortless."</p>
+    <span class="photo-break-tag">The Architecture</span>
+  </div>
+</div>
+
+<!-- ══════════ SECTION 04 · THE CALCULATOR ══════════ -->
+<section class="sect" id="the-calculator">
+  <span class="ghost-num prlx" data-depth="0.08" aria-hidden="true" style="transform: translateY(-61.5px);">03</span>
   <div class="wrap center">
-    <p class="eyebrow rv">The&nbsp;Invitation</p>
-    <h2 class="h2 rv big">Find Your Level: Where You&nbsp;Begin</h2>
-    <p class="body rv centered narrow-c" style="margin-top:1.5rem;">
-      Take two minutes with the calculator for a private view of your own picture, or open the conversation membership begins with, and we will shape the right engagement together.
-    </p>
-    <div class="rv" style="margin-top:3rem; display:flex; flex-direction:column; align-items:center;">
-      <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
-        <a class="btn btn-gold" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Run My Wealth&nbsp;Assessment</a>
-        <a class="btn btn-ghost" href="book-a-call.html">Request Private&nbsp;Partnership</a>
+    <p class="eyebrow rv in">Whole Wealth Assessment</p>
+    <h2 class="h2 rv big in"><div>Two Minutes.</div><div>One Number That Changes the Conversation.</div></h2>
+    <p class="body rv centered narrow-c in">Our Wealth Assessment may be the most revealing two minutes in your financial life. Answer a few curated questions about your income, your assets, and what you are building toward. In return, receive a personalized analysis identifying hidden tax liability, areas where your capital could be working harder, and how ready you may be for an exit. The assesment will also reveal what integration could mean for you specifically.</p>
+    <p class="body gold rv centered in" style="margin-top:1.2rem;">Confidential questions. Immediate insight. No obligation.</p>
+    <div class="rv in" style="margin-top:2.6rem;">
+      <a class="btn btn-gold" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Begin Your Wealth&nbsp;Assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 05 · WHY INTEGRATION MATTERS ══════════ -->
+<section class="sect sect-light" id="why-integration-matters">
+  <span class="ghost-num prlx" data-depth="0.07" aria-hidden="true" style="transform: translateY(-53.5px);">04</span>
+  <div class="wrap">
+    <div class="dossier rv in">
+      <div class="dossier-meta">
+        <span>Perspective</span>
+        <span>Why Integration Matters</span>
       </div>
-      <p class="cta-microcopy">Limited to 25 Families Annually · Sovereign Private Advisory Engagement</p>
+      <h2 class="h2 dossier-title">Most leaders in your position keep each piece in its own room.</h2>
+      <p class="body">The tax advisor in one. The investment advisor in another. The attorney in a third. Each does fine work. Yet the rooms rarely meet, and the fortune pays for the distance between them.</p>
+      
+      <div class="advisors">
+        <div class="advisor"><span>Room 01</span> CPA &amp; Tax Filer</div>
+        <div class="advisor"><span>Room 02</span> Portfolio &amp; Investment Advisor</div>
+        <div class="advisor"><span>Room 03</span> Estate &amp; Corporate Attorney</div>
+      </div>
+
+      <div class="converge"><i></i></div>
+
+      <p class="oneroom">Integration is the room where they <em>finally meet.</em></p>
+      <p class="body centered narrow-c dossier-close">We see the whole before we change the parts, and in that view, the real opportunity steps into the light. That is the caliber of the work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 06 · SOCIAL PROOF ══════════ -->
+<section class="sect" id="social-proof">
+  <span class="ghost-num prlx" data-depth="0.09" aria-hidden="true" style="transform: translateY(-28.5px);">05</span>
+  <div class="wrap center">
+    <h2 class="h2 rv in">The Company You&nbsp;Keep<br>Says&nbsp;Everything.</h2>
+    <span class="draw-rule rv in"></span>
+    <p class="body rv centered narrow-c in"></p><div>Excelstra is trusted by self-made leaders across professional services,&nbsp;<span style="font-size: 1rem; text-wrap-mode: initial;">real estate,&nbsp;</span><span style="font-size: 1rem; text-wrap-mode: initial;">healthcare, and technology. Founders who have built something rare and refuse to leave its future to chance.</span></div><p></p>
+
+    <div class="monument-stat-box rv in">
+      <span class="monument-fig">$500,000,000+</span>
+      <p class="monument-cap">In Combined Member WEALTH IDENTIFIED<br>Across Tax, Investment, and TRANSITION Structures</p>
+    </div>
+
+    <p class="pull rv no-rule centered narrow-c in"></p><div><div>They arrived feeling their wealth could be handled by leveraging more tailored solutions.&nbsp;<span style="font-size: clamp(1.25rem, 2.2vw, 1.7rem); text-wrap-mode: initial;">They finally felt seen, heard and held.</span></div></div><p></p>
+    <p class="body gold rv centered in" style="margin-top:1.5rem;">
+      Measured guidance at every step.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════ SECTION 06-B · CLIENT TESTIMONIALS ══════════ -->
+<section class="sect sect-panel" id="client-testimonials">
+  <span class="ghost-num prlx" data-depth="0.08" aria-hidden="true" style="transform: translateY(-59.6px);">Proof</span>
+  <div class="wrap center">
+    <p class="eyebrow rv in">Verified Member&nbsp;Perspectives</p>
+    <h2 class="h2 rv in">From Assembling Advice in Pieces to Commanding the Whole.</h2>
+    <span class="draw-rule rv in"></span>
+    
+    <div class="testimonial-grid rv in">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"Before Excelstra, I had a top-tier CPA, a reputable wealth manager, and corporate counsel. None of them talked. Eunicia's team stepped in, uncovered $1.8M in annual tax drag, and aligned our exit roadmap. It is the single most valuable room I sit in."</p>
+        <div class="testimonial-author">
+          <span class="testimonial-title">Tech Founder · $48M Enterprise Exit</span>
+          <span class="testimonial-context">Member Since 2022</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"Most advisors sell products. Excelstra built our architecture. They looked at our real estate portfolio, statutory trusts, and cross-entity liquidity as one living organism. The peace of mind is immeasurable."</p>
+        <div class="testimonial-author">
+          <span class="testimonial-title">Commercial Real Estate Principal</span>
+          <span class="testimonial-context">Portfolio Value $85M+</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"The two-minute assessment showed me an $850k annual gap I didn't know existed. Within six months, the integration team had restructured our holding entities and recovered the capital. The standard of work is unmatched."</p>
+        <div class="testimonial-author">
+          <span class="testimonial-title">Healthcare Network Founder</span>
+          <span class="testimonial-context">Operating Enterprise Principal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 07 · THE TEAM ══════════ -->
+<section class="sect sect-panel" id="the-team">
+  <span class="ghost-num prlx" data-depth="0.07" aria-hidden="true" style="transform: translateY(-53.8px);">06</span>
+  <div class="wrap">
+    <div class="profile">
+      <div class="profile-copy">
+        <p class="eyebrow rv in">Our Team &amp; Practice</p>
+        <h2 class="h2 rv in">Seasoned Advisors Who Prioritize Listening, Rigorous Execution, and Personal&nbsp;Care.</h2>
+        <p class="body rv in">A group of experts hand-picked for their skill and their commitment to amplifying and protecting your wealth, not merely advising on a piece of it. A full integration team, devoted to your wealth strategy and your goals, working as one.</p>
+        <p class="body rv in">Eunicia Peret built this team after more than a decade in the rooms where Fortune 500 strategy is made. She assembled the firm she wished founders had. Each member is chosen for the same standard. They lead with heart and earn trust through action. This is the caliber of the work.</p>
+        
+        <div class="profile-stats rv in" style="margin-top:2.5rem;" data-stagger="">
+          <div class="stat rv in" style="transition-delay: 0ms;">
+            <span class="stat-num">Enterprise <em>Pedigree</em></span>
+            <span class="stat-cap">Institutional background across premier management consultancies</span>
+          </div>
+          <div class="stat rv in" style="transition-delay: 110ms;">
+            <span class="stat-num">Unified <em>Integration</em></span>
+            <span class="stat-cap">MONEY MASTERY ENABLED BY MONEY MASTERS</span>
+          </div>
+        </div>
+
+        <div class="rv in" style="margin-top:2.2rem;">
+          <a class="btn btn-gold btn-sm" href="our-team.html">Meet the Full Firm&nbsp;→</a>
+        </div>
+      </div>
+
+      <div class="rv in">
+        <div class="portrait-card">
+          <img src="images/eunicia-portrait.jpg" alt="Eunicia Peret · Founder &amp; Wealth Integrator" loading="lazy">
+          <div class="portrait-card-caption">
+            <div>
+              <span class="portrait-card-name">Eunicia Peret</span>
+              <span class="stat-cap" style="display:block; margin-top:0.2rem;">Founder, Excelstra · Wealth Integrator</span>
+            </div>
+            <span class="portrait-card-title">Leadership</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Multidisciplinary Advisory Bench -->
+    <div style="margin-top:4.5rem; text-align:center;">
+      <h3 class="h3 rv centered in">Every Discipline Operating Under One Strategic Blueprint.</h3>
+      <span class="draw-rule rv in"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EDITORIAL PHOTO BREAK: CITYSCAPE DUSK ══════════ -->
+<div class="photo-break rv in">
+  <img src="images/editorial-cityscape.jpg" alt="Financial Skyline at Twilight" loading="lazy" style="transform: translateY(-44.8px) scale(1.08);">
+  <div class="photo-break-scrim"></div>
+  <div class="photo-break-caption">
+    <p class="photo-break-quote">"Your future is waiting on the other side of two minutes."</p>
+    <span class="photo-break-tag">Private Wealth</span>
+  </div>
+</div>
+
+<!-- ══════════ SECTION 08 · THE NEXT STEP (POST-CALCULATOR) ══════════ -->
+<section class="sect" id="the-next-step">
+  <span class="ghost-num prlx" data-depth="0.08" aria-hidden="true" style="transform: translateY(-61.8px);">07</span>
+  <div class="wrap center">
+    <p class="eyebrow rv in"><div>The Next Step</div></p>
+    <h2 class="h2 rv in">Consider Your Options at Your Own&nbsp;Pace.</h2>
+    <p class="body rv centered narrow-c in">
+      Whether you are preparing for a business transition, restructuring holding companies, or seeking clarity across a growing estate, we invite you to explore what coordinated integration looks like. There is no artificial urgency and no sales pressure: only thoughtful conversation and clear analysis.
+    </p>
+    <p class="pull rv no-rule centered narrow-c in">
+      A collaborative advisory standard designed around your life, your team, and your family.</p>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 09 · CLOSING INVITATION ══════════ -->
+<section class="sect sect-summit" id="closing-invitation">
+  <div class="wrap center">
+    <p class="eyebrow rv in"><div>Command the Whole Picture</div><div><br></div></p>
+    <h2 class="h2 rv big venture in"><div>You Built the Remarkable.</div><font color="#c9a869"><i>Venture Beyond It.</i></font></h2>
+    <p class="body rv centered narrow-c in" style="margin-top:1.8rem;">You have dedicated years to building your fortune.&nbsp;<span style="font-size: 1rem; text-wrap-mode: initial;">The masterpiece is just beginning. Run your wealth through our wealth asessment and see the future that integration makes possible. A future you can to see and recognize from where you stand today.</span></p>
+    <div class="rv in" style="margin-top:3rem;">
+      <a class="btn btn-gold" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Begin Your Wealth&nbsp;Assessment</a>
+      <p class="cta-microcopy"><div>Strictly Confidential · Instant 2-Minute Readout · By Private Invitation</div></p>
     </div>
   </div>
 </section>
@@ -259,9 +458,9 @@
     <div class="foot-newsletter">
       <div class="foot-newsletter-inner">
         <p class="foot-newsletter-text">Receive our insights on integrated&nbsp;wealth.</p>
-        <form class="newsletter-form foot-newsletter-form" data-dashlane-rid="1f6ace49eb61723d" data-dashlane-classification="newsletter">
-          <input type="email" placeholder="Enter your email address" required="" data-dashlane-rid="d3a2ea32bf7079b2" data-dashlane-classification="email" data-kwimpalastatus="alive" data-kwimpalaid="1790259489819-0">
-          <button type="submit" class="btn btn-gold" data-dashlane-label="true" data-dashlane-rid="100def6803b09d81" data-dashlane-classification="action,subscribe">Join</button>
+        <form class="newsletter-form foot-newsletter-form" data-dashlane-rid="43d71f22c7b029b1" data-dashlane-classification="newsletter">
+          <input type="email" placeholder="Enter your email address" required="" data-dashlane-rid="9281e8b735e84662" data-dashlane-classification="email" data-kwimpalastatus="alive" data-kwimpalaid="1790213098963-0">
+          <button type="submit" class="btn btn-gold" data-dashlane-label="true" data-dashlane-rid="684d7df50be575b8" data-dashlane-classification="action,subscribe">Join</button>
         </form>
       </div>
     </div>
@@ -277,6 +476,23 @@
 </footer>
 
 <script src="app.js"></script>
+<script src="hero-film.js"></script>
+
+<!-- Standalone Editor Launcher (only visible when viewed directly outside the comparison suite) -->
+<div id="editorSuiteLink" style="display:none;position:fixed;bottom:20px;right:20px;z-index:99999;background:rgba(14,23,27,0.95);border:1px solid #c9a869;padding:9px 18px;border-radius:30px;box-shadow:0 8px 24px rgba(0,0,0,0.6);backdrop-filter:blur(10px);transition:transform 0.2s ease;">
+  <a href="../index.html?page=index.html&amp;edit=true" style="color:#dfc58d;text-decoration:none;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;">
+    <span style="color:#c9a869;font-size:14px;">✎</span> Open Visual Editor
+  </a>
+</div>
+<script>
+  if (window.self === window.top) {
+    var editLinkEl = document.getElementById('editorSuiteLink');
+    if (editLinkEl) editLinkEl.style.display = 'block';
+  }
+</script>
+
+
+
 
 
 
