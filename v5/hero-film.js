@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   EXCELSTRA v5 — HYPERFRAMES CANVAS & GSAP SCROLLTRIGGER ENGINE
+   EXCELSTRA v5: HYPERFRAMES CANVAS & GSAP SCROLLTRIGGER ENGINE
    Precision frame-accurate playback with GSAP ScrollTrigger pinning,
-   kinetic stage transitions, and synchronous SVG vector drawing.
+   hardware-accelerated kinetic stage transitions (opacity + transform only).
    ═══════════════════════════════════════════════════════════════════════ */
 
 (function () {
@@ -23,13 +23,23 @@
     return `${ASSET_BASE}${FRAME_DIR}frame_${padded}.webp`;
   }
 
-  const canvas = document.getElementById('heroFilmCanvas');
-  const stage = document.getElementById('heroStage');
-  const stages = gsap.utils.toArray('.hero-stage');
-  const scrollIndicator = document.getElementById('heroScrollIndicator');
-  const heroSvgReticle = document.getElementById('heroSvgReticle');
+  const canvas = document.getElementById('heroFilmCanvas') || document.getElementById('film');
+  const stage = document.getElementById('heroStage') || document.getElementById('top');
+  const stages = gsap.utils.toArray('.hero-stage, .hero-copy.stage');
+  const loader = document.getElementById('loader');
+  const loaderBar = document.getElementById('loaderBar');
+  const loaderPct = document.getElementById('loaderPct');
 
-  if (!canvas || !stage) return;
+  function dismissLoader() {
+    if (loader && !loader.classList.contains('done')) {
+      loader.classList.add('done');
+    }
+  }
+
+  if (!canvas || !stage) {
+    dismissLoader();
+    return;
+  }
 
   const ctx = canvas.getContext('2d');
   const images = new Array(FRAME_COUNT);
@@ -78,12 +88,17 @@
       const img = new Image();
       img.onload = () => {
         loadedCount++;
+        const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
+        if (loaderBar) loaderBar.style.width = pct + '%';
+        if (loaderPct) loaderPct.textContent = pct + '%';
+
         if (i === 0) {
           resizeCanvas();
           renderFrame(0);
         }
         if (loadedCount >= 16 && !isReady) {
           isReady = true;
+          dismissLoader();
           initScrollTrigger();
         }
       };
@@ -96,11 +111,12 @@
   }
 
   function initScrollTrigger() {
-    // 1. Initial State: Stage 0 is prominently visible on initial landing
+    // 1. Initial State: Stage 0 is prominently visible on landing.
+    // Clean hardware-accelerated transforms and opacity only (NO BLUR FILTERS).
     if (stages.length >= 3) {
-      gsap.set(stages[0], { autoAlpha: 1, y: 0, filter: 'blur(0px)' });
-      gsap.set(stages[1], { autoAlpha: 0, y: 30, filter: 'blur(10px)' });
-      gsap.set(stages[2], { autoAlpha: 0, y: 30, filter: 'blur(10px)' });
+      gsap.set(stages[0], { autoAlpha: 1, y: 0, force3D: true });
+      gsap.set(stages[1], { autoAlpha: 0, y: 28, force3D: true });
+      gsap.set(stages[2], { autoAlpha: 0, y: 28, force3D: true });
     }
 
     // 2. Master Pinned Scrubbing Timeline
@@ -108,48 +124,44 @@
       scrollTrigger: {
         trigger: stage,
         start: 'top top',
-        end: '+=350%',
+        end: '+=250%',
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
         onUpdate: (self) => {
           const frameIdx = Math.round(self.progress * (FRAME_COUNT - 1));
           renderFrame(frameIdx);
-
-          if (scrollIndicator) {
-            scrollIndicator.style.opacity = self.progress > 0.04 ? '0' : '1';
-          }
         }
       }
     });
 
     if (stages.length >= 3) {
-      // Stage 0: Fades out as user scrolls through first third
+      // Stage 0: Fades out as user begins scroll scrub
       heroTimeline.to(stages[0], {
         autoAlpha: 0,
-        y: -30,
-        filter: 'blur(8px)',
-        duration: 0.8,
+        y: -24,
+        duration: 0.6,
         ease: 'power2.in'
-      }, 0.6);
+      }, 0.4);
 
-      // Stage 1: Enters, holds, exits
+      // Stage 1: Enters, holds, exits cleanly
       heroTimeline.fromTo(stages[1],
-        { autoAlpha: 0, y: 35, filter: 'blur(8px)' },
-        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power2.out' }, 1.4
+        { autoAlpha: 0, y: 28 },
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        0.9
       )
       .to(stages[1], {
         autoAlpha: 0,
-        y: -30,
-        filter: 'blur(8px)',
-        duration: 0.8,
+        y: -24,
+        duration: 0.6,
         ease: 'power2.in'
-      }, 2.4);
+      }, 1.6);
 
-      // Stage 2: Resolution & Direct Call to Action
+      // Stage 2: Resolution & Direct Consultation CTA
       heroTimeline.fromTo(stages[2],
-        { autoAlpha: 0, y: 35, filter: 'blur(8px)' },
-        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power2.out' }, 3.0
+        { autoAlpha: 0, y: 28 },
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        2.1
       );
     }
   }
@@ -160,12 +172,13 @@
     initPreload();
   });
 
-  // Backup load check
+  // Safety fallback dismissal
   setTimeout(() => {
     resizeCanvas();
+    dismissLoader();
     if (!isReady && images[0] && images[0].naturalWidth) {
       renderFrame(0);
       initScrollTrigger();
     }
-  }, 300);
+  }, 1200);
 })();
