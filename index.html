@@ -700,9 +700,10 @@
       <!-- View Layout Modes -->
       <div class="control-group">
         <span class="control-label">View</span>
-        <button class="btn-toggle active" data-view="split" id="btnViewSplit">Split 50/50</button>
+        <button class="btn-toggle" data-view="split" id="btnViewSplit">Split 50/50</button>
         <button class="btn-toggle" data-view="v3" id="btnViewV3">Susie Only</button>
-        <button class="btn-toggle" data-view="v4" id="btnViewV4">Latest Only</button>
+        <button class="btn-toggle" data-view="v4" id="btnViewV4">v4 Sovereign</button>
+        <button class="btn-toggle active" data-view="v5" id="btnViewV5">v5 Apple HIG</button>
       </div>
 
       <!-- Device Viewport Emulation -->
@@ -835,7 +836,9 @@
       const btnViewSplit = document.getElementById('btnViewSplit');
       const btnViewV3 = document.getElementById('btnViewV3');
       const btnViewV4 = document.getElementById('btnViewV4');
-      const viewButtons = [btnViewSplit, btnViewV3, btnViewV4];
+      const btnViewV5 = document.getElementById('btnViewV5');
+      const viewButtons = [btnViewSplit, btnViewV3, btnViewV4, btnViewV5];
+      let activeTargetVersion = 'v5';
 
       const btnSyncScroll = document.getElementById('btnSyncScroll');
       const suiteToast = document.getElementById('suiteToast');
@@ -1033,16 +1036,16 @@
 
         const cacheBuster = '?t=' + Date.now();
         const v3Url = 'v3/' + pageFile;
-        const v4Url = 'v4/' + pageFile + (forceReload ? cacheBuster : '');
+        const targetUrl = activeTargetVersion + '/' + pageFile + (forceReload ? cacheBuster : '');
 
         frameV3.src = v3Url;
-        frameV4.src = v4Url;
+        frameV4.src = targetUrl;
 
         labelV3Path.textContent = v3Url;
-        labelV4Path.textContent = 'v4/' + pageFile;
+        labelV4Path.textContent = activeTargetVersion + '/' + pageFile;
 
         linkStandaloneV3.href = v3Url;
-        linkStandaloneV4.href = 'v4/' + pageFile;
+        linkStandaloneV4.href = activeTargetVersion + '/' + pageFile;
 
         // Update URL query string without reloading page
         try {
@@ -1064,15 +1067,25 @@
           this.classList.add('active');
 
           const mode = this.getAttribute('data-view');
+          const currentPage = getFrameCurrentPage();
           if (mode === 'split') {
             paneV3.classList.remove('hidden');
             paneV4.classList.remove('hidden');
+            activeTargetVersion = 'v5';
+            loadPage(currentPage);
           } else if (mode === 'v3') {
             paneV3.classList.remove('hidden');
             paneV4.classList.add('hidden');
           } else if (mode === 'v4') {
             paneV3.classList.add('hidden');
             paneV4.classList.remove('hidden');
+            activeTargetVersion = 'v4';
+            loadPage(currentPage);
+          } else if (mode === 'v5') {
+            paneV3.classList.add('hidden');
+            paneV4.classList.remove('hidden');
+            activeTargetVersion = 'v5';
+            loadPage(currentPage);
           }
         });
       });

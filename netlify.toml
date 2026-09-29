@@ -1,5 +1,5 @@
 [build]
-  publish = "v4"
+  publish = "."
 
 [[headers]]
   for = "/*"
@@ -8,17 +8,27 @@
 
 # Aggressive immutable caching for the 239 video canvas frames
 [[headers]]
-  for = "/frames/*"
+  for = "*/frames/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/frames-sm/*"
+  for = "*/frames-sm/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 # Standard asset caching
 [[headers]]
-  for = "/images/*"
+  for = "*/images/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[redirects]]
+  from = "/v5"
+  to = "/v5/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview"
+  to = "/index.html"
+  status = 200
