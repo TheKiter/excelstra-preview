@@ -4,67 +4,63 @@ def build_v5_css():
     with open('v4/style.css', 'r', encoding='utf-8', errors='ignore') as f:
         v4_content = f.read()
 
-    with open('v5/style.css', 'r', encoding='utf-8', errors='ignore') as f:
-        current_v5 = f.read()
-
-    # 1. Root variables in Apple HIG Dark Luxury Pro tokens
+    # 1. Root variables in Apple HIG Light Luxury Pro mode (60 / 25 / 15 Official Canon)
     root_replacement = """/* ═══════════════════════════════════════════════════════════════════════
-   EXCELSTRA v5: APPLE HUMAN INTERFACE GUIDELINES & DARK LUXURY PRO MODE
-   Palette: Deep Midnight (60%) | Excelstra Green & Navy (25%) | Gold (15%)
+   EXCELSTRA v5: APPLE HUMAN INTERFACE GUIDELINES & LIGHT LUXURY PRO MODE
+   Palette: Warm Neutral Canvas #F4F3F0 (60%) | Deep Navy & Green (25%) | Gold (15%)
    Typography: Lora (Editorial Serif) | Inter (Technical Precision Sans)
    Motion: Pure GSAP 3 + ScrollTrigger (Transform & Opacity Only)
    Vector: 100% Scalable Vector Graphics (SVG)
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Apple Pro Materials & Surface Hierarchy (60% Weight) */
-  --bg-deep: #05080a;
-  --bg-canvas: #070c10;
-  --bg-surface: #0e171b;
-  --bg-surface-elevated: #132026;
-  --bg-surface-glass: rgba(14, 23, 27, 0.75);
-  --bg-surface-card: rgba(19, 32, 38, 0.75);
-  --bg-card-hover: rgba(25, 42, 50, 0.85);
+  /* Official Excelstra Brand Palette - 60 / 25 / 15 Canon (Light Luxury) */
+  --bg-deep: #000E21;               /* Deep Navy - Authority grounding */
+  --bg-canvas: #F4F3F0;             /* Warm Neutral Canvas (60%) */
+  --bg-surface: #F8F7F5;            /* Light Beige surface */
+  --bg-surface-elevated: #FFFFFF;   /* Pure White card interior */
+  --bg-surface-glass: rgba(255, 255, 255, 0.88);
+  --bg-surface-card: #FFFFFF;
+  --bg-card-hover: #FAFAF8;
 
-  /* Semantic Surface Aliases Mapped to Dark Luxury Pro */
-  --bg: #070c10;
-  --bg-panel: #0e171b;
-  --bg-card: rgba(19, 32, 38, 0.75);
-  --bg-parchment: #132026;
+  /* Semantic Surface Aliases */
+  --bg: #F4F3F0;
+  --bg-panel: #F8F7F5;
+  --bg-card: #FFFFFF;
+  --bg-parchment: #EFECE6;
 
   /* Typography Colors */
-  --ink: #F0F4F5;
-  --ink-body: #9EB1B9;
-  --ink-dim: #62757D;
-  --ink-subtle: #4A5B64;
-  --text-primary: #F0F4F5;
-  --text-secondary: #9EB1B9;
-  --text-muted: #62757D;
-  --text-gold: #DABE81;
+  --ink: #000E21;                   /* Deep Navy for headings & authority */
+  --ink-body: #1F2937;              /* High-legibility neutral dark for reading copy */
+  --ink-dim: #5A6A78;               /* Muted slate text */
+  --ink-subtle: #8A98A5;            /* Timestamps and subtle markers */
+  --text-primary: #000E21;
+  --text-secondary: #1F2937;
+  --text-muted: #5A6A78;
+  --text-gold: #BF9B30;
 
   /* Deep Brand Tones (25% Weight) */
-  --navy: #000E21;
-  --navy-light: #0A1E38;
-  --navy-deep: #050A28;
-  --green: #1D353C;
-  --green-dark: #14292F;
+  --navy: #000E21;                 /* Corporate Authority Deep Navy */
+  --navy-light: #0A1E38;           /* Lighter Navy for contrast */
+  --navy-deep: #050A28;            /* Midnight Navy */
+  --green: #1D353C;                /* Signature Excelstra Green */
+  --green-dark: #14292F;           /* Supporting Deep Green */
   --green-light: #2A4B54;
-  --green-glow: rgba(42, 75, 84, 0.4);
-  --green-soft: rgba(29, 53, 60, 0.25);
+  --green-soft: rgba(29, 53, 60, 0.08);
 
   /* Precious Metal & Gold Accents (15% Weight) */
   --gold: #BF9B30;
   --gold-light: #DABE81;
   --gold-hover: #d8b979;
   --gold-soft: rgba(191, 155, 48, 0.12);
-  --hair-gold: rgba(191, 155, 48, 0.32);
-  --hair: rgba(255, 255, 255, 0.08);
-  --hairline-specular: rgba(255, 255, 255, 0.09);
-  --hairline-glass: rgba(255, 255, 255, 0.05);
+  --hair-gold: rgba(191, 155, 48, 0.28);
+  --hair: rgba(0, 14, 33, 0.08);
+  --hairline-specular: rgba(0, 14, 33, 0.08);
+  --hairline-glass: rgba(0, 14, 33, 0.06);
   --hairline-gold: rgba(191, 155, 48, 0.32);
-  --hairline-gold-active: rgba(218, 190, 129, 0.7);
-  --gold-metallic: linear-gradient(135deg, #f3e3be 0%, #dabe81 40%, #bf9b30 70%, #8c6e18 100%);
-  --gold-glow: rgba(191, 155, 48, 0.25);
+  --hairline-gold-active: rgba(191, 155, 48, 0.7);
+  --gold-metallic: linear-gradient(135deg, #bf9b30 0%, #dabe81 50%, #8c6e18 100%);
+  --gold-glow: rgba(191, 155, 48, 0.2);
 
   /* Fonts */
   --serif: 'Lora', Georgia, serif;
@@ -81,83 +77,202 @@ def build_v5_css():
     # Replace :root in v4_content
     v4_without_root = re.sub(r'/\* ═+ EXCELSTRA — cinematic dark luxury ═+ \*/\s*:root\s*\{[^}]+\}', '', v4_content, flags=re.DOTALL)
 
-    # Clean up legacy light backgrounds to Dark Luxury Pro equivalents
-    v4_without_root = v4_without_root.replace('background: #fbf9f5;', 'background: var(--bg-surface);')
-    v4_without_root = v4_without_root.replace('background: rgba(251, 249, 245, 0.92);', 'background: rgba(7, 12, 16, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);')
-    v4_without_root = v4_without_root.replace('background: #ffffff;', 'background: var(--bg-surface-card);')
-    v4_without_root = v4_without_root.replace('background: #FFFFFF;', 'background: var(--bg-surface-card);')
-    v4_without_root = v4_without_root.replace('background: #FFFFFF !important;', 'background: var(--bg-surface-card) !important;')
-    v4_without_root = v4_without_root.replace('background: #ede8dc !important;', 'background: var(--bg-surface-elevated) !important;')
-    v4_without_root = v4_without_root.replace('background: #f7f3ec !important;', 'background: var(--bg-surface-card) !important;')
-    v4_without_root = v4_without_root.replace('color: #09090b !important;', 'color: var(--text-primary) !important;')
-    v4_without_root = v4_without_root.replace('color: #2c2a27 !important;', 'color: var(--text-secondary) !important;')
-    v4_without_root = v4_without_root.replace('color: #121113 !important;', 'color: var(--text-primary) !important;')
-    v4_without_root = v4_without_root.replace('color: #0a090b !important;', 'color: var(--text-primary) !important;')
-    v4_without_root = v4_without_root.replace('color: #0c0b0d !important;', 'color: var(--text-primary) !important;')
-    v4_without_root = v4_without_root.replace('color: #0c0b0e !important;', 'color: var(--text-primary) !important;')
-    v4_without_root = v4_without_root.replace('color: #1a191b !important;', 'color: var(--text-primary) !important;')
-    v4_without_root = v4_without_root.replace('color: #3b3834 !important;', 'color: var(--text-secondary) !important;')
-    v4_without_root = v4_without_root.replace('color: #48443d;', 'color: var(--text-secondary);')
-
     # Replace em-dashes everywhere with colons, commas, or regular hyphens
     clean_v4 = v4_without_root.replace('—', ': ')
 
-    # Extract v5-exclusive components
-    v5_hub_match = re.search(r'/\* ═+ INTERACTIVE ARCHITECTURAL HUB \(SVG VECTOR SCHEMATIC\) ═+ \*/.*?(?=/\* ═+ PHOTO BREAK BANNER ═+ \*/|\Z)', current_v5, flags=re.DOTALL)
-    v5_hub_css = v5_hub_match.group(0) if v5_hub_match else ""
-
-    v5_reticle_match = re.search(r'/\* ═+ RETICLE & HERO PIN ═+ \*/.*?(?=/\* ═+ SECTION 1)', current_v5, flags=re.DOTALL)
-    if not v5_reticle_match:
-        v5_reticle_match = re.search(r'\.hero-scroll-stage\s*\{.*?(?=/\* ═+ SECTION|\Z)', current_v5, flags=re.DOTALL)
-    v5_reticle_css = v5_reticle_match.group(0) if v5_reticle_match else ""
-
-    # Master overrides placed at the end to guarantee precedence
-    master_overrides = """
-/* ═══════════════ APPLE HIG DARK LUXURY PRO OVERRIDES ═══════════════ */
-
-/* Universal Glass Surfaces & Cards */
-.glass-card, .level-card, .person, .pillar, .testimonial-card, .portrait-card, .tier-box, .calc-card, .booking-wrap, .dossier, .chair-plate, .notice-box, .host-lead, .callout-card, .speaking-topic, .pre-call-card, .guest-card {
-  background: var(--bg-surface-card) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid var(--hairline-specular) !important;
-  color: var(--text-primary) !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    # SVG Hub CSS for Light Luxury Pro Mode
+    light_hub_css = """
+/* ══════════ INTERACTIVE ARCHITECTURAL HUB (SVG VECTOR SCHEMATIC - LIGHT LUXURY) ══════════ */
+.hub-wrapper {
+  margin-top: 3.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Form Controls & Interactive Schedulers */
+.hub-svg-container {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 14, 33, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 16px 40px rgba(0, 14, 33, 0.05);
+}
+
+.hub-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hub-node {
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-apple);
+}
+
+.hub-node:hover {
+  transform: scale(1.05);
+}
+
+.hub-node-circle {
+  fill: #FFFFFF !important;
+  stroke: var(--gold) !important;
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+}
+
+.hub-node text {
+  fill: #000E21 !important;
+  font-family: var(--sans);
+  font-weight: 600;
+}
+
+.hub-node:hover .hub-node-circle {
+  stroke: var(--gold-hover) !important;
+  filter: drop-shadow(0 4px 12px rgba(191, 155, 48, 0.35));
+}
+
+.hub-node[data-node="core"] circle:first-child {
+  fill: #000E21 !important;
+  stroke: var(--gold-light) !important;
+  stroke-width: 2;
+}
+
+.hub-node[data-node="core"] text:first-of-type {
+  fill: var(--gold-light) !important;
+}
+
+.hub-node[data-node="core"] text:last-of-type {
+  fill: #DEDAD2 !important;
+}
+
+.hub-connector-line {
+  stroke-dasharray: 6 6;
+  animation: strokeFlow 30s linear infinite;
+}
+
+@keyframes strokeFlow {
+  to {
+    stroke-dashoffset: -300;
+  }
+}
+
+.hub-detail-box {
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(191, 155, 48, 0.32);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 30px rgba(0, 14, 33, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.hub-detail-box .h3 {
+  color: #000E21 !important;
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+}
+
+.hub-detail-box .body {
+  color: #1F2937 !important;
+  font-size: 0.92rem;
+  margin: 0;
+}
+"""
+
+    # Reticle styles
+    reticle_css = """
+/* ══════════ SVG RETICLE & HERO PIN ══════════ */
+.hero-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.reticle-path {
+  transform-origin: center;
+  vector-effect: non-scaling-stroke;
+}
+"""
+
+    # Master light luxury overrides placed at the end to guarantee precedence
+    master_overrides = """
+/* ═══════════════ APPLE HIG LIGHT LUXURY PRO OVERRIDES ═══════════════ */
+
+/* Universal Canvas Background */
+body, html {
+  background: var(--bg-canvas) !important;
+  color: var(--ink-body) !important;
+}
+
+/* Universal Elevated Cards in Pure White with Specular Hairline */
+.glass-card, .level-card, .person, .pillar, .testimonial-card, .portrait-card, .tier-box, .calc-card, .booking-wrap, .dossier, .chair-plate, .notice-box, .host-lead, .callout-card, .speaking-topic, .pre-call-card, .guest-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 14, 33, 0.08) !important;
+  color: var(--ink-body) !important;
+  box-shadow: 0 14px 34px rgba(0, 14, 33, 0.05), 0 1px 2px rgba(0, 14, 33, 0.03) !important;
+}
+
+/* Headings in Deep Navy Authority */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .lead-statement, .hero-lead, .dossier-title, .person-name, .tier-title {
+  color: var(--navy) !important;
+}
+
+/* Body Text in High-Legibility Dark Charcoal */
+p, .body, .pillar p, .level-desc, .faq-item p, .step p {
+  color: var(--ink-body) !important;
+}
+
+/* Eyebrows in Precious Gold */
+.eyebrow {
+  color: var(--gold) !important;
+}
+
+/* Form Controls in Crisp White */
 .form-field input, .form-field textarea, .form-field select, input[type="text"], input[type="email"], input[type="tel"] {
-  background: var(--bg-surface-elevated) !important;
-  border: 1px solid var(--hairline-specular) !important;
-  color: var(--text-primary) !important;
+  background: #FFFFFF !important;
+  border: 1px solid #DEDAD2 !important;
+  color: #000E21 !important;
   border-radius: var(--radius-sm) !important;
   padding: 0.85rem 1.1rem !important;
+  box-shadow: inset 0 1px 2px rgba(0, 14, 33, 0.02) !important;
 }
 
 .form-field input:focus, .form-field textarea:focus, .form-field select:focus, input:focus {
   border-color: var(--gold) !important;
-  background: rgba(19, 32, 38, 0.95) !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 0 0 3px rgba(191, 155, 48, 0.15) !important;
   outline: none !important;
 }
 
 .form-field label {
-  color: var(--text-secondary) !important;
+  color: var(--ink-dim) !important;
   font-size: 0.76rem !important;
   letter-spacing: 0.14em !important;
+  font-weight: 500 !important;
 }
 
 .calc-step-header {
-  border-bottom: 1px solid var(--hairline-specular) !important;
+  border-bottom: 1px solid rgba(0, 14, 33, 0.08) !important;
 }
 
 .calc-step-num {
   color: var(--gold) !important;
 }
 
+/* Booking Slots */
 .slot-btn {
-  background: var(--bg-surface-elevated) !important;
-  border: 1px solid var(--hairline-specular) !important;
-  color: var(--text-secondary) !important;
+  background: #F8F7F5 !important;
+  border: 1px solid #DEDAD2 !important;
+  color: var(--ink-body) !important;
   border-radius: var(--radius-sm) !important;
   padding: 0.75rem !important;
   transition: all 0.2s ease !important;
@@ -166,66 +281,35 @@ def build_v5_css():
 
 .slot-btn:hover, .slot-btn.selected {
   border-color: var(--gold) !important;
-  background: rgba(191, 155, 48, 0.16) !important;
-  color: var(--gold-light) !important;
+  background: rgba(191, 155, 48, 0.14) !important;
+  color: #000E21 !important;
+  font-weight: 600 !important;
 }
 
+/* Radio Tiles for Calculator */
 .radio-tile {
-  background: var(--bg-surface-elevated) !important;
-  border: 1px solid var(--hairline-specular) !important;
-  color: var(--text-secondary) !important;
+  background: #F8F7F5 !important;
+  border: 1px solid #DEDAD2 !important;
+  color: var(--ink-body) !important;
 }
 
 .radio-tile:hover, input[type="radio"]:checked + .radio-tile {
   border-color: var(--gold) !important;
   background: rgba(191, 155, 48, 0.12) !important;
-  color: var(--text-primary) !important;
+  color: #000E21 !important;
 }
 
-/* Nav Dropdown Dark Mode */
-.nav-dropdown-menu {
-  background: rgba(14, 23, 27, 0.95) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid var(--hairline-specular) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+/* Frosted Scrolled Navigation in Apple Light Luxury */
+#nav {
+  background: transparent;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-.nav-dropdown-menu a {
-  color: var(--text-secondary) !important;
-}
-
-.nav-dropdown-menu a:hover {
-  color: var(--gold-light) !important;
-  background: rgba(191, 155, 48, 0.08) !important;
-}
-
-/* Mobile Nav Drawer */
-.nav-mobile {
-  background: rgba(7, 12, 16, 0.98) !important;
-  backdrop-filter: blur(24px) !important;
-  -webkit-backdrop-filter: blur(24px) !important;
-}
-
-.nav-mobile a {
-  color: var(--text-primary) !important;
-  border-bottom: 1px solid var(--hairline-specular) !important;
-}
-
-/* Specular gold accent utilities */
-.gold-gradient {
-  background: var(--gold-metallic);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-/* Frosted Scrolled Nav */
 #nav.scrolled, #nav.solid {
-  background: rgba(7, 12, 16, 0.85) !important;
+  background: rgba(244, 243, 240, 0.92) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  box-shadow: 0 1px 0 var(--hairline-specular), 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 1px 0 rgba(0, 14, 33, 0.08), 0 8px 24px rgba(0, 14, 33, 0.04) !important;
 }
 
 .nav-logo-text {
@@ -233,8 +317,46 @@ def build_v5_css():
   font-weight: 700;
   font-size: 0.88rem;
   letter-spacing: 0.22em;
-  color: var(--text-primary);
+  color: var(--navy) !important;
   margin-left: 0.75rem;
+}
+
+.nav-links a {
+  color: var(--navy) !important;
+  font-weight: 500;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--gold) !important;
+}
+
+/* Nav Dropdown Menu */
+.nav-dropdown-menu {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 14, 33, 0.08) !important;
+  box-shadow: 0 16px 36px rgba(0, 14, 33, 0.08) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.nav-dropdown-menu a {
+  color: var(--ink-body) !important;
+}
+
+.nav-dropdown-menu a:hover {
+  color: var(--gold) !important;
+  background: rgba(191, 155, 48, 0.06) !important;
+}
+
+/* Mobile Nav Drawer */
+.nav-mobile {
+  background: rgba(244, 243, 240, 0.98) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+
+.nav-mobile a {
+  color: var(--navy) !important;
+  border-bottom: 1px solid rgba(0, 14, 33, 0.08) !important;
 }
 
 /* Precise Hero Stacking Architecture */
@@ -268,6 +390,7 @@ def build_v5_css():
 .film-scrim { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
 #heroSvgReticle, .hero-svg-overlay { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
 
+/* Cinematic Hero Copy over Landscape Video */
 .hero-copy, .hero-stage {
   position: absolute; inset: 0;
   z-index: 10;
@@ -279,19 +402,115 @@ def build_v5_css():
 }
 .hero-copy.active, .hero-stage.active { pointer-events: auto; }
 
+.hero-copy .hero-h {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75) !important;
+}
+
+.hero-copy .hero-sub {
+  color: #F0F4F5 !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7) !important;
+}
+
+.hero-copy .eyebrow {
+  color: var(--gold-light) !important;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+.hero-copy .cta-note {
+  color: #E2DFD8 !important;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75) !important;
+}
+
 /* Crisp Monogram SVG inside nav */
 .nav-logo svg {
   width: 26px;
   height: 26px;
   flex-shrink: 0;
 }
+
+/* Tactile Gold Buttons */
+.btn-gold {
+  background: linear-gradient(135deg, #dabe81 0%, #bf9b30 100%) !important;
+  color: #000E21 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 16px rgba(191, 155, 48, 0.28) !important;
+  border: none !important;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #e4cca0 0%, #c9a869 100%) !important;
+  box-shadow: 0 6px 22px rgba(191, 155, 48, 0.38) !important;
+}
+
+.btn-ghost {
+  border: 1px solid rgba(0, 14, 33, 0.22) !important;
+  color: var(--navy) !important;
+  background: transparent !important;
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold) !important;
+  color: var(--gold) !important;
+}
+
+/* Gold Gradient Utilities */
+.gold-gradient {
+  background: var(--gold-metallic);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Pedigree Strip in Light Mode */
+.pedigree-strip {
+  background: var(--bg-surface) !important;
+  border-top: 1px solid rgba(0, 14, 33, 0.08) !important;
+  border-bottom: 1px solid rgba(0, 14, 33, 0.08) !important;
+}
+
+.pedigree-label {
+  color: var(--ink-dim) !important;
+}
+
+.pedigree-name {
+  color: var(--navy) !important;
+  font-weight: 500 !important;
+}
+
+.pedigree-dot {
+  color: var(--gold) !important;
+}
+
+/* Grounding Luxury Footer in Deep Navy */
+footer {
+  background: var(--navy) !important;
+  color: #F0F4F5 !important;
+  border-top: 2px solid var(--gold) !important;
+}
+
+footer .foot-col-title {
+  color: var(--gold-light) !important;
+}
+
+footer .body, footer p, footer a, footer .foot-legal, footer .foot-newsletter-text {
+  color: #B2C0C7 !important;
+}
+
+footer a:hover {
+  color: var(--gold-light) !important;
+}
+
+footer .foot-legal span {
+  color: #8A98A5 !important;
+}
 """
 
     unified_css = f"""{root_replacement}
 
-{v5_reticle_css}
+{reticle_css}
 
-{v5_hub_css}
+{light_hub_css}
 
 /* ═══════════════ ORIGINAL COMPONENT SUITE ═══════════════ */
 {clean_v4}
@@ -308,7 +527,7 @@ def build_v5_css():
     with open('v5/style.css', 'w', encoding='utf-8') as f:
         f.write(unified_css)
 
-    print("v5/style.css written successfully with end-overrides. Length:", len(unified_css))
+    print("v5/style.css built in Apple Light Luxury Pro mode. Length:", len(unified_css))
 
 if __name__ == '__main__':
     build_v5_css()
