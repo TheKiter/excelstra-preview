@@ -68,20 +68,6 @@
 }
 
 
-/* ══════════ SVG RETICLE & HERO PIN ══════════ */
-.hero-svg-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.reticle-path {
-  transform-origin: center;
-  vector-effect: non-scaling-stroke;
-}
 
 
 
@@ -3351,7 +3337,6 @@ p, .body, .pillar p, .level-desc, .faq-item p, .step p {
 .film-vignette { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .film-grade { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .film-scrim { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
-#heroSvgReticle, .hero-svg-overlay { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
 
 /* Cinematic Hero Copy over Landscape Video */
 .hero-copy, .hero-stage {
