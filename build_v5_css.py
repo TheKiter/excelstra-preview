@@ -545,6 +545,13 @@ p.photo-break-quote,
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85) !important;
   white-space: nowrap !important;
 }
+
+.continuance-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 14, 33, 0.08) !important;
+  border-left: 4px solid var(--gold) !important;
+  box-shadow: 0 14px 34px rgba(0, 14, 33, 0.04), 0 1px 2px rgba(0, 14, 33, 0.02) !important;
+}
 """
 
     unified_css = f"""{root_replacement}
