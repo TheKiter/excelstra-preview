@@ -138,35 +138,41 @@
   var hubNodes = document.querySelectorAll('.hub-node');
   var hubTitle = document.getElementById('hubDetailTitle');
   var hubDesc = document.getElementById('hubDetailDesc');
+  var activeHubKey = 'core';
+  var hubTween = null;
+
+  function activateHubNode(key, targetNode) {
+    if (!key || !hubData[key] || key === activeHubKey) return;
+    activeHubKey = key;
+
+    hubNodes.forEach(function (n) {
+      n.classList.remove('active-hub-node');
+    });
+    if (targetNode) {
+      targetNode.classList.add('active-hub-node');
+    }
+
+    if (hubTitle && hubDesc) {
+      hubTitle.textContent = hubData[key].title;
+      hubDesc.textContent = hubData[key].desc;
+      if (typeof gsap !== 'undefined') {
+        if (hubTween) hubTween.kill();
+        hubTween = gsap.fromTo([hubTitle, hubDesc],
+          { opacity: 0.35, y: -2 },
+          { opacity: 1, y: 0, duration: 0.22, ease: 'power2.out', overwrite: 'auto' }
+        );
+      }
+    }
+  }
 
   hubNodes.forEach(function (node) {
     node.addEventListener('mouseenter', function () {
       var key = this.getAttribute('data-node');
-      if (hubData[key] && hubTitle && hubDesc) {
-        if (typeof gsap !== 'undefined') {
-          gsap.to([hubTitle, hubDesc], {
-            opacity: 0,
-            y: -4,
-            duration: 0.14,
-            onComplete: function () {
-              hubTitle.textContent = hubData[key].title;
-              hubDesc.textContent = hubData[key].desc;
-              gsap.to([hubTitle, hubDesc], { opacity: 1, y: 0, duration: 0.22 });
-            }
-          });
-
-          var circle = node.querySelector('.hub-node-circle');
-          if (circle) {
-            gsap.fromTo(circle,
-              { scale: 1, transformOrigin: 'center' },
-              { scale: 1.1, duration: 0.25, yoyo: true, repeat: 1, ease: 'power1.out' }
-            );
-          }
-        } else {
-          hubTitle.textContent = hubData[key].title;
-          hubDesc.textContent = hubData[key].desc;
-        }
-      }
+      activateHubNode(key, this);
+    });
+    node.addEventListener('click', function () {
+      var key = this.getAttribute('data-node');
+      activateHubNode(key, this);
     });
   });
 
