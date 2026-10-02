@@ -281,42 +281,7 @@
   }
 
   /* ── 5. Interactive Booking Scheduler ── */
-  var bookForm = document.getElementById('bookingForm');
-  if (bookForm) {
-    var bookStep2 = document.getElementById('bookStep2');
-    var bookConfirm = document.getElementById('bookConfirmation');
-    var completeBooking = document.getElementById('completeBooking');
-
-    if (completeBooking && bookStep2 && bookConfirm) {
-      completeBooking.addEventListener('click', function () {
-        var selectedTime = document.querySelector('.slot-btn.selected');
-        if (!selectedTime) {
-          alert('Please select a time slot for your conversation.');
-          return;
-        }
-        var nameEl = document.getElementById('bookName');
-        var emailEl = document.getElementById('bookEmail');
-        var name = nameEl ? nameEl.value.trim() : '';
-        var email = emailEl ? emailEl.value.trim() : '';
-        if (!name || !email) {
-          alert('Please enter your name and email to proceed.');
-          return;
-        }
-        bookStep2.style.display = 'none';
-        bookConfirm.style.display = 'block';
-      });
-    }
-
-    var slotBtns = document.querySelectorAll('.slot-btn');
-    for (var si = 0; si < slotBtns.length; si++) {
-      slotBtns[si].addEventListener('click', function () {
-        for (var sj = 0; sj < slotBtns.length; sj++) {
-          slotBtns[sj].classList.remove('selected');
-        }
-        this.classList.add('selected');
-      });
-    }
-  }
+  /* Live LeadConnector booking calendar widget is embedded directly in book-a-call.html */
 
   /* ── 6. FAQ Accordion: Single Expanded Pattern ── */
   var faqItems = document.querySelectorAll('.faq-item');
