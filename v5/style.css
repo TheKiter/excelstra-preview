@@ -1761,12 +1761,12 @@ body.home-page #nav:not(.solid) .nav-toggle span {
   box-shadow: 0 30px 80px rgba(22, 21, 19, 0.05);
 }
 .booking-wrap.leadconnector-wrap {
-  background: #000e21 !important;
+  background: #ffffff !important;
   padding: 0 !important;
-  border: 1px solid rgba(201, 168, 105, 0.35) !important;
+  border: 1px solid rgba(0, 14, 33, 0.08) !important;
   border-radius: 12px !important;
   overflow: hidden !important;
-  box-shadow: 0 20px 60px -15px rgba(0, 14, 33, 0.25) !important;
+  box-shadow: 0 20px 60px -15px rgba(0, 14, 33, 0.08) !important;
 }
 .time-slots {
   display: grid;
