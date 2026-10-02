@@ -113,72 +113,14 @@
     <p class="eyebrow rv in">Interactive&nbsp;Scheduler</p>
     <h2 class="h2 rv big in">Choose a&nbsp;Time</h2>
     <p class="body rv centered narrow-c in" style="margin-top:1rem;">
-      A few simple questions, then your choice of time. You will receive a warm confirmation that sets the tone, because this is a conversation, held with care.
+      Select your preferred conversation window. You will receive a warm confirmation that sets the tone, because this is a conversation, held with care.
     </p>
 
-    
-    <!-- Pre-Call Assessment Step 01 -->
-    <div class="pre-call-card rv in">
-      <div>
-        <span class="eyebrow" style="margin-bottom:0.4rem; display:block;">Recommended First Step</span>
-        <h3 class="h3" style="margin-bottom:0.4rem;">Take Two Minutes to See Your&nbsp;Number</h3>
-        <p class="body dim" style="margin:0; font-size:0.9rem;">
-          Completing the Wealth Assessment before your call provides our senior strategists with immediate context and makes your conversation significantly more actionable.
-        </p>
-      </div>
-      <a class="btn btn-gold btn-sm" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Run Wealth Assessment&nbsp;→</a>
-    </div>
-
     <div class="booking-wrap rv in" id="bookingForm" style="margin-top:3rem;">
-      <!-- Step 1: Qualifying Questions -->
-      <div id="bookStep1">
+      <!-- Time Selection & Booking Details -->
+      <div id="bookStep2">
         <div class="calc-step-header">
-          <span class="calc-step-num">Step 01 · Context</span>
-          <span class="body dim" style="font-size:0.8rem; margin:0;">Qualifying Overview</span>
-        </div>
-
-        <div class="cols" style="margin-top:0;">
-          <div class="form-field">
-            <label for="bookName">Your Full Name</label>
-            <input type="text" id="bookName" required="" placeholder="John Doe" style="">
-          </div>
-          <div class="form-field">
-            <label for="bookEmail">Email Address</label>
-            <input type="email" id="bookEmail" required="" placeholder="name@domain.com" >
-          </div>
-        </div>
-
-        <div class="cols">
-          <div class="form-field">
-            <label for="bookPhone">Direct Phone Number</label>
-            <input type="tel" id="bookPhone" placeholder="+1 (555) 000-0000">
-          </div>
-          <div class="form-field">
-            <label for="bookRev">Current Annual Enterprise Revenue</label>
-            <select id="bookRev">
-              <option value="3-10">$3M – $10M</option>
-              <option value="10-25">$10M – $25M</option>
-              <option value="25-50">$25M – $50M</option>
-              <option value="50+">$50M+</option>
-              <option value="household">High-Six-Figure Household</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-field">
-          <label for="bookFocus">What is your primary objective for this conversation?</label>
-          <input type="text" id="bookFocus" placeholder="e.g. Tax reduction, upcoming exit transition, advisory team coordination">
-        </div>
-
-        <div style="text-align:center; margin-top:2.2rem;">
-          <button type="button" class="btn btn-gold" id="toBookStep2">Select My Confidential Window →</button>
-        </div>
-      </div>
-
-      <!-- Step 2: Time Selection -->
-      <div id="bookStep2" style="display: none;">
-        <div class="calc-step-header">
-          <span class="calc-step-num">Step 02 · Availability</span>
+          <span class="calc-step-num">Availability</span>
           <span class="body dim" style="font-size:0.8rem; margin:0;">60-Minute Private Session</span>
         </div>
 
@@ -193,8 +135,23 @@
           <button type="button" class="slot-btn selected">Thursday · 4:00 PM&nbsp;EST</button>
         </div>
 
+        <div class="cols" style="margin-top:2.2rem;">
+          <div class="form-field">
+            <label for="bookName">Your Full Name</label>
+            <input type="text" id="bookName" required="" placeholder="John Doe">
+          </div>
+          <div class="form-field">
+            <label for="bookEmail">Email Address</label>
+            <input type="email" id="bookEmail" required="" placeholder="name@domain.com">
+          </div>
+        </div>
+
+        <div class="form-field" style="margin-top:1rem;">
+          <label for="bookPhone">Direct Phone Number</label>
+          <input type="tel" id="bookPhone" placeholder="+1 (555) 000-0000">
+        </div>
+
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2.5rem; flex-wrap:wrap; gap:1rem;">
-          <button type="button" class="btn btn-ghost" id="backToBookStep1">←&nbsp;Back</button>
           <button type="button" class="btn btn-gold" id="completeBooking">Confirm My Private&nbsp;Consultation</button>
           <p class="cta-microcopy">Strictly Confidential · Principals &amp; Founders · No Obligation</p>
         </div>

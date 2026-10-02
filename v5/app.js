@@ -283,40 +283,23 @@
   /* ── 5. Interactive Booking Scheduler ── */
   var bookForm = document.getElementById('bookingForm');
   if (bookForm) {
-    var bookStep1 = document.getElementById('bookStep1');
     var bookStep2 = document.getElementById('bookStep2');
     var bookConfirm = document.getElementById('bookConfirmation');
-    var toBookStep2 = document.getElementById('toBookStep2');
-    var backToBookStep1 = document.getElementById('backToBookStep1');
     var completeBooking = document.getElementById('completeBooking');
-
-    if (toBookStep2 && bookStep1 && bookStep2) {
-      toBookStep2.addEventListener('click', function () {
-        var nameEl = document.getElementById('bookName');
-        var emailEl = document.getElementById('bookEmail');
-        var name = nameEl ? nameEl.value.trim() : '';
-        var email = emailEl ? emailEl.value.trim() : '';
-        if (!name || !email) {
-          alert('Please enter your name and email to proceed.');
-          return;
-        }
-        bookStep1.style.display = 'none';
-        bookStep2.style.display = 'block';
-      });
-    }
-
-    if (backToBookStep1 && bookStep1 && bookStep2) {
-      backToBookStep1.addEventListener('click', function () {
-        bookStep2.style.display = 'none';
-        bookStep1.style.display = 'block';
-      });
-    }
 
     if (completeBooking && bookStep2 && bookConfirm) {
       completeBooking.addEventListener('click', function () {
         var selectedTime = document.querySelector('.slot-btn.selected');
         if (!selectedTime) {
           alert('Please select a time slot for your conversation.');
+          return;
+        }
+        var nameEl = document.getElementById('bookName');
+        var emailEl = document.getElementById('bookEmail');
+        var name = nameEl ? nameEl.value.trim() : '';
+        var email = emailEl ? emailEl.value.trim() : '';
+        if (!name || !email) {
+          alert('Please enter your name and email to proceed.');
           return;
         }
         bookStep2.style.display = 'none';
