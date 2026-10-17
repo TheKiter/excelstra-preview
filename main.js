@@ -39,56 +39,12 @@
     });
   }
 
-  /* 2. Interactive Bridge & Alignment Explorer */
-  const bridgeData = {
-    bridge: {
-      kicker: 'The Central Bridge',
-      title: 'Excelstra: Seeing the Whole Before Changing the Parts',
-      sub: 'Where wealth is integrated with intention, transformed with artistry, and delivered with mastery.',
-      body: 'You are the wealth generator; we are the wealth integrators. We act as the bridge between your existing teams and current strategies, connecting what operates in isolation and revealing where deeper alignment to your vision is possible. Retained exclusively through engagement fees, our sole allegiance is to your long-term wellbeing.'
-    },
-    tax: {
-      kicker: 'Pillar I · Strategic Tax Stewardship',
-      title: 'Keep More, With Integrity',
-      sub: 'Tax as a pathway to freedom and purposeful capital.',
-      body: 'Of the many dimensions in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. Working alongside your CPA and our specialized tax strategists, we identify, corroborate, and implement multi-year strategies that emerge only through full-picture integration.'
-    },
-    wealth: {
-      kicker: 'Pillar II · Wealth Amplification',
-      title: 'Grow More, With Intention',
-      sub: 'Portfolios built around the life they are meant to serve.',
-      body: 'We examine what you hold with clarity and discipline, understanding which vehicles genuinely advance your vision. We preserve what works, reconstruct with intention, and amplify through curated, off-market opportunities available through true independence and discerning relationships.'
-    },
-    exit: {
-      kicker: 'Pillar III · Legacy-Centered Exit Planning',
-      title: 'Live More. Leave More.',
-      sub: 'Your full value revealed and your transition navigated years in advance.',
-      body: 'Whether you are a business owner preparing for a future transition, or an executive or surgeon shifting from active compensation to enduring portfolio income, we align your future income streams, enterprise value, and generational preparedness long before the transition date arrives.'
-    },
-    advisors: {
-      kicker: 'Collaborative Orchestration',
-      title: 'Harmonizing Your Existing CPA, Advisor, and Attorney',
-      sub: 'We do not replace your trusted professionals; we elevate what they can achieve together.',
-      body: 'Your CPA, financial advisor, and estate attorney bring dedicated skill to their respective disciplines. Excelstra provides the unified strategic design that connects their work, ensuring tax filings, legal entities, and investment allocations advance one shared blueprint.'
-    },
-    longevity: {
-      kicker: 'The Fifth Discipline · Wealth Serving Life',
-      title: 'Holistic Health, Longevity, and Family Flourishing',
-      sub: 'Money is the vehicle; a life fully lived is the destination.',
-      body: 'A legacy is best experienced by the leader who built it. Our integration encompasses holistic health, longevity, and preparing the next generation to steward what they receive with clarity, responsibility, and an understanding of the values behind the wealth.'
-    }
-  };
-
+  /* 2. Interactive Bridge & Alignment Explorer (Fixed-Height Grid Stack) */
   const bridgeNodes = document.querySelectorAll('[data-bridge-key]');
-  const bridgeActiveCard = document.querySelector('.bridge-active-card');
-  const bridgeKicker = document.getElementById('bridgeDetailKicker');
-  const bridgeTitle = document.getElementById('bridgeDetailTitle');
-  const bridgeSub = document.getElementById('bridgeDetailSub');
-  const bridgeBody = document.getElementById('bridgeDetailBody');
+  const bridgePanes = document.querySelectorAll('[data-bridge-pane]');
 
   function activateBridgeKey(key) {
-    const item = bridgeData[key];
-    if (!item || !bridgeTitle) return;
+    if (!key || !bridgePanes.length) return;
 
     bridgeNodes.forEach(function (el) {
       const isMatch = el.getAttribute('data-bridge-key') === key;
@@ -101,21 +57,13 @@
       }
     });
 
-    if (bridgeActiveCard) {
-      bridgeActiveCard.classList.add('transitioning');
-      setTimeout(function () {
-        if (bridgeKicker) bridgeKicker.textContent = item.kicker;
-        if (bridgeTitle) bridgeTitle.textContent = item.title;
-        if (bridgeSub) bridgeSub.textContent = item.sub;
-        if (bridgeBody) bridgeBody.textContent = item.body;
-        bridgeActiveCard.classList.remove('transitioning');
-      }, 90);
-    } else {
-      if (bridgeKicker) bridgeKicker.textContent = item.kicker;
-      if (bridgeTitle) bridgeTitle.textContent = item.title;
-      if (bridgeSub) bridgeSub.textContent = item.sub;
-      if (bridgeBody) bridgeBody.textContent = item.body;
-    }
+    bridgePanes.forEach(function (pane) {
+      if (pane.getAttribute('data-bridge-pane') === key) {
+        pane.classList.add('active');
+      } else {
+        pane.classList.remove('active');
+      }
+    });
   }
 
   bridgeNodes.forEach(function (node) {
@@ -125,11 +73,6 @@
     node.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        activateBridgeKey(node.getAttribute('data-bridge-key'));
-      }
-    });
-    node.addEventListener('mouseenter', function () {
-      if (window.innerWidth > 900) {
         activateBridgeKey(node.getAttribute('data-bridge-key'));
       }
     });
