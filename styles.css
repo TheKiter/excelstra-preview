@@ -1639,6 +1639,244 @@ textarea.form-control {
 }
 
 /* ==========================================================================
+   HERMES CLASSICAL ENGRAVINGS, PLATES & ARCHITECTURAL BREAKS
+   ========================================================================== */
+
+/* Atmospheric Engraving Backdrop for Page Heroes & Authority Sections */
+.page-hero,
+.hero-editorial,
+.section-dark,
+.section-navy {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero .container,
+.hero-editorial .container,
+.section-dark .container,
+.section-navy .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hermes-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  opacity: 0.16;
+  filter: invert(0.92) contrast(1.16) brightness(0.96);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.98) 100%);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.98) 100%);
+}
+
+.hermes-dark-backdrop {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  opacity: 0.22;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 72% 50%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.35) 58%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(ellipse 85% 90% at 72% 50%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.35) 58%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Museum-Framed Classical Engraving Plates */
+.hermes-plate-frame {
+  position: relative;
+  background-color: var(--deep-navy);
+  padding: 0.85rem;
+  border: 1px solid var(--rule-warm);
+  box-shadow: var(--shadow-elevated);
+  overflow: hidden;
+}
+
+.section-dark .hermes-plate-frame,
+.section-navy .hermes-plate-frame {
+  border-color: var(--rule-gold);
+  background-color: #000915;
+}
+
+.hermes-plate-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0.45rem;
+  border: 1px solid rgba(218, 190, 129, 0.42);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hermes-plate-media {
+  position: relative;
+  overflow: hidden;
+  background-color: #0b1118;
+}
+
+.hermes-plate-media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hermes-plate-frame.ratio-wide .hermes-plate-media img {
+  aspect-ratio: 21 / 9;
+}
+
+.hermes-plate-frame.ratio-portrait .hermes-plate-media img {
+  aspect-ratio: 4 / 4.4;
+}
+
+.hermes-plate-frame:hover .hermes-plate-media img {
+  transform: scale(1.03);
+}
+
+.hermes-plate-caption {
+  position: relative;
+  z-index: 4;
+  background-color: var(--deep-navy);
+  border-top: 1px solid rgba(218, 190, 129, 0.28);
+  padding: 0.95rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.hermes-plate-num {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold-light);
+}
+
+.hermes-plate-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.96rem;
+  color: var(--text-on-dark);
+}
+
+/* Split Editorial Showcase (Text + Engraving Plate) */
+.editorial-showcase {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 4.5vw, 4rem);
+  align-items: center;
+}
+
+.editorial-showcase.reverse {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+/* Full-Width Architectural Photo Break with Floating Dossier Card */
+.architectural-break {
+  position: relative;
+  border-block: 1px solid var(--rule-warm);
+  background-color: var(--deep-navy);
+  overflow: hidden;
+}
+
+.architectural-break-media {
+  position: relative;
+  height: clamp(360px, 48vw, 540px);
+  width: 100%;
+  overflow: hidden;
+}
+
+.architectural-break-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: contrast(1.04) brightness(0.88);
+}
+
+.architectural-break-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 14, 33, 0.88) 0%, rgba(0, 14, 33, 0.58) 52%, rgba(0, 14, 33, 0.18) 100%);
+  display: flex;
+  align-items: center;
+}
+
+.architectural-break-card {
+  max-width: 620px;
+  background-color: rgba(0, 14, 33, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(218, 190, 129, 0.38);
+  border-left: 3px solid var(--gold);
+  padding: clamp(1.85rem, 3.5vw, 2.75rem);
+  color: var(--text-on-dark);
+  box-shadow: var(--shadow-elevated);
+}
+
+.architectural-break-card h3 {
+  color: var(--bg-white);
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  margin-bottom: 0.85rem;
+}
+
+.architectural-break-card p {
+  color: var(--text-on-dark-muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Card Top Engraving Banner for Three Pillars / Altitudes */
+.card-engraving-banner {
+  margin: calc(var(--card-padding) * -1) calc(var(--card-padding) * -1) 1.5rem calc(var(--card-padding) * -1);
+  height: 195px;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--deep-navy);
+  border-bottom: 1px solid var(--rule-gold);
+}
+
+.card-engraving-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-card:hover .card-engraving-banner img,
+.tier-card:hover .card-engraving-banner img {
+  transform: scale(1.04);
+}
+
+.card-engraving-tag {
+  position: absolute;
+  bottom: 0.65rem;
+  right: 0.75rem;
+  background-color: rgba(0, 14, 33, 0.86);
+  border: 1px solid rgba(218, 190, 129, 0.42);
+  padding: 0.22rem 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+/* ==========================================================================
    MOTION & PROGRESSIVE REVEAL (RESPECTS PREFERS-REDUCED-MOTION)
    ========================================================================== */
 
@@ -1677,7 +1915,9 @@ textarea.form-control {
   .hero-grid,
   .page-hero-grid,
   .bridge-explorer,
-  .ledger-grid {
+  .ledger-grid,
+  .editorial-showcase,
+  .editorial-showcase.reverse {
     grid-template-columns: 1fr;
   }
 
@@ -1695,6 +1935,11 @@ textarea.form-control {
   .grid-4,
   .footer-top {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hermes-hero-backdrop {
+    opacity: 0.22;
+    background-position: 75% center;
   }
 }
 
@@ -1717,6 +1962,16 @@ textarea.form-control {
   .value-row {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+
+  .architectural-break-media {
+    height: auto;
+    min-height: 440px;
+  }
+
+  .architectural-break-scrim {
+    background: rgba(0, 14, 33, 0.78);
+    padding: 2rem 0;
   }
 }
 
