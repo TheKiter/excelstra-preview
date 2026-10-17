@@ -3,1683 +3,589 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Excelstra — Version Comparison Suite & Visual Editor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-dark: #070c10;
-      --bg-surface: #0e171b;
-      --bg-surface-elevated: #142127;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(191, 155, 48, 0.3);
-      --text-main: #f0f4f5;
-      --text-muted: #8ea1a9;
-      --gold: #bf9b30;
-      --gold-light: #dabe81;
-      --amber: #d97706;
-      --green: #10b981;
-      --red: #ef4444;
-      --header-h: 62px;
-      --pane-header-h: 40px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Top Suite Header */
-    header.suite-nav {
-      height: var(--header-h);
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      gap: 12px;
-      z-index: 100;
-      position: relative;
-    }
-
-    .brand-cluster {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .brand-mark {
-      font-family: 'Lora', serif;
-      font-weight: 500;
-      font-size: 1.15rem;
-      letter-spacing: 0.08em;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-mark .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 10px rgba(191, 155, 48, 0.6);
-    }
-
-    .badge-mode {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(191, 155, 48, 0.12);
-      border: 1px solid var(--border-accent);
-      color: var(--gold-light);
-      font-weight: 600;
-    }
-
-    /* Controls Bar */
-    .controls-cluster {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      overflow-x: auto;
-    }
-
-    .control-group {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 3px 6px;
-      border-radius: 6px;
-      border: 1px solid var(--border-subtle);
-      flex-shrink: 0;
-    }
-
-    .control-label {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      padding: 0 4px;
-      font-weight: 600;
-    }
-
-    select.page-select {
-      background: var(--bg-surface-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border-subtle);
-      border-radius: 4px;
-      padding: 5px 10px;
-      font-size: 0.8rem;
-      font-family: inherit;
-      font-weight: 500;
-      cursor: pointer;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    select.page-select:focus {
-      border-color: var(--gold);
-    }
-
-    .btn-toggle {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 0.74rem;
-      font-weight: 600;
-      padding: 5px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      font-family: inherit;
-      white-space: nowrap;
-    }
-
-    .btn-toggle:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .btn-toggle.active {
-      background: var(--bg-surface-elevated);
-      color: var(--gold-light);
-      border: 1px solid var(--border-accent);
-    }
-
-    .sync-toggle-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.74rem;
-      padding: 5px 9px;
-      border-radius: 4px;
-      cursor: pointer;
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .sync-toggle-btn.active {
-      background: rgba(16, 185, 129, 0.12);
-      border-color: rgba(16, 185, 129, 0.4);
-      color: #34d399;
-    }
-
-    .sync-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    /* Editor Controls Section */
-    .editor-cluster {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(191, 155, 48, 0.08);
-      border: 1px solid var(--border-accent);
-      padding: 3px 6px;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
-
-    .btn-editor-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      border: 1px solid rgba(191, 155, 48, 0.4);
-      color: var(--gold-light);
-      font-size: 0.74rem;
-      font-weight: 600;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .btn-editor-toggle:hover {
-      background: rgba(191, 155, 48, 0.2);
-    }
-
-    .btn-editor-toggle.active {
-      background: var(--gold);
-      color: #070c10;
-      border-color: var(--gold);
-      box-shadow: 0 0 12px rgba(191, 155, 48, 0.5);
-    }
-
-    .dirty-pill {
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 3px 7px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-muted);
-      border: 1px solid var(--border-subtle);
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-
-    .dirty-pill.dirty {
-      background: rgba(217, 119, 6, 0.2);
-      border-color: rgba(217, 119, 6, 0.6);
-      color: #fbbf24;
-      animation: pulseGlow 2s infinite ease-in-out;
-    }
-
-    .dirty-pill.deploying {
-      background: rgba(59, 130, 246, 0.2);
-      border-color: rgba(59, 130, 246, 0.6);
-      color: #93c5fd;
-      animation: pulseGlow 1.2s infinite ease-in-out;
-    }
-
-    .dirty-pill.synced {
-      background: rgba(16, 185, 129, 0.2);
-      border-color: rgba(16, 185, 129, 0.6);
-      color: #34d399;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.75; }
-    }
-
-    .btn-save-publish {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--green);
-      color: #070c10;
-      border: none;
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 5px 11px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .btn-save-publish:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      filter: grayscale(0.5);
-    }
-
-    .btn-save-publish:not(:disabled):hover {
-      filter: brightness(1.15);
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
-    }
-
-    .btn-editor-subtle {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      font-size: 0.72rem;
-      padding: 5px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .btn-editor-subtle:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--border-accent);
-    }
-
-    /* Main Workspace Container */
-    main.comparison-workspace {
-      display: flex;
-      width: 100vw;
-      height: calc(100vh - var(--header-h));
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-dark);
-    }
-
-    /* Pane Column */
-    .comparison-pane {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      flex: 1;
-      min-width: 0;
-      position: relative;
-      transition: flex 0.25s ease, width 0.25s ease;
-    }
-
-    .comparison-pane.hidden {
-      display: none !important;
-    }
-
-    .comparison-pane + .comparison-pane {
-      border-left: 1px solid var(--border-subtle);
-    }
-
-    /* Pane Sub-Header */
-    .pane-header {
-      height: var(--pane-header-h);
-      background: var(--bg-surface-elevated);
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
-      font-size: 0.78rem;
-    }
-
-    .pane-title-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pane-tag {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 3px;
-    }
-
-    .tag-v3 {
-      background: rgba(217, 119, 6, 0.15);
-      border: 1px solid rgba(217, 119, 6, 0.35);
-      color: #fbbf24;
-    }
-
-    .tag-v4 {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #34d399;
-    }
-
-    .pane-filename {
-      color: var(--text-muted);
-      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      font-size: 0.72rem;
-    }
-
-    .pane-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-pane-action {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.72rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.15s;
-    }
-
-    .btn-pane-action:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border-color: var(--border-accent);
-    }
-
-    /* Frame Wrapper */
-    .frame-viewport {
-      flex: 1;
-      width: 100%;
-      height: calc(100% - var(--pane-header-h));
-      position: relative;
-      background: #ffffff;
-      display: flex;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .frame-viewport.device-tablet {
-      background: #05080a;
-      padding: 12px 0;
-    }
-
-    .frame-viewport.device-tablet iframe {
-      width: 768px !important;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      border-radius: 8px;
-    }
-
-    .frame-viewport.device-mobile {
-      background: #05080a;
-      padding: 12px 0;
-    }
-
-    .frame-viewport.device-mobile iframe {
-      width: 390px !important;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      border-radius: 12px;
-    }
-
-    iframe.content-frame {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-      background: #ffffff;
-    }
-
-    /* Toast Notification */
-    .floating-toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: rgba(14, 23, 27, 0.95);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-accent);
-      color: var(--text-main);
-      padding: 8px 18px;
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 500;
-      pointer-events: none;
-      opacity: 0;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 500;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .floating-toast.visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .floating-toast.toast-success {
-      border-color: rgba(16, 185, 129, 0.5);
-      color: #34d399;
-    }
-
-    .floating-toast.toast-error {
-      border-color: rgba(239, 68, 68, 0.5);
-      color: #f87171;
-    }
-
-    /* Settings Modal */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 20px;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-card {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-accent);
-      border-radius: 8px;
-      width: 100%;
-      max-width: 520px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .modal-card h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .modal-card .close-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .modal-card .close-btn:hover {
-      color: var(--text-main);
-    }
-
-    .modal-description {
-      font-size: 0.8rem;
-      line-height: 1.5;
-      color: var(--text-muted);
-    }
-
-    .modal-description a {
-      color: var(--gold-light);
-      text-decoration: underline;
-    }
-
-    .input-field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .input-field-group label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .input-field-group input {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 4px;
-      padding: 8px 12px;
-      color: var(--text-main);
-      font-family: 'SFMono-Regular', Consolas, monospace;
-      font-size: 0.82rem;
-      outline: none;
-    }
-
-    .input-field-group input:focus {
-      border-color: var(--gold);
-    }
-
-    .modal-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .modal-actions-right {
-      display: flex;
-      gap: 8px;
-    }
-
-    .btn-modal-primary {
-      background: var(--gold);
-      color: #070c10;
-      border: none;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 7px 14px;
-      cursor: pointer;
-      transition: filter 0.15s;
-    }
-
-    .btn-modal-primary:hover {
-      filter: brightness(1.15);
-    }
-
-    .btn-modal-secondary {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      border-radius: 4px;
-      font-size: 0.78rem;
-      padding: 7px 12px;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-
-    .btn-modal-secondary:hover {
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .btn-modal-danger {
-      background: transparent;
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      color: #f87171;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      padding: 7px 12px;
-      cursor: pointer;
-    }
-
-    .btn-modal-danger:hover {
-      background: rgba(239, 68, 68, 0.1);
-    }
-
-    .token-status {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .token-status.configured {
-      color: #34d399;
-    }
-  </style>
+  <title>Excelstra · Wealth Integrators for the Discerning</title>
+  <meta name="description" content="Where wealth is integrated with intention, transformed with artistry, and delivered with mastery. A boutique wealth integration firm bridging tax, wealth, and transition.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Excelstra · Wealth Integrators for the Discerning">
+  <meta property="og:description" content="You are the wealth generator; we are the wealth integrators. Discover what becomes possible when every dimension of your financial life is integrated with intention.">
+  <meta property="og:image" content="assets/share.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Main Suite Navbar -->
-  <header class="suite-nav">
-    <div class="brand-cluster">
-      <div class="brand-mark">
-        <span class="dot"></span>
-        <span>Excelstra</span>
+  <!-- ======================== GLOBAL HEADER ======================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="Excelstra Home">
+        <img src="assets/logo-black.png" alt="Excelstra">
+        <span class="brand-logo-sub">Wealth Empowered</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="integration.html" class="nav-link">The Integration Model</a></li>
+          <li><a href="membership.html" class="nav-link">Membership</a></li>
+          <li><a href="philosophy.html" class="nav-link">Our Philosophy</a></li>
+          <li><a href="about.html" class="nav-link">Leadership &amp; Team</a></li>
+          <li><a href="assessment.html" class="nav-link">Wealth Assessment</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="connect.html" class="btn btn-primary btn-sm">Private Consultation</a>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu" aria-expanded="false">
+          Menu
+        </button>
       </div>
-      <span class="badge-mode">Suite Review</span>
     </div>
 
-    <div class="controls-cluster">
-      <!-- Page Navigation Dropdown -->
-      <div class="control-group">
-        <span class="control-label">Page</span>
-        <select id="pageSelect" class="page-select">
-          <option value="index.html">Homepage (index.html)</option>
-          <option value="the-architecture.html">The Architecture</option>
-          <option value="about-eunicia.html">About Eunicia Peret</option>
-          <option value="mastermind.html">Mastermind Summit</option>
-          <option value="member-stories.html">Member Stories</option>
-          <option value="our-team.html">Our Team & Bench</option>
-          <option value="wealth-calculator.html">Wealth Calculator</option>
-          <option value="wealth-assessment.html">Wealth Assessment</option>
-          <option value="questions-to-ask.html">Questions to Ask</option>
-          <option value="membership.html">Membership Structure</option>
-          <option value="events.html">Events & Summits</option>
-          <option value="speaking.html">Keynote & Speaking</option>
-          <option value="newsletter.html">Private Newsletter</option>
-          <option value="podcast.html">Podcast Series</option>
-          <option value="book-a-call.html">Book a Consultation</option>
-          <option value="faq.html">Frequently Asked Questions</option>
-        </select>
-      </div>
-
-      <!-- View Layout Modes -->
-      <div class="control-group">
-        <span class="control-label">View</span>
-        <button class="btn-toggle" data-view="split" id="btnViewSplit">Split 50/50</button>
-        <button class="btn-toggle" data-view="v3" id="btnViewV3">Susie Only</button>
-        <button class="btn-toggle" data-view="v4" id="btnViewV4">v4 Sovereign</button>
-        <button class="btn-toggle active" data-view="v5" id="btnViewV5">v5 Apple HIG</button>
-      </div>
-
-      <!-- Device Viewport Emulation -->
-      <div class="control-group">
-        <span class="control-label">Device</span>
-        <button class="btn-toggle active" data-device="fluid">Full</button>
-        <button class="btn-toggle" data-device="tablet">Tablet</button>
-        <button class="btn-toggle" data-device="mobile">Mobile</button>
-      </div>
-
-      <!-- Sync Scrolling Toggle -->
-      <button class="sync-toggle-btn active" id="btnSyncScroll" title="Toggle Synchronized Scrolling">
-        <span class="sync-dot"></span>
-        <span>Sync Scroll</span>
-      </button>
-
-      <!-- Visual Editor Cluster -->
-      <div class="editor-cluster">
-        <button class="btn-editor-toggle" id="btnToggleEdit" title="Toggle In-Place Visual Text Editing on Latest Version">
-          <span>Edit Mode</span>
-        </button>
-        <span class="dirty-pill" id="dirtyCounter" title="Unsaved changes in active page">Clean</span>
-        <button class="btn-save-publish" id="btnSavePublish" disabled title="Save clean HTML directly to GitHub main branch (Ctrl+S)">
-          <span>Save &amp; Publish</span>
-        </button>
-        <button class="btn-editor-subtle" id="btnDiscardChanges" title="Discard unsaved edits and reload active page">
-          <span>Discard</span>
-        </button>
-        <button class="btn-editor-subtle" id="btnDownloadHtml" title="Export clean production HTML file">
-          <span>Download</span>
-        </button>
-        <button class="btn-editor-subtle" id="btnOpenSettings" title="Configure GitHub Personal Access Token for direct commits">
-          <span>GitHub Key</span>
-        </button>
-      </div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html">Home</a>
+      <a href="integration.html">The Integration Model</a>
+      <a href="membership.html">Membership</a>
+      <a href="philosophy.html">Our Philosophy</a>
+      <a href="about.html">Leadership &amp; Team</a>
+      <a href="assessment.html">Whole Wealth Assessment</a>
+      <a href="connect.html">Request Private Consultation</a>
     </div>
   </header>
 
-  <!-- Side-by-Side Comparison Workspace -->
-  <main class="comparison-workspace" id="workspace">
+  <main>
+    <!-- ======================== EDITORIAL HERO ======================== -->
+    <section class="hero-editorial">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Wealth Integrators for the Discerning</span>
+          <h1>Where wealth is integrated with intention, <em>transformed with artistry,</em> and delivered with mastery.</h1>
+          <p class="lead" style="margin-top: 1.4rem;">
+            You are the wealth generator; we are the wealth integrators. We are a boutique wealth integration firm built for self-made leaders who are building something meaningful and are ready to elevate it.
+          </p>
 
-    <!-- Left: Susie Draft (Version 3) -->
-    <section class="comparison-pane" id="paneV3">
-      <div class="pane-header">
-        <div class="pane-title-group">
-          <span class="pane-tag tag-v3">Susie Draft (v3 Baseline)</span>
-          <span class="pane-filename" id="labelV3Path">v3/index.html</span>
+          <div class="hero-declaration-box">
+            <p>
+              <em>Wealth, in full view - integrated with intention. Life, elevated with purpose.</em> We transform what feels fragmented into what feels whole across tax, wealth, and transition. We lead with heart. We earn trust through action.
+            </p>
+          </div>
+
+          <div class="hero-ctas btn-group">
+            <a href="integration.html" class="btn btn-primary">Explore the Integration Model</a>
+            <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" class="btn btn-gold">Begin Whole Wealth Assessment</a>
+          </div>
+          <p class="hero-microcopy">
+            100% Fee-Only Independence &middot; Zero Commissions or Product Sales &middot; 3x Demonstrated Value Commitment
+          </p>
         </div>
-        <div class="pane-actions">
-          <a href="v3/index.html" target="_blank" class="btn-pane-action" id="linkStandaloneV3" title="Open Susie Version in New Tab">
-            <span>Open Standalone</span>
-            <span>↗</span>
-          </a>
+
+        <div>
+          <div class="hero-portrait-frame">
+            <img src="assets/eunicia-portrait-white.jpg" alt="Eunicia Peret, Founder and CEO of Excelstra">
+            <div class="hero-portrait-caption">
+              <div>
+                <div class="hero-portrait-name">Eunicia Peret</div>
+                <div class="hero-portrait-credo">"We listen to who you are before we look at what you have."</div>
+              </div>
+              <span class="hero-portrait-role">Founder &amp; CEO</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="frame-viewport" id="viewportV3">
-        <iframe src="v3/index.html" class="content-frame" id="frameV3" title="Excelstra Susie Draft (v3)"></iframe>
       </div>
     </section>
 
-    <!-- Right: Latest Production (Version 4) -->
-    <section class="comparison-pane" id="paneV4">
-      <div class="pane-header">
-        <div class="pane-title-group">
-          <span class="pane-tag tag-v4">Latest Version (v4 Sovereign)</span>
-          <span class="pane-filename" id="labelV4Path">v4/index.html</span>
-        </div>
-        <div class="pane-actions">
-          <a href="v4/index.html" target="_blank" class="btn-pane-action" id="linkStandaloneV4" title="Open Latest Version in New Tab">
-            <span>Open Standalone</span>
-            <span>↗</span>
-          </a>
-        </div>
+    <!-- ======================== PEDIGREE RIBBON ======================== -->
+    <div class="pedigree-bar" aria-label="Institutional Strategy Pedigree">
+      <div class="container pedigree-inner">
+        <span class="pedigree-label">Executive Strategy Pedigree Across</span>
+        <ul class="pedigree-list">
+          <li class="pedigree-item">Deloitte</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">EY</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">Booz &amp; Co.</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">Coca-Cola</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">Bank of America</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">American Express</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">Uber</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">Toyota</li>
+          <li class="pedigree-sep" aria-hidden="true"></li>
+          <li class="pedigree-item">Marquis Who's Who</li>
+        </ul>
       </div>
-      <div class="frame-viewport" id="viewportV4">
-        <iframe src="v4/index.html" class="content-frame" id="frameV4" title="Excelstra Latest Version (v4)"></iframe>
+    </div>
+
+    <!-- ======================== SECTION 01: THE INTEGRATED PHILOSOPHY & BRIDGE ======================== -->
+    <section class="section-white" id="integrated-philosophy">
+      <div class="container">
+        <div class="grid-2" style="align-items: start; margin-bottom: 3.5rem;">
+          <div>
+            <span class="eyebrow">The Integrated Philosophy</span>
+            <h2>We see the whole before we change the parts.</h2>
+            <blockquote class="editorial-quote">
+              "To advise is common. To lead is to elevate by seeing the whole and integrating it strategically."
+            </blockquote>
+          </div>
+          <div>
+            <p class="body-copy">
+              When a member interacts with Excelstra, they feel it immediately: warmth that is genuine and intentional, and confidence in knowing someone sees the full picture and is orchestrating each part of it with care.
+            </p>
+            <p class="body-copy">
+              We act as the bridge between your existing teams and current strategies, connecting what operates in isolation and revealing where deeper alignment to your vision is possible. When wealth is in full view, the value it creates is both meaningful and measurable. Established family offices reach out to us for strategic support and collaboration. That is the caliber of the work.
+            </p>
+            <p class="venture-signature" style="margin-top: 1.25rem;">
+              Venture Beyond. We see the whole before we change the parts - and that changes everything.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Bridge & Alignment Schematic -->
+        <div class="bridge-explorer">
+          <div class="bridge-diagram-wrap">
+            <svg class="bridge-svg" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Excelstra Bridge Architecture Diagram">
+              <!-- Subtle Architectural Grid -->
+              <rect x="10" y="10" width="660" height="420" fill="#FAF9F6" stroke="rgba(29,53,60,0.12)" stroke-width="1"/>
+              <circle cx="340" cy="220" r="145" fill="none" stroke="rgba(191,155,48,0.35)" stroke-width="1" stroke-dasharray="4 4"/>
+              <circle cx="340" cy="220" r="95" fill="rgba(191,155,48,0.05)" stroke="rgba(29,53,60,0.12)" stroke-width="1"/>
+
+              <!-- Connector Lines -->
+              <line x1="340" y1="220" x2="155" y2="95" stroke="#BF9B30" stroke-width="1.5"/>
+              <line x1="340" y1="220" x2="525" y2="95" stroke="#BF9B30" stroke-width="1.5"/>
+              <line x1="340" y1="220" x2="565" y2="275" stroke="#BF9B30" stroke-width="1.5"/>
+              <line x1="340" y1="220" x2="115" y2="275" stroke="#BF9B30" stroke-width="1.5"/>
+              <line x1="340" y1="220" x2="340" y2="375" stroke="#BF9B30" stroke-width="1.5"/>
+
+              <!-- Node: Tax Stewardship -->
+              <g class="bridge-node" data-bridge-key="tax" transform="translate(155, 95)">
+                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
+                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">TAX</text>
+                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Stewardship</text>
+              </g>
+
+              <!-- Node: Wealth Amplification -->
+              <g class="bridge-node" data-bridge-key="wealth" transform="translate(525, 95)">
+                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
+                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">WEALTH</text>
+                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Amplification</text>
+              </g>
+
+              <!-- Node: Legacy Exit Planning -->
+              <g class="bridge-node" data-bridge-key="exit" transform="translate(565, 275)">
+                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
+                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">TRANSITION</text>
+                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Exit &amp; Legacy</text>
+              </g>
+
+              <!-- Node: Existing Advisors -->
+              <g class="bridge-node" data-bridge-key="advisors" transform="translate(115, 275)">
+                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
+                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">YOUR TEAM</text>
+                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">CPA &amp; Counsel</text>
+              </g>
+
+              <!-- Node: Holistic Longevity -->
+              <g class="bridge-node" data-bridge-key="longevity" transform="translate(340, 375)">
+                <circle class="node-bg" cx="0" cy="0" r="44" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
+                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">LONGEVITY</text>
+                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Health &amp; Heirs</text>
+              </g>
+
+              <!-- Central Core: Excelstra Bridge -->
+              <g class="bridge-node active" data-bridge-key="bridge" transform="translate(340, 220)">
+                <circle class="node-bg" cx="0" cy="0" r="60" fill="#1D353C" stroke="#BF9B30" stroke-width="2.5"/>
+                <text class="node-label" x="0" y="-5" text-anchor="middle" font-family="Lora, serif" font-size="13" font-weight="600" fill="#FFFFFF" letter-spacing="1">EXCELSTRA</text>
+                <text class="node-sub" x="0" y="13" text-anchor="middle" font-family="Inter, sans-serif" font-size="8.5" font-weight="600" fill="#DABE81" letter-spacing="1.5">THE BRIDGE</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="bridge-detail-panel">
+            <span class="eyebrow">Interactive Alignment Map</span>
+            <p class="body-copy" style="margin-bottom: 1rem;">
+              Select any dimension to examine how Excelstra orchestrates alignment across your entire financial life:
+            </p>
+            <div class="bridge-pills">
+              <button type="button" class="bridge-pill active" data-bridge-key="bridge">The Bridge</button>
+              <button type="button" class="bridge-pill" data-bridge-key="tax">Tax Stewardship</button>
+              <button type="button" class="bridge-pill" data-bridge-key="wealth">Wealth Amplification</button>
+              <button type="button" class="bridge-pill" data-bridge-key="exit">Exit &amp; Legacy</button>
+              <button type="button" class="bridge-pill" data-bridge-key="advisors">Your Existing Team</button>
+              <button type="button" class="bridge-pill" data-bridge-key="longevity">Longevity &amp; Family</button>
+            </div>
+
+            <div class="bridge-active-card">
+              <div class="arch-card-kicker" id="bridgeDetailKicker">The Central Bridge</div>
+              <h3 id="bridgeDetailTitle">Excelstra: Seeing the Whole Before Changing the Parts</h3>
+              <p class="arch-card-sub" id="bridgeDetailSub">Where wealth is integrated with intention, transformed with artistry, and delivered with mastery.</p>
+              <p class="body-copy" id="bridgeDetailBody">
+                You are the wealth generator; we are the wealth integrators. We act as the bridge between your existing teams and current strategies, connecting what operates in isolation and revealing where deeper alignment to your vision is possible. Retained exclusively through engagement fees, our sole allegiance is to your long-term wellbeing.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- ======================== SECTION 02: STRUCTURAL INTEGRITY & BUSINESS MODEL ======================== -->
+    <section class="section-dark" id="structural-integrity">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">The Standard of Independence</span>
+          <h2>Independence from commissions is the structural proof of everything we claim.</h2>
+          <p class="lead">
+            Discerning leaders deserve counsel that is wholly uncompromised. How a firm is compensated determines what it is able to see. Excelstra is retained strictly through engagement fees, ensuring every strategy serves your vision alone.
+          </p>
+        </div>
+
+        <div class="ledger-grid">
+          <div class="ledger-col">
+            <span class="arch-card-kicker">What Excelstra Does</span>
+            <h3>Orchestrating the Full Picture</h3>
+            <ul class="ledger-list">
+              <li>
+                <span class="ledger-mark">I.</span>
+                <span><strong>Integrates across tax, wealth, and transition:</strong> Unifying every financial discipline into one living strategy architected around the life you are building.</span>
+              </li>
+              <li>
+                <span class="ledger-mark">II.</span>
+                <span><strong>Acts as the bridge between your existing teams:</strong> Collaborating directly with your CPA, financial advisor, and attorney while introducing vetted specialists where needed.</span>
+              </li>
+              <li>
+                <span class="ledger-mark">III.</span>
+                <span><strong>Reveals possibilities that only integration can create:</strong> Surfacing lawful tax stewardship, curated off-market opportunities, and pre-exit structuring.</span>
+              </li>
+              <li>
+                <span class="ledger-mark">IV.</span>
+                <span><strong>Retained strictly through engagement fees:</strong> When additional services support your strategy, our focus is on minimizing your cost and ensuring every recommendation serves your vision.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ledger-col">
+            <span class="arch-card-kicker">What Excelstra Does Not Do</span>
+            <h3>Preserving Your Sovereignty</h3>
+            <ul class="ledger-list">
+              <li>
+                <span class="ledger-mark">&middot;</span>
+                <span><strong>Does not replace your trusted advisors:</strong> We honor the relationships you have built, elevating your existing CPA, attorney, and advisor through unified coordination.</span>
+              </li>
+              <li>
+                <span class="ledger-mark">&middot;</span>
+                <span><strong>Does not manage assets (Zero AUM fees):</strong> We do not charge a percentage of your investable assets or require asset transfers to work together.</span>
+              </li>
+              <li>
+                <span class="ledger-mark">&middot;</span>
+                <span><strong>Does not sell financial or insurance products:</strong> We accept zero commissions, referral kickbacks, or product placement fees.</span>
+              </li>
+              <li>
+                <span class="ledger-mark">&middot;</span>
+                <span><strong>Does not take custody or make decisions for you:</strong> We build mastery, not dependence. You remain in full command of every decision.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="proof-metrics-grid">
+          <div class="proof-metric-box">
+            <span class="proof-metric-num">3x Value Guarantee</span>
+            <span class="proof-metric-title">Our Foundational Commitment</span>
+            <p class="proof-metric-desc">
+              Our commitment is to demonstrate at least 3x potential benefit gains over a member's engagement investment. It is always the member's choice which strategies to implement.
+            </p>
+          </div>
+
+          <div class="proof-metric-box">
+            <span class="proof-metric-num">7&ndash;50x+</span>
+            <span class="proof-metric-title">Typical Year-1 Demonstrated ROI</span>
+            <p class="proof-metric-desc">
+              Demonstrated first-year return on engagement investment identified across Strategic Tax Stewardship, Wealth Amplification, and Legacy-Centered Exit Planning.
+            </p>
+          </div>
+
+          <div class="proof-metric-box">
+            <span class="proof-metric-num">100% Fee-Only</span>
+            <span class="proof-metric-title">Pure Alignment of Incentives</span>
+            <p class="proof-metric-desc">
+              Four engagement altitudes (Copper, Gold, Diamond, and Continuance) tailored to the complexity of your enterprise and personal vision, with zero product bias.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SECTION 03: THE THREE PILLARS ======================== -->
+    <section class="section-warm-beige" id="three-pillars">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">How We Serve, Lead, and Elevate</span>
+          <h2>The Three Pillars of Wealth Integration</h2>
+          <p class="lead">
+            Strategic Tax Stewardship strengthens what Wealth Amplification builds. Wealth Amplification deepens what Legacy-Centered Exit Planning protects. Legacy-Centered Exit Planning gives the entire journey its purpose and its destination.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Pillar 1 -->
+          <article class="arch-card">
+            <div>
+              <div class="arch-card-kicker">Pillar I</div>
+              <h3>Strategic Tax Stewardship</h3>
+              <p class="arch-card-sub">Keep more, with integrity.</p>
+              <p class="body-copy">
+                Of every dimension in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. We see tax as a pathway to freedom.
+              </p>
+              <p class="body-copy">
+                Working closely with our specialized experts, we help you identify the strategies worth pursuing, coordinate their rigorous evaluation, and engage all appropriate stakeholders to ensure everything is examined, corroborated, and masterfully implemented.
+              </p>
+            </div>
+            <div class="arch-card-footer">
+              <span>Transforming what is preserved into what is purposeful</span>
+              <a href="integration.html#pillar-tax" class="text-gold">Explore &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Pillar 2 -->
+          <article class="arch-card">
+            <div>
+              <div class="arch-card-kicker">Pillar II</div>
+              <h3>Wealth Amplification</h3>
+              <p class="arch-card-sub">Grow more, with intention.</p>
+              <p class="body-copy">
+                At Excelstra, portfolios are designed around a single principle: alignment with what our members dream to achieve. We examine what you hold with clarity and discipline, understanding which vehicles genuinely advance your vision.
+              </p>
+              <p class="body-copy">
+                We preserve what works, reconstruct with intention, and amplify through curated, off-market opportunities available only to members whose integrators operate with true independence and discerning relationships.
+              </p>
+            </div>
+            <div class="arch-card-footer">
+              <span>Portfolios built around the life they are meant to serve</span>
+              <a href="integration.html#pillar-wealth" class="text-gold">Explore &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Pillar 3 -->
+          <article class="arch-card">
+            <div>
+              <div class="arch-card-kicker">Pillar III</div>
+              <h3>Legacy-Centered Exit Planning</h3>
+              <p class="arch-card-sub">Live more. Leave more.</p>
+              <p class="body-copy">
+                Legacy-Centered Exit Planning begins long before the transition arrives, because the most powerful financial decisions are made before the resignation, retirement date, or liquidity event is finalized.
+              </p>
+              <p class="body-copy">
+                We encompass three dimensions: enhancing future income streams, orchestrating business exit strategies for your long-term wellbeing, and preparing those who inherit to steward what they receive with clarity and responsibility.
+              </p>
+            </div>
+            <div class="arch-card-footer">
+              <span>Your full value revealed and navigated on your terms</span>
+              <a href="integration.html#pillar-exit" class="text-gold">Explore &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SECTION 04: WHO WE SERVE (DREAM MEMBERS) ======================== -->
+    <section class="section-ivory" id="who-we-serve">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">For Self-Made Leaders</span>
+          <h2>Built for those who sense there is a higher altitude available to them.</h2>
+          <p class="lead">
+            Our members are not shopping; they are choosing. They have built something meaningful and recognize that the strategies that brought them here can be elevated into one cohesive design.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="arch-card">
+            <div>
+              <div class="arch-card-kicker">Profile 01 &middot; Enterprise Builders</div>
+              <h3>Business Owners ($3M&ndash;$50M+ Revenue)</h3>
+              <p class="arch-card-sub">Particularly effective for founders operating without a full-time strategic CFO.</p>
+              <p class="body-copy">
+                You view yourself as a builder with an operating business, commercial real estate, rentals, and retirement plans. You have outgrown isolated advice across your CPA, financial advisor, and attorney, and are ready for one integrated strategy designed around your enterprise and family vision.
+              </p>
+            </div>
+            <div class="arch-card-footer">
+              <span>Filtered by annual revenue, not investable AUM</span>
+              <a href="membership.html" class="text-gold">Membership &rarr;</a>
+            </div>
+          </div>
+
+          <div class="arch-card">
+            <div>
+              <div class="arch-card-kicker">Profile 02 &middot; Career &amp; Practice Leaders</div>
+              <h3>Executives, Surgeons &amp; Physicians ($500K+ Income)</h3>
+              <p class="arch-card-sub">Navigating high-income tax stewardship, equity, and career transition.</p>
+              <p class="body-copy">
+                For corporate executives and medical specialists managing complex compensation, equity vesting, deferred distributions, and substantial annual tax exposure. We align every dimension before you transition from active compensation to enduring portfolio income.
+              </p>
+            </div>
+            <div class="arch-card-footer">
+              <span>Filtered by annual household income ($500K+)</span>
+              <a href="membership.html" class="text-gold">Membership &rarr;</a>
+            </div>
+          </div>
+
+          <div class="arch-card">
+            <div>
+              <div class="arch-card-kicker">Profile 03 &middot; Multi-Generational Stewards</div>
+              <h3>Established Family Offices &amp; Founders Post-Exit</h3>
+              <p class="arch-card-sub">Strategic collaboration, curated access, and generational preparedness.</p>
+              <p class="body-copy">
+                Established family offices and post-liquidity founders partner with Excelstra for specialized tax stewardship, independent off-market amplification, and preparing the next generation to steward wealth with clarity and purpose.
+              </p>
+            </div>
+            <div class="arch-card-footer">
+              <span>Bespoke collaborative engagements</span>
+              <a href="membership.html" class="text-gold">Membership &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SECTION 05: HUMAN TRUST & LEADERSHIP ======================== -->
+    <section class="section-white" id="human-trust">
+      <div class="container">
+        <div class="grid-2" style="align-items: center;">
+          <div>
+            <span class="eyebrow">Integrity and Human Trust</span>
+            <h2>The more artificial our world becomes, the more human trust matters.</h2>
+            <p class="body-copy" style="margin-top: 1.2rem;">
+              Our insights are shaped by one purpose: your long-term wellbeing. We listen to who you are before we look at what you have. Our strategies are built on human trust and our commitment to be honest about what matters in your financial life: the opportunities hidden in fragmentation, the hard truths, and the possibilities.
+            </p>
+            <p class="body-copy">
+              Our members come to us for warmth in a complex and ever-growing automated world, for the assurance that someone is holding the whole picture with care, competence, and honesty in every season, the favorable and the difficult alike. As the world leans further into the artificial, we use advanced analytical tools while ensuring that the human relationship remains sacred at the heart of our work.
+            </p>
+            <blockquote class="editorial-quote">
+              "Security that is felt, not hoped for. Freedom that is designed, not left to chance. Generosity that flows from abundance. Impact that reaches beyond your lifetime."
+            </blockquote>
+            <div class="btn-group" style="margin-top: 1.75rem;">
+              <a href="philosophy.html" class="btn btn-primary">Read Our Philosophy &amp; Core Values</a>
+              <a href="about.html" class="btn btn-outline">Meet Eunicia &amp; The Team</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="arch-card" style="background-color: var(--bg-ivory); border-color: var(--rule-warm);">
+              <span class="arch-card-kicker">The Five Core Values</span>
+              <h3>The Principles Behind Every Strategy</h3>
+              <p class="arch-card-sub">Our practice, our standards, pursued relentlessly.</p>
+              <ul style="display: grid; gap: 1.1rem; margin-top: 0.5rem;">
+                <li>
+                  <strong style="color: var(--ink-primary);">1. Creators:</strong>
+                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> We see the whole before we change the parts.</span>
+                </li>
+                <li>
+                  <strong style="color: var(--ink-primary);">2. Elevating Excellence:</strong>
+                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> Excellence is a living practice - one that deepens and continuously rises to meet the moment.</span>
+                </li>
+                <li>
+                  <strong style="color: var(--ink-primary);">3. Integrity and Human Trust:</strong>
+                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> We feel deeply, speak honestly, and act with intention. We lead with heart.</span>
+                </li>
+                <li>
+                  <strong style="color: var(--ink-primary);">4. Wealth Serving Life:</strong>
+                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> Every decision creates a ripple across members, team, partners, and community.</span>
+                </li>
+                <li>
+                  <strong style="color: var(--ink-primary);">5. Service Through Leadership:</strong>
+                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> True leadership owns outcomes. We provide strategic positioning, orchestrate alignment, and deliver integration.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SECTION 06: CLOSING INVITATION ======================== -->
+    <section class="section-navy">
+      <div class="container-narrow" style="text-align: center;">
+        <span class="eyebrow">The Invitation</span>
+        <h2>For those who sense the difference, <em>and are ready to experience it.</em></h2>
+        <p class="lead" style="margin-top: 1.25rem; margin-inline: auto;">
+          Begin with our private two-minute Whole Wealth Assessment for an immediate perspective on what integration makes visible in your financial life, or request a private conversation with our leadership team.
+        </p>
+        <div class="btn-group" style="justify-content: center; margin-top: 2.5rem;">
+          <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" class="btn btn-gold">Begin Whole Wealth Assessment</a>
+          <a href="connect.html" class="btn btn-outline">Request Private Consultation</a>
+        </div>
+        <p class="venture-signature" style="margin-top: 2.25rem;">
+          Venture Beyond. Elevation awaits.
+        </p>
+      </div>
+    </section>
   </main>
 
-  <!-- Toast Notification Bar -->
-  <div class="floating-toast" id="suiteToast">Notification</div>
+  <!-- ======================== GLOBAL FOOTER ======================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <img src="assets/logo-white.png" alt="Excelstra" class="footer-logo">
+          <div class="footer-tagline">Wealth Integrators for the Discerning.</div>
+          <p style="font-size: 0.88rem; line-height: 1.65; margin-bottom: 1rem;">
+            Where wealth is integrated with intention, transformed with artistry, and delivered with mastery.
+          </p>
+          <p style="font-size: 0.84rem; color: var(--text-on-dark-muted);">
+            Excelstra LLC<br>
+            6340 Sugarloaf Parkway, Suite 200<br>
+            Duluth, GA 30097<br>
+            <a href="mailto:contact@excelstra.com" style="color: var(--gold-light);">contact@excelstra.com</a>
+          </p>
+        </div>
 
-  <!-- GitHub Key Settings Modal -->
-  <div class="modal-backdrop" id="settingsModal">
-    <div class="modal-card">
-      <h2>
-        <span>GitHub Publishing Setup</span>
-        <button class="close-btn" id="btnCloseModal" title="Close dialog">&times;</button>
-      </h2>
-      <p class="modal-description">
-        To allow in-place edits to commit directly to repository <code>TheKiter/excelstra-preview</code> on GitHub, enter a Personal Access Token with <strong>Contents: Read and write</strong> permissions. Your key remains stored exclusively in your browser's local storage.
-      </p>
-      <div class="input-field-group">
-        <label for="inputGhToken">Personal Access Token (PAT)</label>
-        <input type="password" id="inputGhToken" placeholder="github_pat_... or ghp_..." autocomplete="off">
+        <div>
+          <h3 class="footer-col-title">The Practice</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="integration.html">The Integration Model</a></li>
+            <li><a href="membership.html">Membership Altitudes</a></li>
+            <li><a href="philosophy.html">Our Philosophy &amp; Values</a></li>
+            <li><a href="about.html">Leadership &amp; Specialist Bench</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Three Pillars</h3>
+          <ul class="footer-links">
+            <li><a href="integration.html#pillar-tax">Strategic Tax Stewardship</a></li>
+            <li><a href="integration.html#pillar-wealth">Wealth Amplification</a></li>
+            <li><a href="integration.html#pillar-exit">Legacy-Centered Exit Planning</a></li>
+            <li><a href="membership.html#guarantee">The 3x Value Guarantee</a></li>
+            <li><a href="philosophy.html#quadruple-benefit">The Quadruple Benefit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Begin the Conversation</h3>
+          <ul class="footer-links">
+            <li><a href="assessment.html">Interactive Readiness Diagnostic</a></li>
+            <li><a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Official Whole Wealth Assessment</a></li>
+            <li><a href="connect.html">Request Private Consultation</a></li>
+            <li><a href="connect.html#discerning-questions">Questions Discerning Leaders Ask</a></li>
+            <li><a href="connect.html#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="token-status" id="tokenStatusText">
-        <span>No token configured. Saving will fallback to clean file download.</span>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-modal-danger" id="btnClearToken">Clear Token</button>
-        <div class="modal-actions-right">
-          <button class="btn-modal-secondary" id="btnTestToken">Test Connection</button>
-          <button class="btn-modal-primary" id="btnSaveToken">Save Token</button>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Excelstra LLC. Wealth Empowered. All rights reserved.</span>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="https://www.linkedin.com/in/euniciaperet" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.youtube.com/channel/UCYEEKN0lPrqchL4_H0aOGhw" target="_blank" rel="noopener">YouTube</a>
+          <a href="connect.html">Contact &amp; Governance</a>
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <script>
-    (function () {
-      'use strict';
-
-      // ── DOM References ──
-      const pageSelect = document.getElementById('pageSelect');
-      const frameV3 = document.getElementById('frameV3');
-      const frameV4 = document.getElementById('frameV4');
-      const labelV3Path = document.getElementById('labelV3Path');
-      const labelV4Path = document.getElementById('labelV4Path');
-      const linkStandaloneV3 = document.getElementById('linkStandaloneV3');
-      const linkStandaloneV4 = document.getElementById('linkStandaloneV4');
-
-      const paneV3 = document.getElementById('paneV3');
-      const paneV4 = document.getElementById('paneV4');
-      const viewportV3 = document.getElementById('viewportV3');
-      const viewportV4 = document.getElementById('viewportV4');
-
-      const btnViewSplit = document.getElementById('btnViewSplit');
-      const btnViewV3 = document.getElementById('btnViewV3');
-      const btnViewV4 = document.getElementById('btnViewV4');
-      const btnViewV5 = document.getElementById('btnViewV5');
-      const viewButtons = [btnViewSplit, btnViewV3, btnViewV4, btnViewV5];
-      let activeTargetVersion = 'v5';
-
-      const btnSyncScroll = document.getElementById('btnSyncScroll');
-      const suiteToast = document.getElementById('suiteToast');
-
-      // Editor Controls
-      const btnToggleEdit = document.getElementById('btnToggleEdit');
-      const dirtyCounter = document.getElementById('dirtyCounter');
-      const btnSavePublish = document.getElementById('btnSavePublish');
-      const btnDiscardChanges = document.getElementById('btnDiscardChanges');
-      const btnDownloadHtml = document.getElementById('btnDownloadHtml');
-      const btnOpenSettings = document.getElementById('btnOpenSettings');
-
-      // Modal Controls
-      const settingsModal = document.getElementById('settingsModal');
-      const btnCloseModal = document.getElementById('btnCloseModal');
-      const inputGhToken = document.getElementById('inputGhToken');
-      const btnSaveToken = document.getElementById('btnSaveToken');
-      const btnClearToken = document.getElementById('btnClearToken');
-      const btnTestToken = document.getElementById('btnTestToken');
-      const tokenStatusText = document.getElementById('tokenStatusText');
-
-      // ── State Variables & Keys ──
-      const REPO_OWNER = 'TheKiter';
-      const REPO_NAME = 'excelstra-preview';
-      const TARGET_BRANCH = 'main';
-      const STORAGE_KEY = 'excelstra_preview_gh_token';
-      const DRAFT_PREFIX = 'excelstra_draft_v4_';
-      const ACTIVE_PAGE_KEY = 'excelstra_active_page';
-      const EDIT_MODE_KEY = 'excelstra_edit_mode_active';
-
-      let isSyncScrolling = true;
-      let activeScrollSource = null;
-      let scrollTimeout = null;
-      let toastTimeout = null;
-      let deployPollInterval = null;
-
-      let isEditMode = false;
-      let unsavedCount = 0;
-      let dirtyNodes = new Set();
-      let lastKnownSha = null;
-
-      // ── Utility: Toast Message ──
-      function showToast(text, type = 'info', duration = 3000) {
-        suiteToast.textContent = text;
-        suiteToast.className = 'floating-toast visible' + (type === 'success' ? ' toast-success' : type === 'error' ? ' toast-error' : '');
-        clearTimeout(toastTimeout);
-        toastTimeout = setTimeout(() => {
-          suiteToast.classList.remove('visible');
-        }, duration);
-      }
-
-      // ── Dirty Indicator ──
-      function updateDirtyIndicator(status = 'auto') {
-        if (status === 'deploying') {
-          dirtyCounter.textContent = 'Deploying (~45s)...';
-          dirtyCounter.className = 'dirty-pill deploying';
-          btnSavePublish.disabled = true;
-          return;
-        }
-        if (status === 'synced') {
-          dirtyCounter.textContent = 'Live Synced ✓';
-          dirtyCounter.className = 'dirty-pill synced';
-          btnSavePublish.disabled = true;
-          return;
-        }
-
-        if (unsavedCount > 0) {
-          dirtyCounter.textContent = unsavedCount + ' Unsaved (Draft Saved)';
-          dirtyCounter.className = 'dirty-pill dirty';
-          btnSavePublish.disabled = false;
-        } else {
-          dirtyCounter.textContent = 'Clean';
-          dirtyCounter.className = 'dirty-pill';
-          btnSavePublish.disabled = true;
-        }
-      }
-
-      // ── Stable Deterministic Node Key Generator ──
-      function getNodeKey(el, index) {
-        if (el.id) return 'id_' + el.id;
-        const parentWithId = el.closest('[id]');
-        if (parentWithId) {
-          const siblings = parentWithId.querySelectorAll(el.tagName);
-          const sibIdx = Array.prototype.indexOf.call(siblings, el);
-          return 'sec_' + parentWithId.id + '_' + el.tagName.toLowerCase() + '_' + sibIdx;
-        }
-        return 'idx_' + index + '_' + el.tagName.toLowerCase();
-      }
-
-      function getFrameCurrentPage() {
-        try {
-          if (frameV4 && frameV4.contentWindow && frameV4.contentWindow.location) {
-            let path = frameV4.contentWindow.location.pathname;
-            let file = path.split('/').pop();
-            if (file && file.includes('?')) file = file.split('?')[0];
-            if (file && file.endsWith('.html')) return file;
-          }
-        } catch (e) {}
-        return pageSelect.value;
-      }
-
-      // ── Draft Persistence in LocalStorage ──
-      function saveCurrentDraft() {
-        const currentPage = getFrameCurrentPage();
-        const doc = frameV4.contentDocument;
-        if (!doc) return;
-
-        const edits = {};
-        dirtyNodes.forEach(el => {
-          const key = el.getAttribute('data-editor-id');
-          if (key) {
-            edits[key] = el.innerHTML;
-          }
-        });
-
-        if (Object.keys(edits).length > 0) {
-          localStorage.setItem(DRAFT_PREFIX + currentPage, JSON.stringify({
-            page: currentPage,
-            updatedAt: Date.now(),
-            status: 'draft',
-            edits: edits
-          }));
-        } else {
-          localStorage.removeItem(DRAFT_PREFIX + currentPage);
-        }
-      }
-
-      function restoreDraftForFrame() {
-        try {
-          const currentPage = getFrameCurrentPage();
-          const doc = frameV4.contentDocument;
-          if (!doc) return 0;
-
-          const candidates = doc.querySelectorAll(`
-            h1, h2, h3, h4, h5, h6,
-            p, li, blockquote, figcaption,
-            td, th,
-            .badge, .stat-num, .stat-cap, .stat-label, .btn, .hero-tag, .tag, .lead
-          `);
-
-          candidates.forEach((el, idx) => {
-            if (el.tagName === 'LI' && el.querySelector('p, h1, h2, h3, h4, h5, h6')) {
-              return;
-            }
-            const key = getNodeKey(el, idx);
-            el.setAttribute('data-editor-id', key);
-          });
-
-          const rawDraft = localStorage.getItem(DRAFT_PREFIX + currentPage);
-          if (!rawDraft) {
-            unsavedCount = 0;
-            dirtyNodes.clear();
-            updateDirtyIndicator();
-            return 0;
-          }
-
-          const draft = JSON.parse(rawDraft);
-          if (!draft || !draft.edits) return 0;
-
-          let restoredCount = 0;
-          candidates.forEach(el => {
-            const key = el.getAttribute('data-editor-id');
-            if (key && draft.edits[key] !== undefined && draft.edits[key] !== el.innerHTML) {
-              el.innerHTML = draft.edits[key];
-              el.setAttribute('data-editor-dirty', 'true');
-              dirtyNodes.add(el);
-              restoredCount++;
-            }
-          });
-
-          unsavedCount = dirtyNodes.size;
-          updateDirtyIndicator(draft.status === 'deploying' ? 'deploying' : 'draft');
-
-          if (restoredCount > 0) {
-            showToast('Restored ' + restoredCount + ' saved edits from local draft.', 'success', 3500);
-          }
-
-          if (draft.status === 'deploying') {
-            startDeployPoll(currentPage);
-          }
-
-          return restoredCount;
-        } catch (err) {
-          console.warn('Draft restoration error:', err);
-          return 0;
-        }
-      }
-
-      // ── Synchronized Page Navigation ──
-      function loadPage(pageFile, forceReload = false) {
-        localStorage.setItem(ACTIVE_PAGE_KEY, pageFile);
-        dirtyNodes.clear();
-        unsavedCount = 0;
-        updateDirtyIndicator();
-
-        const cacheBuster = '?t=' + Date.now();
-        const v3Url = 'v3/' + pageFile;
-        const targetUrl = activeTargetVersion + '/' + pageFile + (forceReload ? cacheBuster : '');
-
-        frameV3.src = v3Url;
-        frameV4.src = targetUrl;
-
-        labelV3Path.textContent = v3Url;
-        labelV4Path.textContent = activeTargetVersion + '/' + pageFile;
-
-        linkStandaloneV3.href = v3Url;
-        linkStandaloneV4.href = activeTargetVersion + '/' + pageFile;
-
-        // Update URL query string without reloading page
-        try {
-          const newUrl = new URL(window.location);
-          newUrl.searchParams.set('page', pageFile);
-          if (isEditMode) newUrl.searchParams.set('edit', 'true');
-          window.history.replaceState({}, '', newUrl);
-        } catch (e) {}
-      }
-
-      pageSelect.addEventListener('change', function () {
-        loadPage(this.value);
-      });
-
-      // ── View Mode Toggles ──
-      viewButtons.forEach(btn => {
-        btn.addEventListener('click', function () {
-          viewButtons.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-
-          const mode = this.getAttribute('data-view');
-          const currentPage = getFrameCurrentPage();
-          if (mode === 'split') {
-            paneV3.classList.remove('hidden');
-            paneV4.classList.remove('hidden');
-            activeTargetVersion = 'v5';
-            loadPage(currentPage);
-          } else if (mode === 'v3') {
-            paneV3.classList.remove('hidden');
-            paneV4.classList.add('hidden');
-          } else if (mode === 'v4') {
-            paneV3.classList.add('hidden');
-            paneV4.classList.remove('hidden');
-            activeTargetVersion = 'v4';
-            loadPage(currentPage);
-          } else if (mode === 'v5') {
-            paneV3.classList.add('hidden');
-            paneV4.classList.remove('hidden');
-            activeTargetVersion = 'v5';
-            loadPage(currentPage);
-          }
-        });
-      });
-
-      // ── Device Viewport Emulation ──
-      const deviceButtons = document.querySelectorAll('[data-device]');
-      deviceButtons.forEach(btn => {
-        btn.addEventListener('click', function () {
-          deviceButtons.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-
-          const device = this.getAttribute('data-device');
-          viewportV3.className = 'frame-viewport' + (device !== 'fluid' ? ' device-' + device : '');
-          viewportV4.className = 'frame-viewport' + (device !== 'fluid' ? ' device-' + device : '');
-        });
-      });
-
-      // ── Synchronized Scrolling (Same-Origin Native) ──
-      btnSyncScroll.addEventListener('click', function () {
-        isSyncScrolling = !isSyncScrolling;
-        this.classList.toggle('active', isSyncScrolling);
-        showToast(isSyncScrolling ? 'Synchronized Scrolling Enabled' : 'Independent Scrolling Enabled');
-      });
-
-      function setupFrameScrollSync(sourceFrame, targetFrame, sourceName) {
-        sourceFrame.addEventListener('load', function () {
-          try {
-            const win = sourceFrame.contentWindow;
-            if (!win) return;
-
-            win.addEventListener('scroll', function () {
-              if (!isSyncScrolling) return;
-              if (activeScrollSource && activeScrollSource !== sourceName) return;
-
-              activeScrollSource = sourceName;
-              const sourceDoc = win.document.documentElement || win.document.body;
-              const maxSourceScroll = sourceDoc.scrollHeight - win.innerHeight;
-              const scrollRatio = maxSourceScroll > 0 ? win.scrollY / maxSourceScroll : 0;
-
-              try {
-                const targetWin = targetFrame.contentWindow;
-                if (targetWin) {
-                  const targetDoc = targetWin.document.documentElement || targetWin.document.body;
-                  const maxTargetScroll = targetDoc.scrollHeight - targetWin.innerHeight;
-                  targetWin.scrollTo({
-                    top: scrollRatio * maxTargetScroll,
-                    behavior: 'auto'
-                  });
-                }
-              } catch (e) {}
-
-              clearTimeout(scrollTimeout);
-              scrollTimeout = setTimeout(() => {
-                activeScrollSource = null;
-              }, 60);
-            }, { passive: true });
-
-          } catch (err) {
-            console.warn('Same-origin frame sync note:', err);
-          }
-        });
-      }
-
-      setupFrameScrollSync(frameV3, frameV4, 'v3');
-      setupFrameScrollSync(frameV4, frameV3, 'v4');
-
-      // ── In-Place Visual Text Editor Engine ──
-
-      const EDITOR_STYLE_ID = 'excelstra-injected-editor-styles';
-      const EDITOR_CSS = `
-        [data-editor-node="true"] {
-          position: relative !important;
-          outline: 1px dashed rgba(191, 155, 48, 0.45) !important;
-          outline-offset: 3px !important;
-          cursor: text !important;
-          transition: outline-color 0.15s ease, background-color 0.15s ease !important;
-        }
-        [data-editor-node="true"]:hover {
-          outline: 1px dashed #bf9b30 !important;
-          background-color: rgba(191, 155, 48, 0.06) !important;
-        }
-        [data-editor-node="true"]:focus {
-          outline: 2px solid #bf9b30 !important;
-          background-color: rgba(191, 155, 48, 0.12) !important;
-        }
-        [data-editor-dirty="true"] {
-          outline: 2px solid #10b981 !important;
-        }
-        [data-editor-dirty="true"]:focus {
-          outline: 2px solid #10b981 !important;
-        }
-      `;
-
-      function injectEditorStyle(doc) {
-        if (!doc) return;
-        let style = doc.getElementById(EDITOR_STYLE_ID);
-        if (!style) {
-          style = doc.createElement('style');
-          style.id = EDITOR_STYLE_ID;
-          style.textContent = EDITOR_CSS;
-          doc.head.appendChild(style);
-        }
-      }
-
-      function removeEditorStyle(doc) {
-        if (!doc) return;
-        const style = doc.getElementById(EDITOR_STYLE_ID);
-        if (style) {
-          style.remove();
-        }
-      }
-
-      function attachEditorToFrame() {
-        try {
-          const doc = frameV4.contentDocument;
-          const win = frameV4.contentWindow;
-          if (!doc || !win) return;
-
-          // Always restore draft changes so edits remain visible even across refresh
-          restoreDraftForFrame();
-
-          const candidates = doc.querySelectorAll(`
-            h1, h2, h3, h4, h5, h6,
-            p, li, blockquote, figcaption,
-            td, th,
-            .badge, .stat-num, .stat-cap, .stat-label, .btn, .hero-tag, .tag, .lead
-          `);
-
-          if (isEditMode) {
-            injectEditorStyle(doc);
-
-            candidates.forEach((el, idx) => {
-              if (el.tagName === 'LI' && el.querySelector('p, h1, h2, h3, h4, h5, h6')) {
-                return;
-              }
-              const key = getNodeKey(el, idx);
-              el.setAttribute('data-editor-id', key);
-              el.setAttribute('contenteditable', 'true');
-              el.setAttribute('data-editor-node', 'true');
-              el.setAttribute('spellcheck', 'false');
-
-              if (!el._editorBound) {
-                el._editorBound = true;
-                el.addEventListener('input', function () {
-                  dirtyNodes.add(this);
-                  this.setAttribute('data-editor-dirty', 'true');
-                  unsavedCount = dirtyNodes.size;
-                  updateDirtyIndicator('draft');
-                  saveCurrentDraft();
-                });
-              }
-            });
-
-            // Prevent link clicks from navigating away while editing
-            if (!win._linkInterceptorBound) {
-              win._linkInterceptorBound = true;
-              doc.addEventListener('click', function (e) {
-                if (!isEditMode) return;
-                const link = e.target.closest('a');
-                if (link) {
-                  e.preventDefault();
-                  const editable = e.target.closest('[contenteditable="true"]');
-                  if (editable) editable.focus();
-                }
-              }, true);
-            }
-
-            // Keyboard shortcut Ctrl+S inside iframe
-            if (!win._keyShortcutBound) {
-              win._keyShortcutBound = true;
-              win.addEventListener('keydown', function (e) {
-                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-                  e.preventDefault();
-                  if (unsavedCount > 0) {
-                    saveAndPublish();
-                  }
-                }
-              });
-            }
-
-          } else {
-            removeEditorStyle(doc);
-            candidates.forEach(el => {
-              el.removeAttribute('contenteditable');
-              el.removeAttribute('data-editor-node');
-            });
-          }
-
-        } catch (err) {
-          console.warn('Frame editor attachment error:', err);
-        }
-      }
-
-      function syncPageSelectionFromFrame() {
-        const file = getFrameCurrentPage();
-        if (file && pageSelect.value !== file) {
-          const opt = Array.from(pageSelect.options).find(o => o.value === file);
-          if (opt) {
-            pageSelect.value = file;
-            localStorage.setItem(ACTIVE_PAGE_KEY, file);
-            labelV4Path.textContent = 'v4/' + file;
-            linkStandaloneV4.href = 'v4/' + file;
-            const v3Url = 'v3/' + file;
-            if (!frameV3.src.includes(file)) {
-              frameV3.src = v3Url;
-              labelV3Path.textContent = v3Url;
-              linkStandaloneV3.href = v3Url;
-            }
-          }
-        }
-      }
-
-      // Re-attach editor and restore drafts whenever frameV4 loads
-      frameV4.addEventListener('load', function () {
-        syncPageSelectionFromFrame();
-        lastKnownSha = null;
-        attachEditorToFrame();
-      });
-
-      // Toggle Edit Mode Button
-      btnToggleEdit.addEventListener('click', function () {
-        isEditMode = !isEditMode;
-        localStorage.setItem(EDIT_MODE_KEY, isEditMode ? 'true' : 'false');
-        this.classList.toggle('active', isEditMode);
-        this.querySelector('span').textContent = isEditMode ? 'Editing Active' : 'Edit Mode';
-
-        attachEditorToFrame();
-        showToast(isEditMode ? 'Visual Edit Mode Enabled. Click any text to modify.' : 'Edit Mode Disabled. Changes remain preserved.');
-      });
-
-      // Discard Changes Button
-      btnDiscardChanges.addEventListener('click', function () {
-        const currentPage = getFrameCurrentPage();
-        const hasDraft = !!localStorage.getItem(DRAFT_PREFIX + currentPage);
-        if (unsavedCount === 0 && !hasDraft) {
-          showToast('No unsaved changes or drafts to discard.');
-          return;
-        }
-        if (window.confirm('Discard all saved local edits on ' + currentPage + ' and reload the clean server version?')) {
-          localStorage.removeItem(DRAFT_PREFIX + currentPage);
-          dirtyNodes.clear();
-          unsavedCount = 0;
-          updateDirtyIndicator();
-          frameV4.src = 'v4/' + currentPage + '?t=' + Date.now();
-          showToast('Edits discarded. Reloaded live version.');
-        }
-      });
-
-      // ── Clean Serialization Engine ──
-      function serializeCleanProductionHtml(doc) {
-        if (!doc) return null;
-        const clone = doc.documentElement.cloneNode(true);
-
-        // Remove injected editor styles
-        const injected = clone.querySelector('#' + EDITOR_STYLE_ID);
-        if (injected) injected.remove();
-
-        // Remove all editor helper attributes
-        clone.querySelectorAll('[data-editor-node]').forEach(el => {
-          el.removeAttribute('contenteditable');
-          el.removeAttribute('data-editor-node');
-          el.removeAttribute('data-editor-dirty');
-          el.removeAttribute('data-editor-id');
-          el.removeAttribute('spellcheck');
-        });
-
-        clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
-        clone.querySelectorAll('[data-editor-dirty]').forEach(el => el.removeAttribute('data-editor-dirty'));
-        clone.querySelectorAll('[data-editor-id]').forEach(el => el.removeAttribute('data-editor-id'));
-
-        // Purge third-party browser extension injections
-        clone.querySelectorAll('[data-dashlanecreated], [id*="dashlane"], [class*="dashlane"], [data-lastpass-icon-root], grammarly-extension, [data-grammarly-part]').forEach(el => el.remove());
-
-        // Reset loader initial state
-        const loader = clone.querySelector('#loader');
-        if (loader) {
-          loader.classList.remove('done');
-          loader.style.opacity = '';
-          loader.style.visibility = '';
-        }
-        const loaderBar = clone.querySelector('#loaderBar');
-        if (loaderBar) loaderBar.style.width = '';
-        const loaderPct = clone.querySelector('#loaderPct');
-        if (loaderPct) loaderPct.textContent = '0%';
-        const bodyEl = clone.querySelector('body');
-        if (bodyEl && bodyEl.getAttribute('style') === '') bodyEl.removeAttribute('style');
-
-        return '<!DOCTYPE html>\n' + clone.outerHTML + '\n';
-      }
-
-      // ── UTF-8 to Base64 Encoder (RFC 4648 compliant) ──
-      function utf8ToBase64(str) {
-        const bytes = new TextEncoder().encode(str);
-        let binary = '';
-        for (let i = 0; i < bytes.byteLength; i++) {
-          binary += String.fromCharCode(bytes[i]);
-        }
-        return window.btoa(binary);
-      }
-
-      // ── Download Clean HTML Fallback ──
-      function triggerHtmlDownload() {
-        const doc = frameV4.contentDocument;
-        if (!doc) return;
-        const cleanHtml = serializeCleanProductionHtml(doc);
-        const currentPage = getFrameCurrentPage();
-        const blob = new Blob([cleanHtml], { type: 'text/html;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = currentPage;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        showToast('Downloaded clean ' + currentPage, 'success');
-      }
-
-      btnDownloadHtml.addEventListener('click', triggerHtmlDownload);
-
-      // ── Background GitHub Actions Deployment Polling ──
-      function startDeployPoll(pageFile) {
-        clearInterval(deployPollInterval);
-        const token = localStorage.getItem(STORAGE_KEY);
-        let attempts = 0;
-        const maxAttempts = 18; // ~90 seconds
-
-        deployPollInterval = setInterval(async () => {
-          attempts++;
-          try {
-            const headers = { 'Accept': 'application/vnd.github.v3+json' };
-            if (token) headers['Authorization'] = `Bearer ${token.trim()}`;
-
-            const resp = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runs?per_page=1`, { headers });
-            if (resp.ok) {
-              const data = await resp.json();
-              const latestRun = data.workflow_runs && data.workflow_runs[0];
-              if (latestRun && latestRun.status === 'completed' && latestRun.conclusion === 'success') {
-                clearInterval(deployPollInterval);
-                localStorage.removeItem(DRAFT_PREFIX + pageFile);
-                dirtyNodes.clear();
-                unsavedCount = 0;
-                updateDirtyIndicator('synced');
-                showToast('GitHub Pages deployment completed! Live server updated.', 'success', 5000);
-                frameV4.src = 'v4/' + pageFile + '?t=' + Date.now();
-                return;
-              }
-            }
-          } catch (e) {
-            console.warn('Deploy poll check:', e);
-          }
-
-          if (attempts >= maxAttempts) {
-            clearInterval(deployPollInterval);
-            updateDirtyIndicator('synced');
-            showToast('Deployment finished in background. You can refresh anytime.', 'info', 4000);
-          }
-        }, 5000);
-      }
-
-      // ── GitHub API Commit & Publish ──
-      async function saveAndPublish() {
-        const token = localStorage.getItem(STORAGE_KEY);
-        const currentPage = getFrameCurrentPage();
-        pageSelect.value = currentPage;
-        labelV4Path.textContent = 'v4/' + currentPage;
-        const filePath = 'v4/' + currentPage;
-
-        if (!token) {
-          showToast('No GitHub key configured. Opening setup...', 'error');
-          openSettingsModal();
-          return;
-        }
-
-        const doc = frameV4.contentDocument;
-        if (!doc) {
-          showToast('Unable to read document frame.', 'error');
-          return;
-        }
-
-        const cleanHtml = serializeCleanProductionHtml(doc);
-        const base64Content = utf8ToBase64(cleanHtml);
-
-        btnSavePublish.disabled = true;
-        btnSavePublish.querySelector('span').textContent = 'Publishing...';
-        showToast('Committing ' + currentPage + ' to GitHub main branch...', 'info');
-
-        try {
-          // 1. Fetch current blob SHA if not already cached
-          let sha = lastKnownSha;
-          if (!sha) {
-            const getResp = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${filePath}?ref=${TARGET_BRANCH}`, {
-              headers: {
-                'Authorization': `Bearer ${token.trim()}`,
-                'Accept': 'application/vnd.github.v3+json'
-              }
-            });
-
-            if (!getResp.ok) {
-              const errBody = await getResp.json().catch(() => ({}));
-              throw new Error(errBody.message || `Failed to fetch file metadata (${getResp.status})`);
-            }
-            const getData = await getResp.json();
-            sha = getData.sha;
-          }
-
-          // 2. Commit updated content
-          const commitMessage = `Update ${currentPage} via visual text editor`;
-          const putResp = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${filePath}`, {
-            method: 'PUT',
-            headers: {
-              'Authorization': `Bearer ${token.trim()}`,
-              'Accept': 'application/vnd.github.v3+json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              message: commitMessage,
-              content: base64Content,
-              sha: sha,
-              branch: TARGET_BRANCH
-            })
-          });
-
-          if (!putResp.ok) {
-            const errBody = await putResp.json().catch(() => ({}));
-            throw new Error(errBody.message || `Failed to commit file (${putResp.status})`);
-          }
-
-          const putData = await putResp.json();
-          lastKnownSha = putData.content ? putData.content.sha : null;
-
-          // Preserve draft state as 'deploying' so refresh doesn't show old version during build
-          const edits = {};
-          dirtyNodes.forEach(el => {
-            const key = el.getAttribute('data-editor-id');
-            if (key) edits[key] = el.innerHTML;
-          });
-          localStorage.setItem(DRAFT_PREFIX + currentPage, JSON.stringify({
-            page: currentPage,
-            updatedAt: Date.now(),
-            status: 'deploying',
-            commitSha: lastKnownSha,
-            edits: edits
-          }));
-
-          updateDirtyIndicator('deploying');
-          showToast('Published to GitHub main branch! Building live deployment (~45s)...', 'success', 6000);
-
-          startDeployPoll(currentPage);
-
-        } catch (err) {
-          console.error('Publish error:', err);
-          showToast('GitHub publish failed: ' + err.message, 'error', 6000);
-          updateDirtyIndicator('draft');
-        } finally {
-          btnSavePublish.querySelector('span').textContent = 'Save & Publish';
-        }
-      }
-
-      btnSavePublish.addEventListener('click', saveAndPublish);
-
-      // Keyboard shortcut Ctrl+S on parent window
-      window.addEventListener('keydown', function (e) {
-        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-          e.preventDefault();
-          if (unsavedCount > 0) {
-            saveAndPublish();
-          }
-        }
-      });
-
-      // Browser exit guard
-      window.addEventListener('beforeunload', function (e) {
-        if (unsavedCount > 0) {
-          e.preventDefault();
-          e.returnValue = 'You have unsaved text edits. Are you sure you want to exit?';
-        }
-      });
-
-      // ── Settings Modal Handlers ──
-      function openSettingsModal() {
-        const currentToken = localStorage.getItem(STORAGE_KEY) || '';
-        inputGhToken.value = currentToken;
-        updateModalStatus(currentToken);
-        settingsModal.classList.add('open');
-      }
-
-      function closeSettingsModal() {
-        settingsModal.classList.remove('open');
-      }
-
-      function updateModalStatus(token) {
-        if (token && token.trim().length > 0) {
-          tokenStatusText.textContent = 'Token is saved locally. Ready to commit directly to ' + REPO_OWNER + '/' + REPO_NAME + '.';
-          tokenStatusText.className = 'token-status configured';
-        } else {
-          tokenStatusText.textContent = 'No token configured. Edits can still be exported via the Download button.';
-          tokenStatusText.className = 'token-status';
-        }
-      }
-
-      btnOpenSettings.addEventListener('click', openSettingsModal);
-      btnCloseModal.addEventListener('click', closeSettingsModal);
-
-      settingsModal.addEventListener('click', function (e) {
-        if (e.target === settingsModal) {
-          closeSettingsModal();
-        }
-      });
-
-      btnSaveToken.addEventListener('click', function () {
-        const val = inputGhToken.value.trim();
-        if (val) {
-          localStorage.setItem(STORAGE_KEY, val);
-          updateModalStatus(val);
-          showToast('GitHub token saved successfully.', 'success');
-          closeSettingsModal();
-        } else {
-          localStorage.removeItem(STORAGE_KEY);
-          updateModalStatus('');
-          showToast('Token cleared.', 'info');
-        }
-      });
-
-      btnClearToken.addEventListener('click', function () {
-        localStorage.removeItem(STORAGE_KEY);
-        inputGhToken.value = '';
-        updateModalStatus('');
-        showToast('Token removed.', 'info');
-      });
-
-      btnTestToken.addEventListener('click', async function () {
-        const token = inputGhToken.value.trim();
-        if (!token) {
-          tokenStatusText.textContent = 'Please enter a token before testing.';
-          tokenStatusText.className = 'token-status';
-          return;
-        }
-
-        tokenStatusText.textContent = 'Verifying access to repository...';
-        tokenStatusText.className = 'token-status';
-
-        try {
-          const resp = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Accept': 'application/vnd.github.v3+json'
-            }
-          });
-
-          if (resp.ok) {
-            const data = await resp.json();
-            const hasPush = data.permissions && data.permissions.push;
-            tokenStatusText.textContent = 'Connection verified! Repository write access: ' + (hasPush ? 'CONFIRMED' : 'CHECK SCOPES');
-            tokenStatusText.className = 'token-status configured';
-          } else {
-            tokenStatusText.textContent = 'Validation failed (HTTP ' + resp.status + '). Check token scope and repository permissions.';
-            tokenStatusText.className = 'token-status';
-          }
-        } catch (err) {
-          tokenStatusText.textContent = 'Network error during validation: ' + err.message;
-          tokenStatusText.className = 'token-status';
-        }
-      });
-
-      // ── Initial State Bootstrapping ──
-      const savedToken = localStorage.getItem(STORAGE_KEY);
-      if (savedToken) {
-        btnOpenSettings.textContent = 'GitHub Key ✓';
-      }
-
-      // Restore active page from URL search params or localStorage
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const requestedPage = urlParams.get('page') || localStorage.getItem(ACTIVE_PAGE_KEY);
-        if (requestedPage && pageSelect.querySelector(`option[value="${requestedPage}"]`)) {
-          pageSelect.value = requestedPage;
-          loadPage(requestedPage, true);
-        } else {
-          loadPage('index.html', true);
-        }
-
-        // Restore Edit Mode if previously toggled
-        const shouldEdit = urlParams.get('edit') === 'true' || localStorage.getItem(EDIT_MODE_KEY) === 'true';
-        if (shouldEdit) {
-          isEditMode = true;
-          btnToggleEdit.classList.add('active');
-          btnToggleEdit.querySelector('span').textContent = 'Editing Active';
-        }
-      } catch (e) {
-        console.warn('Initial bootstrapping note:', e);
-        loadPage('index.html', true);
-      }
-    })();
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

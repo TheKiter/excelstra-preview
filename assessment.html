@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whole Wealth Assessment &amp; Readiness Diagnostic · Excelstra</title>
+  <meta name="description" content="Explore what full-picture wealth integration makes visible across your tax stewardship, wealth amplification, and legacy transition.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ======================== GLOBAL HEADER ======================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="Excelstra Home">
+        <img src="assets/logo-black.png" alt="Excelstra">
+        <span class="brand-logo-sub">Wealth Empowered</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="integration.html" class="nav-link">The Integration Model</a></li>
+          <li><a href="membership.html" class="nav-link">Membership</a></li>
+          <li><a href="philosophy.html" class="nav-link">Our Philosophy</a></li>
+          <li><a href="about.html" class="nav-link">Leadership &amp; Team</a></li>
+          <li><a href="assessment.html" class="nav-link active">Wealth Assessment</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="connect.html" class="btn btn-primary btn-sm">Private Consultation</a>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu" aria-expanded="false">
+          Menu
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html">Home</a>
+      <a href="integration.html">The Integration Model</a>
+      <a href="membership.html">Membership</a>
+      <a href="philosophy.html">Our Philosophy</a>
+      <a href="about.html">Leadership &amp; Team</a>
+      <a href="assessment.html">Whole Wealth Assessment</a>
+      <a href="connect.html">Request Private Consultation</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================== PAGE HERO ======================== -->
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div>
+          <span class="eyebrow">Whole Wealth Assessment</span>
+          <h1>Discover what becomes possible when you see <em>the full picture.</em></h1>
+          <p class="lead" style="margin-top: 1.25rem;">
+            Take two minutes to explore how Strategic Tax Stewardship, Wealth Amplification, and Legacy-Centered Exit Planning align around your specific enterprise or career stage.
+          </p>
+        </div>
+
+        <div class="page-hero-callout">
+          <span class="arch-card-kicker">Official Assessment Portal</span>
+          <p class="body-copy">
+            Prefer to launch the complete interactive Whole Wealth Assessment directly?
+          </p>
+          <div style="margin-top: 1.1rem;">
+            <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" class="btn btn-gold" style="width: 100%;">Open Full Assessment Portal &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== INTERACTIVE READINESS DIAGNOSTIC ======================== -->
+    <section class="section-ivory">
+      <div class="container-narrow">
+        <div class="diagnostic-shell" id="diagnosticInteractive">
+
+          <!-- Step 1 -->
+          <div id="diagStep1">
+            <div class="diag-progress">
+              <span class="diag-step-indicator">Step 01 of 03 &middot; Your Profile</span>
+              <span style="font-size: 0.82rem; color: var(--ink-muted);">Confidential Readiness Preview</span>
+            </div>
+            <h3>Which profile best reflects what you are building today?</h3>
+            <p class="body-copy" style="margin-top: 0.4rem;">
+              Excelstra filters by annual company revenue or household income rather than investable AUM.
+            </p>
+
+            <div class="diag-options-grid">
+              <label class="diag-option">
+                <input type="radio" name="diag_profile" value="owner_core" checked>
+                <div>
+                  <span class="diag-option-title">Business Owner ($3M&ndash;$15M Revenue)</span>
+                  <span class="diag-option-sub">Scaling an operating company, real estate, and personal holdings without a full-time strategic CFO.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_profile" value="owner_scale">
+                <div>
+                  <span class="diag-option-title">Enterprise Leader ($15M&ndash;$50M+ Revenue)</span>
+                  <span class="diag-option-sub">Multi-entity enterprise seeking full-picture tax stewardship, capital amplification, and exit readiness.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_profile" value="executive">
+                <div>
+                  <span class="diag-option-title">Executive, Surgeon, or Physician ($500K+ Income)</span>
+                  <span class="diag-option-sub">Navigating high-income tax stewardship, equity, deferred compensation, and future portfolio income.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_profile" value="family_office">
+                <div>
+                  <span class="diag-option-title">Established Family Office / Post-Exit Steward</span>
+                  <span class="diag-option-sub">Collaborating for specialized tax strategy, independent opportunities, and generational preparedness.</span>
+                </div>
+              </label>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="button" class="btn btn-primary" id="btnDiagTo2">Continue to Step 02 &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div id="diagStep2" style="display: none;">
+            <div class="diag-progress">
+              <span class="diag-step-indicator">Step 02 of 03 &middot; Primary Pillar</span>
+              <span style="font-size: 0.82rem; color: var(--ink-muted);">Strategic Intention</span>
+            </div>
+            <h3>Where do you sense the greatest possibility for elevation?</h3>
+            <p class="body-copy" style="margin-top: 0.4rem;">
+              Select the pillar that feels most central to the next chapter of your financial life.
+            </p>
+
+            <div class="diag-options-grid">
+              <label class="diag-option">
+                <input type="radio" name="diag_pillar" value="tax" checked>
+                <div>
+                  <span class="diag-option-title">Strategic Tax Stewardship</span>
+                  <span class="diag-option-sub">Keep more, with integrity. Uncovering lawful strategies that transform preserved capital into purposeful growth.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_pillar" value="wealth">
+                <div>
+                  <span class="diag-option-title">Wealth Amplification</span>
+                  <span class="diag-option-sub">Grow more, with intention. Aligning every asset and curated opportunity with the life you are building.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_pillar" value="exit">
+                <div>
+                  <span class="diag-option-title">Legacy-Centered Exit Planning</span>
+                  <span class="diag-option-sub">Live more. Leave more. Preparing enterprise value, future income streams, and family legacy years in advance.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_pillar" value="integration">
+                <div>
+                  <span class="diag-option-title">Full Three-Pillar Convergence</span>
+                  <span class="diag-option-sub">Bringing my existing CPA, financial advisor, and attorney together under one unified strategy.</span>
+                </div>
+              </label>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; gap: 1rem;">
+              <button type="button" class="btn btn-outline" id="btnDiagBack1">&larr; Back</button>
+              <button type="button" class="btn btn-primary" id="btnDiagTo3">Continue to Step 03 &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div id="diagStep3" style="display: none;">
+            <div class="diag-progress">
+              <span class="diag-step-indicator">Step 03 of 03 &middot; Horizon</span>
+              <span style="font-size: 0.82rem; color: var(--ink-muted);">Transition &amp; Legacy Runway</span>
+            </div>
+            <h3>What is the horizon for your next major business or career transition?</h3>
+            <p class="body-copy" style="margin-top: 0.4rem;">
+              The most powerful financial decisions are made well before a transition date or liquidity event arrives.
+            </p>
+
+            <div class="diag-options-grid">
+              <label class="diag-option">
+                <input type="radio" name="diag_horizon" value="immediate">
+                <div>
+                  <span class="diag-option-title">Within 1 to 3 Years</span>
+                  <span class="diag-option-sub">Preparing for an upcoming sale, partner transition, or shift from active career compensation.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_horizon" value="near_term" checked>
+                <div>
+                  <span class="diag-option-title">3 to 5 Years Out</span>
+                  <span class="diag-option-sub">Ideal runway to elevate enterprise value, tax structure, and portfolio alignment ahead of transition.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_horizon" value="long_term">
+                <div>
+                  <span class="diag-option-title">5+ Years / Generational Growth</span>
+                  <span class="diag-option-sub">Focused on multi-year compounding, annual tax stewardship, and long-term family flourishing.</span>
+                </div>
+              </label>
+
+              <label class="diag-option">
+                <input type="radio" name="diag_horizon" value="immediate">
+                <div>
+                  <span class="diag-option-title">Post-Exit / Active Stewardship</span>
+                  <span class="diag-option-sub">Already completed a transition and designing enduring income streams and generational legacy.</span>
+                </div>
+              </label>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; gap: 1rem;">
+              <button type="button" class="btn btn-outline" id="btnDiagBack2">&larr; Back</button>
+              <button type="button" class="btn btn-gold" id="btnDiagFinish">View My Integration Briefing &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Result View -->
+          <div id="diagResult" style="display: none;">
+            <div class="diag-progress">
+              <span class="diag-step-indicator">Your Preliminary Integration Briefing</span>
+              <span style="font-size: 0.82rem; color: var(--excelstra-green); font-weight: 600;">3x Demonstrated Value Standard</span>
+            </div>
+
+            <h3 id="diagOutTier">Gold or Copper Engagement Altitude</h3>
+            <p class="arch-card-sub" id="diagOutProfile" style="margin-top: 0.35rem;">Business Owner ($3M to $15M Company Revenue)</p>
+            <p class="body-copy" id="diagOutSummary">
+              At this stage of growth, integrating your operating company structure with personal tax stewardship and intentional capital allocation creates immediate strategic clarity.
+            </p>
+
+            <div class="memo-readout">
+              <p class="body-copy" id="diagOutPillar" style="font-weight: 600; color: var(--ink-primary);"></p>
+              <p class="body-copy" id="diagOutHorizon" style="margin-top: 0.65rem;"></p>
+
+              <div class="memo-readout-grid">
+                <div>
+                  <span class="arch-card-kicker" style="display: block;">Fee Structure</span>
+                  <strong style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--ink-primary);">100% Fee-Only</strong>
+                  <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.2rem;">Zero commissions, zero AUM fees, zero product sales.</p>
+                </div>
+                <div>
+                  <span class="arch-card-kicker" style="display: block;">Our Commitment</span>
+                  <strong style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--ink-primary);">3x Value Guarantee</strong>
+                  <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.2rem;">Minimum 3x demonstrated potential benefit gains.</p>
+                </div>
+                <div>
+                  <span class="arch-card-kicker" style="display: block;">Benchmark Impact</span>
+                  <strong style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--ink-primary);">7&ndash;50x+ Year-1 ROI</strong>
+                  <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.2rem;">Typical demonstrated first-year return on engagement.</p>
+                </div>
+              </div>
+
+              <div class="btn-group" style="margin-top: 1.5rem;">
+                <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" class="btn btn-gold">Complete Full Whole Wealth Assessment &rarr;</a>
+                <a href="connect.html" class="btn btn-primary">Request Private Consultation</a>
+                <button type="button" class="btn btn-outline btn-sm" id="btnDiagReset">Adjust Responses</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================== GLOBAL FOOTER ======================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <img src="assets/logo-white.png" alt="Excelstra" class="footer-logo">
+          <div class="footer-tagline">Wealth Integrators for the Discerning.</div>
+          <p style="font-size: 0.88rem; line-height: 1.65; margin-bottom: 1rem;">
+            Where wealth is integrated with intention, transformed with artistry, and delivered with mastery.
+          </p>
+          <p style="font-size: 0.84rem; color: var(--text-on-dark-muted);">
+            Excelstra LLC<br>
+            6340 Sugarloaf Parkway, Suite 200<br>
+            Duluth, GA 30097<br>
+            <a href="mailto:contact@excelstra.com" style="color: var(--gold-light);">contact@excelstra.com</a>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">The Practice</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="integration.html">The Integration Model</a></li>
+            <li><a href="membership.html">Membership Altitudes</a></li>
+            <li><a href="philosophy.html">Our Philosophy &amp; Values</a></li>
+            <li><a href="about.html">Leadership &amp; Specialist Bench</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Three Pillars</h3>
+          <ul class="footer-links">
+            <li><a href="integration.html#pillar-tax">Strategic Tax Stewardship</a></li>
+            <li><a href="integration.html#pillar-wealth">Wealth Amplification</a></li>
+            <li><a href="integration.html#pillar-exit">Legacy-Centered Exit Planning</a></li>
+            <li><a href="membership.html#guarantee">The 3x Value Guarantee</a></li>
+            <li><a href="philosophy.html#quadruple-benefit">The Quadruple Benefit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Begin the Conversation</h3>
+          <ul class="footer-links">
+            <li><a href="assessment.html">Interactive Readiness Diagnostic</a></li>
+            <li><a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Official Whole Wealth Assessment</a></li>
+            <li><a href="connect.html">Request Private Consultation</a></li>
+            <li><a href="connect.html#discerning-questions">Questions Discerning Leaders Ask</a></li>
+            <li><a href="connect.html#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Excelstra LLC. Wealth Empowered. All rights reserved.</span>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="https://www.linkedin.com/in/euniciaperet" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.youtube.com/channel/UCYEEKN0lPrqchL4_H0aOGhw" target="_blank" rel="noopener">YouTube</a>
+          <a href="connect.html">Contact &amp; Governance</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
