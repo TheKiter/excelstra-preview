@@ -1,6 +1,7 @@
 /* ==========================================================================
    EXCELSTRA — INTERACTIVE ARCHITECTURE & DIAGNOSTIC ENGINE
    Zero dependencies, zero em-dashes, zero emojis.
+   Full keyboard navigation, ARIA synchronization, and reduced-motion support.
    ========================================================================== */
 
 (function () {
@@ -25,6 +26,16 @@
     mobileBtn.addEventListener('click', function () {
       const isOpen = mobileDrawer.classList.toggle('open');
       mobileBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      mobileBtn.textContent = isOpen ? 'Close' : 'Menu';
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        mobileDrawer.classList.remove('open');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+        mobileBtn.textContent = 'Menu';
+        mobileBtn.focus();
+      }
     });
   }
 
@@ -40,7 +51,7 @@
       kicker: 'Pillar I · Strategic Tax Stewardship',
       title: 'Keep More, With Integrity',
       sub: 'Tax as a pathway to freedom and purposeful capital.',
-      body: 'Of every dimension in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. Working alongside your CPA and our specialized tax strategists, we identify, corroborate, and implement multi-year strategies that emerge only through full-picture integration.'
+      body: 'Of the many dimensions in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. Working alongside your CPA and our specialized tax strategists, we identify, corroborate, and implement multi-year strategies that emerge only through full-picture integration.'
     },
     wealth: {
       kicker: 'Pillar II · Wealth Amplification',
@@ -58,7 +69,7 @@
       kicker: 'Collaborative Orchestration',
       title: 'Harmonizing Your Existing CPA, Advisor, and Attorney',
       sub: 'We do not replace your trusted professionals; we elevate what they can achieve together.',
-      body: 'Your CPA, financial advisor, and estate attorney bring dedicated skill to their respective disciplines. Excelstra provides the unified strategic design that connects their work, ensuring every tax filing, legal entity, and investment allocation advances one shared blueprint.'
+      body: 'Your CPA, financial advisor, and estate attorney bring dedicated skill to their respective disciplines. Excelstra provides the unified strategic design that connects their work, ensuring tax filings, legal entities, and investment allocations advance one shared blueprint.'
     },
     longevity: {
       kicker: 'The Fifth Discipline · Wealth Serving Life',
@@ -69,6 +80,7 @@
   };
 
   const bridgeNodes = document.querySelectorAll('[data-bridge-key]');
+  const bridgeActiveCard = document.querySelector('.bridge-active-card');
   const bridgeKicker = document.getElementById('bridgeDetailKicker');
   const bridgeTitle = document.getElementById('bridgeDetailTitle');
   const bridgeSub = document.getElementById('bridgeDetailSub');
@@ -79,22 +91,42 @@
     if (!item || !bridgeTitle) return;
 
     bridgeNodes.forEach(function (el) {
-      if (el.getAttribute('data-bridge-key') === key) {
+      const isMatch = el.getAttribute('data-bridge-key') === key;
+      if (isMatch) {
         el.classList.add('active');
+        if (el.tagName === 'BUTTON') el.setAttribute('aria-pressed', 'true');
       } else {
         el.classList.remove('active');
+        if (el.tagName === 'BUTTON') el.setAttribute('aria-pressed', 'false');
       }
     });
 
-    if (bridgeKicker) bridgeKicker.textContent = item.kicker;
-    if (bridgeTitle) bridgeTitle.textContent = item.title;
-    if (bridgeSub) bridgeSub.textContent = item.sub;
-    if (bridgeBody) bridgeBody.textContent = item.body;
+    if (bridgeActiveCard) {
+      bridgeActiveCard.classList.add('transitioning');
+      setTimeout(function () {
+        if (bridgeKicker) bridgeKicker.textContent = item.kicker;
+        if (bridgeTitle) bridgeTitle.textContent = item.title;
+        if (bridgeSub) bridgeSub.textContent = item.sub;
+        if (bridgeBody) bridgeBody.textContent = item.body;
+        bridgeActiveCard.classList.remove('transitioning');
+      }, 90);
+    } else {
+      if (bridgeKicker) bridgeKicker.textContent = item.kicker;
+      if (bridgeTitle) bridgeTitle.textContent = item.title;
+      if (bridgeSub) bridgeSub.textContent = item.sub;
+      if (bridgeBody) bridgeBody.textContent = item.body;
+    }
   }
 
   bridgeNodes.forEach(function (node) {
     node.addEventListener('click', function () {
       activateBridgeKey(node.getAttribute('data-bridge-key'));
+    });
+    node.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateBridgeKey(node.getAttribute('data-bridge-key'));
+      }
     });
     node.addEventListener('mouseenter', function () {
       if (window.innerWidth > 900) {
@@ -199,7 +231,7 @@
     }
   }
 
-  /* 4. Accordion / FAQ Triggers */
+  /* 4. Accordion / FAQ Triggers with ARIA Synchronization */
   const accordionTriggers = document.querySelectorAll('.accordion-trigger');
   accordionTriggers.forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -208,10 +240,14 @@
       const isOpen = item.classList.contains('open');
       accordionTriggers.forEach(function (otherBtn) {
         const otherItem = otherBtn.closest('.accordion-item');
-        if (otherItem) otherItem.classList.remove('open');
+        if (otherItem) {
+          otherItem.classList.remove('open');
+          otherBtn.setAttribute('aria-expanded', 'false');
+        }
       });
       if (!isOpen) {
         item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     });
   });
@@ -227,6 +263,31 @@
         statusBox.innerHTML = '<strong>Thank you. Your private inquiry has been recorded.</strong> A senior member of the Excelstra leadership team will review your note with care and respond personally. You may also proceed directly to the <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" style="text-decoration:underline; color:var(--excelstra-green); font-weight:600;">Whole Wealth Assessment</a>.';
       }
       consultForm.reset();
+    });
+  }
+
+  /* 6. Progressive Editorial Scroll Reveal (IntersectionObserver) */
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const revealTargets = document.querySelectorAll('.arch-card, .tier-card, .value-row, .proof-metric-box, .bridge-explorer, .ledger-grid, .matrix-wrap');
+    revealTargets.forEach(function (el) {
+      el.classList.add('reveal-on-scroll');
+    });
+
+    const observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08
+    });
+
+    revealTargets.forEach(function (el) {
+      observer.observe(el);
     });
   }
 })();

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ======================== GLOBAL HEADER ======================== -->
   <header class="site-header">
@@ -25,7 +26,7 @@
           <li><a href="membership.html" class="nav-link">Membership</a></li>
           <li><a href="philosophy.html" class="nav-link">Our Philosophy</a></li>
           <li><a href="about.html" class="nav-link">Leadership &amp; Team</a></li>
-          <li><a href="assessment.html" class="nav-link active">Wealth Assessment</a></li>
+          <li><a href="assessment.html" class="nav-link active" aria-current="page">Wealth Assessment</a></li>
         </ul>
       </nav>
 
@@ -48,7 +49,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- ======================== PAGE HERO ======================== -->
     <section class="page-hero">
       <div class="container page-hero-grid">
@@ -75,7 +76,7 @@
     <!-- ======================== INTERACTIVE READINESS DIAGNOSTIC ======================== -->
     <section class="section-ivory">
       <div class="container-narrow">
-        <div class="diagnostic-shell" id="diagnosticInteractive">
+        <div class="diagnostic-shell" id="diagnosticInteractive" aria-live="polite">
 
           <!-- Step 1 -->
           <div id="diagStep1">
@@ -151,7 +152,7 @@
                 <input type="radio" name="diag_pillar" value="wealth">
                 <div>
                   <span class="diag-option-title">Wealth Amplification</span>
-                  <span class="diag-option-sub">Grow more, with intention. Aligning every asset and curated opportunity with the life you are building.</span>
+                  <span class="diag-option-sub">Grow more, with intention. Aligning your assets and curated opportunities with the life you are building.</span>
                 </div>
               </label>
 
@@ -218,7 +219,7 @@
                 <input type="radio" name="diag_horizon" value="immediate">
                 <div>
                   <span class="diag-option-title">Post-Exit / Active Stewardship</span>
-                  <span class="diag-option-sub">Already completed a transition and designing enduring income streams and generational legacy.</span>
+                  <span class="diag-option-sub">Completed a transition and designing enduring income streams and generational legacy.</span>
                 </div>
               </label>
             </div>

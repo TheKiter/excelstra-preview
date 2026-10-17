@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ======================== GLOBAL HEADER ======================== -->
   <header class="site-header">
@@ -30,7 +31,7 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="connect.html" class="btn btn-primary btn-sm">Private Consultation</a>
+        <a href="connect.html" class="btn btn-primary btn-sm" aria-current="page">Private Consultation</a>
         <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu" aria-expanded="false">
           Menu
         </button>
@@ -48,7 +49,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- ======================== PAGE HERO ======================== -->
     <section class="page-hero">
       <div class="container page-hero-grid">
@@ -82,7 +83,7 @@
             <span class="eyebrow">Private Inquiry</span>
             <h2>What to Expect in Our First Conversation</h2>
             <p class="body-copy" style="margin-top: 1.1rem;">
-              Our members are not shopping; they are choosing. We treat our opening conversation with the same care and preparation that defines a five-year partnership.
+              Our members are not shopping; they are choosing. We treat our opening conversation with the same care and preparation that defines a multi-year partnership.
             </p>
             <ul style="display: grid; gap: 1.25rem; margin-top: 1.5rem;">
               <li style="padding-left: 1.25rem; border-left: 2px solid var(--gold);">
@@ -117,22 +118,22 @@
             <form id="privateConsultationForm">
               <div class="form-group">
                 <label class="form-label" for="inputName">Full Name</label>
-                <input type="text" id="inputName" class="form-control" required placeholder="Your full name">
+                <input type="text" id="inputName" name="fullName" autocomplete="name" class="form-control" required placeholder="Your full name">
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="inputEmail">Email Address</label>
-                <input type="email" id="inputEmail" class="form-control" required placeholder="name@company.com">
+                <input type="email" id="inputEmail" name="email" autocomplete="email" class="form-control" required placeholder="name@company.com">
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="inputPhone">Direct Telephone (Optional)</label>
-                <input type="tel" id="inputPhone" class="form-control" placeholder="(000) 000-0000">
+                <input type="tel" id="inputPhone" name="phone" autocomplete="tel" class="form-control" placeholder="(000) 000-0000">
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="inputProfile">Primary Profile</label>
-                <select id="inputProfile" class="form-control">
+                <select id="inputProfile" name="profile" class="form-control">
                   <option value="business_owner">Business Owner ($3M to $50M+ Company Revenue)</option>
                   <option value="executive_physician">Executive, Surgeon, or Physician ($500K+ Household Income)</option>
                   <option value="family_office">Established Family Office / Multi-Generational Steward</option>
@@ -142,12 +143,12 @@
 
               <div class="form-group">
                 <label class="form-label" for="inputNotes">What are you building toward in this next chapter?</label>
-                <textarea id="inputNotes" class="form-control" placeholder="Share a brief note on your goals across tax stewardship, wealth amplification, or transition planning..."></textarea>
+                <textarea id="inputNotes" name="notes" class="form-control" placeholder="Share a brief note on your goals across tax stewardship, wealth amplification, or transition planning..."></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Private Inquiry</button>
 
-              <div id="consultFormStatus" style="display: none; margin-top: 1.25rem; padding: 1.15rem; background-color: var(--bg-warm-tint); border-left: 3px solid var(--gold); font-size: 0.9rem; color: var(--ink-primary);"></div>
+              <div id="consultFormStatus" role="status" aria-live="polite" style="display: none; margin-top: 1.25rem; padding: 1.15rem; background-color: var(--bg-warm-tint); border-left: 3px solid var(--gold); font-size: 0.9rem; color: var(--ink-primary);"></div>
             </form>
           </div>
         </div>
@@ -181,7 +182,7 @@
             <div>
               <h3>When did my CPA, my financial advisor, and my estate attorney last sit at the same table to review my plan as one system?</h3>
               <p class="body-copy" style="margin-top: 0.5rem;">
-                Capable specialists working in separate rooms each see a single dimension. When an integrator bridges their work around one table, every tax move, trust structure, and investment decision reinforces the others.
+                Capable specialists working in separate rooms each see a single dimension. When an integrator bridges their work around one table, your tax moves, trust structures, and investment decisions reinforce one another.
               </p>
             </div>
           </div>
@@ -189,7 +190,7 @@
           <div class="value-row">
             <div class="value-num">03</div>
             <div>
-              <h3>Is every vehicle in my portfolio aligned with the specific life and transition timeline I am building toward?</h3>
+              <h3>Are the vehicles in my portfolio aligned with the specific life and transition timeline I am building toward?</h3>
               <p class="body-copy" style="margin-top: 0.5rem;">
                 Wealth Amplification asks whether each holding genuinely advances your personal vision, and opens access to curated, independent opportunities free from product sales or commission bias.
               </p>
@@ -201,7 +202,7 @@
             <div>
               <h3>If I chose to step back from my business or career in three years, how is my intangible value and future income structured today?</h3>
               <p class="body-copy" style="margin-top: 0.5rem;">
-                Legacy-Centered Exit Planning begins years before a transition arrives, ensuring business owners capture the full value of their systems and culture, and executives or surgeons transition seamlessly from active income to portfolio distributions.
+                Legacy-Centered Exit Planning begins years before a transition arrives, ensuring business owners capture the full value of their systems and culture, and executives or surgeons transition smoothly from active income to portfolio distributions.
               </p>
             </div>
           </div>
@@ -229,9 +230,9 @@
 
         <div class="accordion-list">
           <div class="accordion-item open">
-            <button type="button" class="accordion-trigger">
+            <button type="button" class="accordion-trigger" aria-expanded="true">
               <span>Do I need to replace my current CPA, financial advisor, or attorney to work with Excelstra?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
             <div class="accordion-body">
               No. Excelstra does not replace your trusted advisors. We act as the bridge between your existing teams and current strategies, connecting what operates in isolation and complementing their work with our specialist bench where specialized tax, amplification, or exit capabilities are needed.
@@ -239,42 +240,42 @@
           </div>
 
           <div class="accordion-item">
-            <button type="button" class="accordion-trigger">
+            <button type="button" class="accordion-trigger" aria-expanded="false">
               <span>How is Excelstra compensated, and why does that matter?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
             <div class="accordion-body">
-              Excelstra is retained exclusively through engagement fees across our Copper, Gold, Diamond, and Continuance memberships. We do not manage assets for an AUM percentage, we do not sell insurance or investment products, and we accept zero commissions. Independence from commissions is the structural proof that every recommendation we bring to light serves your vision alone.
+              Excelstra is retained exclusively through engagement fees across our Copper, Gold, Diamond, and Continuance memberships. We do not manage assets for an AUM percentage, we do not sell insurance or investment products, and we accept zero commissions. Independence from commissions is the structural proof that our recommendations serve your vision alone.
             </div>
           </div>
 
           <div class="accordion-item">
-            <button type="button" class="accordion-trigger">
+            <button type="button" class="accordion-trigger" aria-expanded="false">
               <span>What is the Excelstra 3x Value Guarantee?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
             <div class="accordion-body">
-              Our commitment is to demonstrate at least 3x potential benefit gains over a member's engagement investment across Strategic Tax Stewardship, Wealth Amplification, and Legacy-Centered Exit Planning. Across our member base, typical demonstrated Year-1 ROI ranges from 7x to 50x+. You remain in complete command of which strategies you choose to implement.
+              Our commitment is to demonstrate at least 3x potential benefit gains over a member's engagement investment across Strategic Tax Stewardship, Wealth Amplification, and Legacy-Centered Exit Planning. Across our member base, typical demonstrated Year-1 ROI ranges from 7x to 50x+. You remain in full command of which strategies you choose to implement.
             </div>
           </div>
 
           <div class="accordion-item">
-            <button type="button" class="accordion-trigger">
+            <button type="button" class="accordion-trigger" aria-expanded="false">
               <span>Why does Excelstra qualify members by company revenue or household income rather than net worth?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
             <div class="accordion-body">
-              Traditional wealth management firms filter by liquid investable assets because their business model depends on charging AUM fees. Excelstra is built for active wealth generators: business owners generating $3M to $50M+ in annual company revenue (often operating without a strategic CFO) and executives, surgeons, and physicians earning $500K+ in annual household income. That is where full-picture integration across tax, enterprise value, and transition creates the most profound elevation.
+              Traditional firms filter by liquid investable assets because their business model depends on charging AUM fees. Excelstra is built for active wealth generators: business owners generating $3M to $50M+ in annual company revenue (often operating without a strategic CFO) and executives, surgeons, and physicians earning $500K+ in annual household income. That is where full-picture integration across tax, enterprise value, and transition creates the most profound elevation.
             </div>
           </div>
 
           <div class="accordion-item">
-            <button type="button" class="accordion-trigger">
+            <button type="button" class="accordion-trigger" aria-expanded="false">
               <span>How are engagement fees determined across Copper, Gold, and Diamond?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
             <div class="accordion-body">
-              Each membership tier is structured around a defined engagement duration, strategy session cadence, and degree of partner facilitation (from our 6-month Copper foundation to our 12-month Gold and Diamond partnerships). During our private consultation, once we have listened to your goals and reviewed the scope of your picture, we share the exact engagement fee transparently before any commitment is made.
+              Each membership tier is structured around a defined engagement duration, strategy session cadence, and degree of partner facilitation (from our 6-month Copper foundation to our 12-month Gold and Diamond partnerships). During our private consultation, once we have listened to your goals and reviewed the scope of your picture, we share the engagement fee transparently before any commitment is made.
             </div>
           </div>
         </div>

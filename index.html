@@ -7,12 +7,13 @@
   <meta name="description" content="Where wealth is integrated with intention, transformed with artistry, and delivered with mastery. A boutique wealth integration firm bridging tax, wealth, and transition.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Excelstra · Wealth Integrators for the Discerning">
-  <meta property="og:description" content="You are the wealth generator; we are the wealth integrators. Discover what becomes possible when every dimension of your financial life is integrated with intention.">
+  <meta property="og:description" content="You are the wealth generator; we are the wealth integrators. Discover what becomes possible when your financial life is integrated with intention.">
   <meta property="og:image" content="assets/share.png">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ======================== GLOBAL HEADER ======================== -->
   <header class="site-header">
@@ -24,7 +25,7 @@
 
       <nav aria-label="Primary Navigation">
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
           <li><a href="integration.html" class="nav-link">The Integration Model</a></li>
           <li><a href="membership.html" class="nav-link">Membership</a></li>
           <li><a href="philosophy.html" class="nav-link">Our Philosophy</a></li>
@@ -52,7 +53,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- ======================== EDITORIAL HERO ======================== -->
     <section class="hero-editorial">
       <div class="container hero-grid">
@@ -147,55 +148,62 @@
         <div class="bridge-explorer">
           <div class="bridge-diagram-wrap">
             <svg class="bridge-svg" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Excelstra Bridge Architecture Diagram">
-              <!-- Subtle Architectural Grid -->
-              <rect x="10" y="10" width="660" height="420" fill="#FAF9F6" stroke="rgba(29,53,60,0.12)" stroke-width="1"/>
-              <circle cx="340" cy="220" r="145" fill="none" stroke="rgba(191,155,48,0.35)" stroke-width="1" stroke-dasharray="4 4"/>
+              <!-- Subtle Architectural Grid & Corner Marks -->
+              <rect x="10" y="10" width="660" height="420" fill="#FAF9F6" stroke="rgba(29,53,60,0.14)" stroke-width="1"/>
+              <path d="M 18 28 L 18 18 L 28 18 M 652 18 L 662 18 L 662 28 M 18 412 L 18 422 L 28 422 M 652 422 L 662 422 L 662 412" fill="none" stroke="#BF9B30" stroke-width="1.25"/>
+              <circle cx="340" cy="220" r="145" fill="none" stroke="rgba(191,155,48,0.38)" stroke-width="1" stroke-dasharray="4 4"/>
               <circle cx="340" cy="220" r="95" fill="rgba(191,155,48,0.05)" stroke="rgba(29,53,60,0.12)" stroke-width="1"/>
 
-              <!-- Connector Lines -->
+              <!-- Connector Lines & Alignment Nodes -->
               <line x1="340" y1="220" x2="155" y2="95" stroke="#BF9B30" stroke-width="1.5"/>
               <line x1="340" y1="220" x2="525" y2="95" stroke="#BF9B30" stroke-width="1.5"/>
               <line x1="340" y1="220" x2="565" y2="275" stroke="#BF9B30" stroke-width="1.5"/>
               <line x1="340" y1="220" x2="115" y2="275" stroke="#BF9B30" stroke-width="1.5"/>
               <line x1="340" y1="220" x2="340" y2="375" stroke="#BF9B30" stroke-width="1.5"/>
 
+              <circle cx="247" cy="157" r="3" fill="#BF9B30"/>
+              <circle cx="432" cy="157" r="3" fill="#BF9B30"/>
+              <circle cx="452" cy="247" r="3" fill="#BF9B30"/>
+              <circle cx="227" cy="247" r="3" fill="#BF9B30"/>
+              <circle cx="340" cy="297" r="3" fill="#BF9B30"/>
+
               <!-- Node: Tax Stewardship -->
-              <g class="bridge-node" data-bridge-key="tax" transform="translate(155, 95)">
+              <g class="bridge-node" data-bridge-key="tax" tabindex="0" role="button" aria-label="Tax Stewardship" transform="translate(155, 95)">
                 <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
                 <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">TAX</text>
                 <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Stewardship</text>
               </g>
 
               <!-- Node: Wealth Amplification -->
-              <g class="bridge-node" data-bridge-key="wealth" transform="translate(525, 95)">
+              <g class="bridge-node" data-bridge-key="wealth" tabindex="0" role="button" aria-label="Wealth Amplification" transform="translate(525, 95)">
                 <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
                 <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">WEALTH</text>
                 <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Amplification</text>
               </g>
 
               <!-- Node: Legacy Exit Planning -->
-              <g class="bridge-node" data-bridge-key="exit" transform="translate(565, 275)">
+              <g class="bridge-node" data-bridge-key="exit" tabindex="0" role="button" aria-label="Transition and Legacy Exit Planning" transform="translate(565, 275)">
                 <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
                 <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">TRANSITION</text>
                 <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Exit &amp; Legacy</text>
               </g>
 
               <!-- Node: Existing Advisors -->
-              <g class="bridge-node" data-bridge-key="advisors" transform="translate(115, 275)">
+              <g class="bridge-node" data-bridge-key="advisors" tabindex="0" role="button" aria-label="Your Existing CPA and Counsel" transform="translate(115, 275)">
                 <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
                 <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">YOUR TEAM</text>
                 <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">CPA &amp; Counsel</text>
               </g>
 
               <!-- Node: Holistic Longevity -->
-              <g class="bridge-node" data-bridge-key="longevity" transform="translate(340, 375)">
+              <g class="bridge-node" data-bridge-key="longevity" tabindex="0" role="button" aria-label="Longevity and Family Flourishing" transform="translate(340, 375)">
                 <circle class="node-bg" cx="0" cy="0" r="44" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
                 <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">LONGEVITY</text>
                 <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Health &amp; Heirs</text>
               </g>
 
               <!-- Central Core: Excelstra Bridge -->
-              <g class="bridge-node active" data-bridge-key="bridge" transform="translate(340, 220)">
+              <g class="bridge-node active" data-bridge-key="bridge" tabindex="0" role="button" aria-label="Excelstra Central Bridge" transform="translate(340, 220)">
                 <circle class="node-bg" cx="0" cy="0" r="60" fill="#1D353C" stroke="#BF9B30" stroke-width="2.5"/>
                 <text class="node-label" x="0" y="-5" text-anchor="middle" font-family="Lora, serif" font-size="13" font-weight="600" fill="#FFFFFF" letter-spacing="1">EXCELSTRA</text>
                 <text class="node-sub" x="0" y="13" text-anchor="middle" font-family="Inter, sans-serif" font-size="8.5" font-weight="600" fill="#DABE81" letter-spacing="1.5">THE BRIDGE</text>
@@ -206,18 +214,18 @@
           <div class="bridge-detail-panel">
             <span class="eyebrow">Interactive Alignment Map</span>
             <p class="body-copy" style="margin-bottom: 1rem;">
-              Select any dimension to examine how Excelstra orchestrates alignment across your entire financial life:
+              Select any dimension to examine how Excelstra orchestrates alignment across your financial life:
             </p>
-            <div class="bridge-pills">
-              <button type="button" class="bridge-pill active" data-bridge-key="bridge">The Bridge</button>
-              <button type="button" class="bridge-pill" data-bridge-key="tax">Tax Stewardship</button>
-              <button type="button" class="bridge-pill" data-bridge-key="wealth">Wealth Amplification</button>
-              <button type="button" class="bridge-pill" data-bridge-key="exit">Exit &amp; Legacy</button>
-              <button type="button" class="bridge-pill" data-bridge-key="advisors">Your Existing Team</button>
-              <button type="button" class="bridge-pill" data-bridge-key="longevity">Longevity &amp; Family</button>
+            <div class="bridge-pills" role="group" aria-label="Alignment Dimensions">
+              <button type="button" class="bridge-pill active" data-bridge-key="bridge" aria-pressed="true">The Bridge</button>
+              <button type="button" class="bridge-pill" data-bridge-key="tax" aria-pressed="false">Tax Stewardship</button>
+              <button type="button" class="bridge-pill" data-bridge-key="wealth" aria-pressed="false">Wealth Amplification</button>
+              <button type="button" class="bridge-pill" data-bridge-key="exit" aria-pressed="false">Exit &amp; Legacy</button>
+              <button type="button" class="bridge-pill" data-bridge-key="advisors" aria-pressed="false">Your Existing Team</button>
+              <button type="button" class="bridge-pill" data-bridge-key="longevity" aria-pressed="false">Longevity &amp; Family</button>
             </div>
 
-            <div class="bridge-active-card">
+            <div class="bridge-active-card" aria-live="polite">
               <div class="arch-card-kicker" id="bridgeDetailKicker">The Central Bridge</div>
               <h3 id="bridgeDetailTitle">Excelstra: Seeing the Whole Before Changing the Parts</h3>
               <p class="arch-card-sub" id="bridgeDetailSub">Where wealth is integrated with intention, transformed with artistry, and delivered with mastery.</p>
@@ -235,9 +243,9 @@
       <div class="container">
         <div class="section-header">
           <span class="eyebrow">The Standard of Independence</span>
-          <h2>Independence from commissions is the structural proof of everything we claim.</h2>
+          <h2>Independence from commissions is the structural proof of our counsel.</h2>
           <p class="lead">
-            Discerning leaders deserve counsel that is wholly uncompromised. How a firm is compensated determines what it is able to see. Excelstra is retained strictly through engagement fees, ensuring every strategy serves your vision alone.
+            Discerning leaders deserve counsel that is uncompromised. How a firm is compensated determines what it is able to see. Excelstra is retained strictly through engagement fees, ensuring each strategy serves your vision alone.
           </p>
         </div>
 
@@ -248,7 +256,7 @@
             <ul class="ledger-list">
               <li>
                 <span class="ledger-mark">I.</span>
-                <span><strong>Integrates across tax, wealth, and transition:</strong> Unifying every financial discipline into one living strategy architected around the life you are building.</span>
+                <span><strong>Integrates across tax, wealth, and transition:</strong> Unifying your core financial disciplines into one living strategy architected around the life you are building.</span>
               </li>
               <li>
                 <span class="ledger-mark">II.</span>
@@ -260,7 +268,7 @@
               </li>
               <li>
                 <span class="ledger-mark">IV.</span>
-                <span><strong>Retained strictly through engagement fees:</strong> When additional services support your strategy, our focus is on minimizing your cost and ensuring every recommendation serves your vision.</span>
+                <span><strong>Retained strictly through engagement fees:</strong> When additional services support your strategy, our focus is on minimizing your cost and ensuring each recommendation serves your vision.</span>
               </li>
             </ul>
           </div>
@@ -283,7 +291,7 @@
               </li>
               <li>
                 <span class="ledger-mark">&middot;</span>
-                <span><strong>Does not take custody or make decisions for you:</strong> We build mastery, not dependence. You remain in full command of every decision.</span>
+                <span><strong>Does not take custody or make decisions for you:</strong> We build mastery, not dependence. You remain in full command of each decision.</span>
               </li>
             </ul>
           </div>
@@ -294,7 +302,7 @@
             <span class="proof-metric-num">3x Value Guarantee</span>
             <span class="proof-metric-title">Our Foundational Commitment</span>
             <p class="proof-metric-desc">
-              Our commitment is to demonstrate at least 3x potential benefit gains over a member's engagement investment. It is always the member's choice which strategies to implement.
+              Our commitment is to demonstrate at least 3x potential benefit gains over a member's engagement investment. The member chooses which strategies to implement.
             </p>
           </div>
 
@@ -324,7 +332,7 @@
           <span class="eyebrow">How We Serve, Lead, and Elevate</span>
           <h2>The Three Pillars of Wealth Integration</h2>
           <p class="lead">
-            Strategic Tax Stewardship strengthens what Wealth Amplification builds. Wealth Amplification deepens what Legacy-Centered Exit Planning protects. Legacy-Centered Exit Planning gives the entire journey its purpose and its destination.
+            Strategic Tax Stewardship strengthens what Wealth Amplification builds. Wealth Amplification deepens what Legacy-Centered Exit Planning protects. Legacy-Centered Exit Planning gives the journey its purpose and its destination.
           </p>
         </div>
 
@@ -332,14 +340,19 @@
           <!-- Pillar 1 -->
           <article class="arch-card">
             <div>
-              <div class="arch-card-kicker">Pillar I</div>
+              <div class="arch-card-header-row">
+                <span class="arch-card-kicker">Pillar I</span>
+                <span class="arch-card-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L4 7v6c0 5 3.5 7.5 8 8 4.5-.5 8-3 8-8V7l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+                </span>
+              </div>
               <h3>Strategic Tax Stewardship</h3>
               <p class="arch-card-sub">Keep more, with integrity.</p>
               <p class="body-copy">
-                Of every dimension in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. We see tax as a pathway to freedom.
+                Of the many dimensions in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. We see tax as a pathway to freedom.
               </p>
               <p class="body-copy">
-                Working closely with our specialized experts, we help you identify the strategies worth pursuing, coordinate their rigorous evaluation, and engage all appropriate stakeholders to ensure everything is examined, corroborated, and masterfully implemented.
+                Working closely with our specialized experts, we help you identify the strategies worth pursuing, coordinate their rigorous evaluation, and engage all appropriate stakeholders to ensure each move is examined, corroborated, and masterfully implemented.
               </p>
             </div>
             <div class="arch-card-footer">
@@ -351,14 +364,19 @@
           <!-- Pillar 2 -->
           <article class="arch-card">
             <div>
-              <div class="arch-card-kicker">Pillar II</div>
+              <div class="arch-card-header-row">
+                <span class="arch-card-kicker">Pillar II</span>
+                <span class="arch-card-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                </span>
+              </div>
               <h3>Wealth Amplification</h3>
               <p class="arch-card-sub">Grow more, with intention.</p>
               <p class="body-copy">
                 At Excelstra, portfolios are designed around a single principle: alignment with what our members dream to achieve. We examine what you hold with clarity and discipline, understanding which vehicles genuinely advance your vision.
               </p>
               <p class="body-copy">
-                We preserve what works, reconstruct with intention, and amplify through curated, off-market opportunities available only to members whose integrators operate with true independence and discerning relationships.
+                We preserve what works, reconstruct with intention, and amplify through curated, off-market opportunities available to members whose integrators operate with true independence and discerning relationships.
               </p>
             </div>
             <div class="arch-card-footer">
@@ -370,7 +388,12 @@
           <!-- Pillar 3 -->
           <article class="arch-card">
             <div>
-              <div class="arch-card-kicker">Pillar III</div>
+              <div class="arch-card-header-row">
+                <span class="arch-card-kicker">Pillar III</span>
+                <span class="arch-card-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20h18M5 20V8l7-5 7 5v12M9 20v-6h6v6"/></svg>
+                </span>
+              </div>
               <h3>Legacy-Centered Exit Planning</h3>
               <p class="arch-card-sub">Live more. Leave more.</p>
               <p class="body-copy">
@@ -422,7 +445,7 @@
               <h3>Executives, Surgeons &amp; Physicians ($500K+ Income)</h3>
               <p class="arch-card-sub">Navigating high-income tax stewardship, equity, and career transition.</p>
               <p class="body-copy">
-                For corporate executives and medical specialists managing complex compensation, equity vesting, deferred distributions, and substantial annual tax exposure. We align every dimension before you transition from active compensation to enduring portfolio income.
+                For corporate executives and medical specialists managing complex compensation, equity vesting, deferred distributions, and substantial annual tax exposure. We align your core financial dimensions before you transition from active compensation to enduring portfolio income.
               </p>
             </div>
             <div class="arch-card-footer">
@@ -460,7 +483,7 @@
               Our insights are shaped by one purpose: your long-term wellbeing. We listen to who you are before we look at what you have. Our strategies are built on human trust and our commitment to be honest about what matters in your financial life: the opportunities hidden in fragmentation, the hard truths, and the possibilities.
             </p>
             <p class="body-copy">
-              Our members come to us for warmth in a complex and ever-growing automated world, for the assurance that someone is holding the whole picture with care, competence, and honesty in every season, the favorable and the difficult alike. As the world leans further into the artificial, we use advanced analytical tools while ensuring that the human relationship remains sacred at the heart of our work.
+              Our members come to us for warmth in a complex and ever-growing automated world, for the assurance that someone is holding the whole picture with care, competence, and honesty across seasons, the favorable and the difficult alike. As the world leans further into the artificial, we use advanced analytical tools while ensuring that the human relationship remains sacred at the heart of our work.
             </p>
             <blockquote class="editorial-quote">
               "Security that is felt, not hoped for. Freedom that is designed, not left to chance. Generosity that flows from abundance. Impact that reaches beyond your lifetime."
@@ -491,7 +514,7 @@
                 </li>
                 <li>
                   <strong style="color: var(--ink-primary);">4. Wealth Serving Life:</strong>
-                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> Every decision creates a ripple across members, team, partners, and community.</span>
+                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> Each decision creates a ripple across members, team, partners, and community.</span>
                 </li>
                 <li>
                   <strong style="color: var(--ink-primary);">5. Service Through Leadership:</strong>
