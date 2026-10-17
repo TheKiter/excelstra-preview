@@ -1702,3 +1702,19 @@ textarea.form-control {
     gap: 0.5rem;
   }
 }
+
+@media (max-width: 520px) {
+  .nav-actions .btn-primary {
+    display: none;
+  }
+
+  .brand-logo img {
+    height: 19px;
+  }
+
+  .btn {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+}
