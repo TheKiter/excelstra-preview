@@ -195,24 +195,10 @@
     });
   });
 
-  /* 5. Private Consultation Form Submission Feedback */
-  const consultForm = document.getElementById('privateConsultationForm');
-  if (consultForm) {
-    consultForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const statusBox = document.getElementById('consultFormStatus');
-      if (statusBox) {
-        statusBox.style.display = 'block';
-        statusBox.innerHTML = '<strong>Thank you. Your private inquiry has been recorded.</strong> A senior member of the Excelstra leadership team will review your note with care and respond personally. You may also proceed directly to the <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" style="text-decoration:underline; color:var(--excelstra-green); font-weight:600;">Whole Wealth Assessment</a>.';
-      }
-      consultForm.reset();
-    });
-  }
-
-  /* 6. Progressive Editorial Scroll Reveal (IntersectionObserver) */
+  /* 5. Progressive Editorial Scroll Reveal (IntersectionObserver) */
   const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-    const revealTargets = document.querySelectorAll('.arch-card, .tier-card, .value-row, .proof-metric-box, .bridge-explorer, .ledger-grid, .matrix-wrap');
+    const revealTargets = document.querySelectorAll('.arch-card, .tier-card, .value-row, .proof-metric-box, .bridge-explorer, .ledger-grid, .matrix-wrap, .hermes-plate-frame');
     revealTargets.forEach(function (el) {
       el.classList.add('reveal-on-scroll');
     });
