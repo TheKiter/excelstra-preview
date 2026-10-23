@@ -7,6 +7,27 @@
 (function () {
   'use strict';
 
+  /* 0. Iframe & Subpage Cache-Buster (Prevents stale GitHub Pages cache inside GHL preview) */
+  const BUILD_VER = '20261023e';
+  try {
+    const currentUrl = new URL(window.location.href);
+    if (currentUrl.protocol.startsWith('http') && currentUrl.searchParams.get('v') !== BUILD_VER) {
+      currentUrl.searchParams.set('v', BUILD_VER);
+      window.location.replace(currentUrl.toString());
+    }
+  } catch (_) {}
+
+  document.querySelectorAll('a[href]').forEach(function (link) {
+    const rawHref = link.getAttribute('href');
+    if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('http') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) return;
+    const parts = rawHref.split('#');
+    const basePart = parts[0].split('?')[0];
+    const hashPart = parts[1] ? '#' + parts[1] : '';
+    if (basePart.endsWith('.html')) {
+      link.setAttribute('href', basePart + '?v=' + BUILD_VER + hashPart);
+    }
+  });
+
   /* 1. Sticky Header & Mobile Navigation Drawer */
   const header = document.querySelector('.site-header');
   const mobileBtn = document.getElementById('mobileMenuBtn');
