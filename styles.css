@@ -1975,6 +1975,259 @@ textarea.form-control {
   }
 }
 
+/* ==========================================================================
+   LEADERSHIP & TEAM SECTIONS (VERSIONS A, B, C)
+   ========================================================================== */
+
+.version-review-section {
+  position: relative;
+  border-top: 2px solid var(--gold);
+}
+
+.version-corner-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  background-color: var(--deep-navy);
+  color: var(--gold-light);
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: 0.55rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(0, 14, 33, 0.18);
+}
+
+.section-dark .version-corner-badge,
+.section-navy .version-corner-badge {
+  background-color: var(--gold);
+  color: var(--deep-navy);
+}
+
+/* Named Specialist & Faculty Cards (Version A & C) */
+.specialist-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.specialist-card {
+  background-color: var(--bg-white);
+  border: 1px solid var(--rule-warm);
+  border-top: 3px solid var(--deep-navy);
+  padding: 2.15rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out);
+}
+
+.specialist-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
+  border-top-color: var(--gold);
+}
+
+.specialist-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.specialist-monogram {
+  width: 52px;
+  height: 52px;
+  background-color: var(--deep-navy);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.specialist-role-tag {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--excelstra-green);
+  text-align: right;
+}
+
+.specialist-name {
+  font-family: var(--font-serif);
+  font-size: 1.42rem;
+  font-weight: 500;
+  color: var(--ink-primary);
+  margin-bottom: 0.25rem;
+}
+
+.specialist-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gold-deep);
+  margin-bottom: 1rem;
+}
+
+.specialist-bio {
+  font-size: 0.92rem;
+  line-height: 1.68;
+  color: var(--ink-secondary);
+  margin-bottom: 1.4rem;
+}
+
+.specialist-specialty {
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--rule-light);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.specialist-specialty strong {
+  color: var(--ink-primary);
+}
+
+/* 4 Specialist Advisory Chairs (Version B & C) */
+.advisory-chairs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+.chair-plate {
+  background-color: var(--bg-white);
+  border: 1px solid var(--rule-warm);
+  border-left: 3px solid var(--gold);
+  padding: 2.25rem 2.35rem;
+  position: relative;
+  transition: box-shadow var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.chair-plate:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-editorial);
+}
+
+.chair-plate-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.95rem;
+  margin-bottom: 1.15rem;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.chair-index {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--excelstra-green);
+}
+
+.chair-credential {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  background-color: var(--bg-ivory);
+  border: 1px solid var(--rule-warm);
+  padding: 0.25rem 0.65rem;
+}
+
+.chair-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink-primary);
+  margin-bottom: 0.65rem;
+}
+
+/* How They Work as One / Unbroken Alignment Dossier */
+.alignment-dossier-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 4vw, 3.75rem);
+  align-items: center;
+  margin-top: 3.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--rule-warm);
+}
+
+.unbroken-alignment-box {
+  background-color: var(--deep-navy);
+  color: var(--text-on-dark);
+  border: 1px solid var(--rule-gold);
+  border-top: 3px solid var(--gold);
+  padding: clamp(2rem, 3.5vw, 2.75rem);
+  box-shadow: var(--shadow-elevated);
+}
+
+.unbroken-alignment-box .kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+}
+
+.unbroken-alignment-box p {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  line-height: 1.65;
+  color: var(--bg-white);
+  margin-bottom: 1.35rem;
+}
+
+.unbroken-alignment-box .sub-caption {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold-light);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(218, 190, 129, 0.25);
+}
+
+@media (max-width: 1024px) {
+  .specialist-roster-grid,
+  .advisory-chairs-grid,
+  .alignment-dossier-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 520px) {
   .nav-actions .btn-primary {
     display: none;
