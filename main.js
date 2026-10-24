@@ -8,7 +8,7 @@
   'use strict';
 
   /* 0. Iframe & Subpage Cache-Buster (Prevents stale GitHub Pages cache inside GHL preview) */
-  const BUILD_VER = '20261024a';
+  const BUILD_VER = '20261024b';
   try {
     const currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.startsWith('http') && currentUrl.searchParams.get('v') !== BUILD_VER) {
@@ -137,7 +137,7 @@
 
         const altitudeMap = {
           owner_core: {
-            tier: 'Gold or Copper Engagement Altitude',
+            tier: 'Gold Engagement Altitude',
             focus: 'Business Owner ($3M to $15M Company Revenue)',
             summary: 'At this stage of growth, integrating your operating company structure with personal tax stewardship and intentional capital allocation creates immediate strategic clarity.'
           },
@@ -147,7 +147,7 @@
             summary: 'At your scale, multi-entity tax coordination, off-market wealth amplification, and pre-transition structuring work together to elevate enterprise and family value simultaneously.'
           },
           executive: {
-            tier: 'Copper or Gold Engagement Altitude',
+            tier: 'Gold Engagement Altitude',
             focus: 'Executive, Surgeon, or Physician ($500K+ Household Income)',
             summary: 'For high-earning leaders, transforming active income, equity positions, and deferred compensation into tax-efficient, enduring portfolio income is the foundation of lasting freedom.'
           },
