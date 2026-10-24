@@ -8,7 +8,7 @@
   'use strict';
 
   /* 0. Iframe & Subpage Cache-Buster (Prevents stale GitHub Pages cache inside GHL preview) */
-  const BUILD_VER = '20261023e';
+  const BUILD_VER = '20261024a';
   try {
     const currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.startsWith('http') && currentUrl.searchParams.get('v') !== BUILD_VER) {
@@ -219,7 +219,7 @@
   /* 5. Progressive Editorial Scroll Reveal (IntersectionObserver) */
   const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-    const revealTargets = document.querySelectorAll('.arch-card, .tier-card, .value-row, .proof-metric-box, .bridge-explorer, .ledger-grid, .matrix-wrap, .hermes-plate-frame');
+    const revealTargets = document.querySelectorAll('.arch-card, .tier-card, .value-row, .proof-metric-box, .bridge-explorer, .ledger-grid, .matrix-wrap, .hermes-plate-frame, .video-testimonial-card');
     revealTargets.forEach(function (el) {
       el.classList.add('reveal-on-scroll');
     });
@@ -238,6 +238,76 @@
 
     revealTargets.forEach(function (el) {
       observer.observe(el);
+    });
+  }
+
+  /* 6. Interactive Video Testimonial Player & Category Filter */
+  const videoWraps = document.querySelectorAll('.video-frame-wrap');
+  videoWraps.forEach(function (wrap) {
+    const video = wrap.querySelector('video');
+    const overlay = wrap.querySelector('.video-play-overlay');
+    if (!video || !overlay) return;
+
+    function togglePlay() {
+      if (video.paused) {
+        document.querySelectorAll('.video-frame-wrap video').forEach(function (otherVid) {
+          if (otherVid !== video && !otherVid.paused) {
+            otherVid.pause();
+          }
+        });
+        video.setAttribute('controls', 'controls');
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+
+    overlay.addEventListener('click', togglePlay);
+    overlay.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        togglePlay();
+      }
+    });
+
+    video.addEventListener('play', function () {
+      wrap.classList.add('is-playing');
+      video.setAttribute('controls', 'controls');
+    });
+
+    video.addEventListener('pause', function () {
+      if (video.currentTime === 0 || video.ended) {
+        wrap.classList.remove('is-playing');
+      }
+    });
+
+    video.addEventListener('ended', function () {
+      wrap.classList.remove('is-playing');
+    });
+  });
+
+  const filterButtons = document.querySelectorAll('.video-filter-btn');
+  if (filterButtons.length) {
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const filterVal = btn.getAttribute('data-video-filter') || 'all';
+        const section = btn.closest('section') || document;
+        section.querySelectorAll('.video-filter-btn').forEach(function (b) {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        section.querySelectorAll('.video-testimonial-card').forEach(function (card) {
+          const cat = card.getAttribute('data-video-category');
+          if (filterVal === 'all' || cat === filterVal) {
+            card.classList.remove('is-hidden');
+          } else {
+            const vid = card.querySelector('video');
+            if (vid && !vid.paused) vid.pause();
+            card.classList.add('is-hidden');
+          }
+        });
+      });
     });
   }
 })();
