@@ -2624,12 +2624,12 @@ textarea.form-control {
   border-top: 2px solid #BF9B30 !important;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.80) 0%,
-    rgba(248, 247, 245, 0.62) 55%,
-    rgba(244, 243, 240, 0.74) 100%
+    rgba(255, 255, 255, 0.62) 0%,
+    rgba(248, 247, 245, 0.42) 55%,
+    rgba(244, 243, 240, 0.54) 100%
   ) !important;
-  backdrop-filter: url(#liquid-glass-card-filter) blur(16px) saturate(160%) contrast(103%);
-  -webkit-backdrop-filter: blur(18px) saturate(165%) contrast(103%);
+  backdrop-filter: url(#liquid-glass-card-filter) blur(12px) saturate(165%) contrast(104%);
+  -webkit-backdrop-filter: blur(14px) saturate(165%) contrast(104%);
   box-shadow:
     inset 0 1.5px 1px rgba(255, 255, 255, 0.96),
     inset 0 -1px 1px rgba(222, 218, 210, 0.75),
