@@ -2536,10 +2536,10 @@ textarea.form-control {
   outline-color: rgba(29, 53, 60, 0.45);
 }
 
-/* Classical Hermes Intaglio Engravings in Brand Neutral / Slate Tone (No Yellow Sepia) */
+/* Classical Hermes Intaglio Engravings — Pure White Multiply Base so Zero Grey Cast on Light Silk */
 .hermes-hero-backdrop {
-  opacity: 0.22;
-  filter: invert(0.93) grayscale(1) contrast(1.24) brightness(0.95);
+  opacity: 0.11;
+  filter: invert(1) sepia(0.14) contrast(1.18) brightness(1.06);
   mix-blend-mode: multiply;
   z-index: 1;
   -webkit-mask-image: radial-gradient(ellipse 92% 88% at 68% 50%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.42) 62%, rgba(0, 0, 0, 0.06) 100%);
@@ -2547,7 +2547,7 @@ textarea.form-control {
 }
 
 .hermes-hero-backdrop.hermes-auto-underlay {
-  opacity: 0.17;
+  display: none;
 }
 
 .hermes-dark-backdrop {
