@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const BUILD_VER = '20261025v2b';
+  const BUILD_VER = '20261025v2c';
 
   /* ------------------------------------------------------------------------
      0. Iframe Cache-Buster & Internal Link Versioning
@@ -466,6 +466,7 @@
       '.tier-card',
       '.specialist-card',
       '.chair-plate',
+      '.video-testimonial-card',
       '.page-hero-callout',
       '.bridge-explorer',
       '.ledger-grid',
@@ -505,7 +506,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     5. Standard Site Interactions (Header, Alignment Map, Diagnostic, FAQ)
+     5. Standard Site Interactions (Header, Alignment Map, Diagnostic, FAQ, Video)
      ------------------------------------------------------------------------ */
   function initSiteInteractions() {
     const header = document.querySelector('.site-header');
@@ -614,7 +615,7 @@
 
           const altitudeMap = {
             owner_core: {
-              tier: 'Gold or Copper Engagement Altitude',
+              tier: 'Gold Engagement Altitude',
               focus: 'Business Owner ($3M to $15M Company Revenue)',
               summary: 'At this stage of growth, integrating your operating company structure with personal tax stewardship and intentional capital allocation creates immediate strategic clarity.'
             },
@@ -624,7 +625,7 @@
               summary: 'At your scale, multi-entity tax coordination, off-market wealth amplification, and pre-transition structuring work together to elevate enterprise and family value simultaneously.'
             },
             executive: {
-              tier: 'Copper or Gold Engagement Altitude',
+              tier: 'Gold Engagement Altitude',
               focus: 'Executive, Surgeon, or Physician ($500K+ Household Income)',
               summary: 'For high-earning leaders, transforming active income, equity positions, and deferred compensation into tax-efficient, enduring portfolio income is the foundation of lasting freedom.'
             },
@@ -692,6 +693,76 @@
         }
       });
     });
+
+    /* Interactive Video Testimonial Player & Category Filter */
+    const videoWraps = document.querySelectorAll('.video-frame-wrap');
+    videoWraps.forEach(function (wrap) {
+      const video = wrap.querySelector('video');
+      const overlay = wrap.querySelector('.video-play-overlay');
+      if (!video || !overlay) return;
+
+      function togglePlay() {
+        if (video.paused) {
+          document.querySelectorAll('.video-frame-wrap video').forEach(function (otherVid) {
+            if (otherVid !== video && !otherVid.paused) {
+              otherVid.pause();
+            }
+          });
+          video.setAttribute('controls', 'controls');
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+
+      overlay.addEventListener('click', togglePlay);
+      overlay.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePlay();
+        }
+      });
+
+      video.addEventListener('play', function () {
+        wrap.classList.add('is-playing');
+        video.setAttribute('controls', 'controls');
+      });
+
+      video.addEventListener('pause', function () {
+        if (video.currentTime === 0 || video.ended) {
+          wrap.classList.remove('is-playing');
+        }
+      });
+
+      video.addEventListener('ended', function () {
+        wrap.classList.remove('is-playing');
+      });
+    });
+
+    const filterButtons = document.querySelectorAll('.video-filter-btn');
+    if (filterButtons.length) {
+      filterButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const filterVal = btn.getAttribute('data-video-filter') || 'all';
+          const section = btn.closest('section') || document;
+          section.querySelectorAll('.video-filter-btn').forEach(function (b) {
+            const active = b === btn;
+            b.classList.toggle('active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          section.querySelectorAll('.video-testimonial-card').forEach(function (card) {
+            const cat = card.getAttribute('data-video-category');
+            if (filterVal === 'all' || cat === filterVal) {
+              card.classList.remove('is-hidden');
+            } else {
+              const vid = card.querySelector('video');
+              if (vid && !vid.paused) vid.pause();
+              card.classList.add('is-hidden');
+            }
+          });
+        });
+      });
+    }
   }
 
   /* Initialize all systems */
