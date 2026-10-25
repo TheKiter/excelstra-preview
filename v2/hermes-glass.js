@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const BUILD_VER = '20261025v2e';
+  const BUILD_VER = '20261025v2f';
 
   /* ------------------------------------------------------------------------
      0. Iframe Cache-Buster & Internal Link Versioning
@@ -215,8 +215,8 @@
     '  vec2 m = (u_mouse - 0.5) * 0.24;',
     '  p += m;',
     '',
-    '  // Faster, clearly visible organic silk wave motion',
-    '  float t = u_time * 0.48;',
+    '  // Unhurried, 50% slower fluid silk wave motion',
+    '  float t = u_time * 0.24;',
     '  float eps = 0.018;',
     '  float hCenter = silkHeight(p, t);',
     '  float hRight  = silkHeight(p + vec2(eps, 0.0), t);',
@@ -236,7 +236,7 @@
     '  float twillDiag = sin((pixelCoord.x + pixelCoord.y) * 0.75) * 0.5 + 0.5;',
     '  float crossWeft = sin((pixelCoord.x - pixelCoord.y) * 0.38) * 0.5 + 0.5;',
     '  float silkMicroSheen = (twillDiag * 0.65 + crossWeft * 0.35) - 0.5;',
-    '  float grain = hash(pixelCoord + fract(u_time * 0.08)) - 0.5;',
+    '  float grain = hash(pixelCoord) - 0.5;',
     '',
     '  vec3 col;',
     '  if (u_theme < 0.5) {',
@@ -472,8 +472,8 @@
     let startTime = performance.now();
     function tick(now) {
       const elapsed = (now - startTime) * 0.001;
-      globalMouse.x += (globalMouse.tx - globalMouse.x) * 0.08;
-      globalMouse.y += (globalMouse.ty - globalMouse.y) * 0.08;
+      globalMouse.x += (globalMouse.tx - globalMouse.x) * 0.04;
+      globalMouse.y += (globalMouse.ty - globalMouse.y) * 0.04;
 
       for (let i = 0; i < instances.length; i++) {
         if (instances[i].isVisible) {

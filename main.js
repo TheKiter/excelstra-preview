@@ -8,7 +8,7 @@
   'use strict';
 
   /* 0. Iframe & Subpage Cache-Buster (Prevents stale GitHub Pages cache inside GHL preview) */
-  const BUILD_VER = '20261025v2e';
+  const BUILD_VER = '20261025v2f';
   try {
     const currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.startsWith('http') && currentUrl.searchParams.get('v') !== BUILD_VER) {
