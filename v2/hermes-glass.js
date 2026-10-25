@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const BUILD_VER = '20261025v2';
+  const BUILD_VER = '20261025v2b';
 
   /* ------------------------------------------------------------------------
      0. Iframe Cache-Buster & Internal Link Versioning
@@ -127,7 +127,7 @@
     svg.id = 'excelstraLiquidGlassFilters';
     svg.setAttribute('width', '0');
     svg.setAttribute('height', '0');
-    svg.setAttribute(' aria-hidden', 'true');
+    svg.setAttribute('aria-hidden', 'true');
     svg.style.position = 'absolute';
     svg.style.width = '0';
     svg.style.height = '0';
