@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const BUILD_VER = '20261025v2g';
+  const BUILD_VER = '20261025v2h';
 
   /* ------------------------------------------------------------------------
      0. Iframe Cache-Buster & Internal Link Versioning
@@ -32,13 +32,23 @@
   });
 
   /* ------------------------------------------------------------------------
-     1. Floating Design Version Switcher (V1 Classic vs V2 Hermes Liquid Glass)
+     1. Floating Design Version Switcher (V1 Classic vs V2 Hermes Liquid Glass vs V4 Scroll Film)
      ------------------------------------------------------------------------ */
   function mountVersionSwitcher() {
     if (document.getElementById('designVersionSwitcher')) return;
     const pathName = window.location.pathname;
     const fileName = (pathName.split('/').pop() || 'index.html').split('?')[0] || 'index.html';
     const targetFile = fileName.endsWith('.html') ? fileName : 'index.html';
+    const v4Map = {
+      'index.html': 'index.html',
+      'integration.html': 'the-architecture.html',
+      'membership.html': 'membership.html',
+      'philosophy.html': 'events.html',
+      'about.html': 'our-team.html',
+      'assessment.html': 'wealth-assessment.html',
+      'connect.html': 'book-a-call.html'
+    };
+    const v4Target = v4Map[targetFile] || 'index.html';
 
     const bar = document.createElement('div');
     bar.id = 'designVersionSwitcher';
@@ -49,7 +59,8 @@
     bar.innerHTML =
       '<span class="dvs-label">Design Edition</span>' +
       '<a href="../' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic Editorial</a>' +
-      '<a href="' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V2 &middot; Herm&egrave;s Liquid Glass</a>';
+      '<a href="' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V2 &middot; Herm&egrave;s Liquid Glass</a>' +
+      '<a href="../v4/' + v4Target + '?v=' + BUILD_VER + '" class="dvs-option">V4 &middot; Scroll Film</a>';
 
     document.body.appendChild(bar);
   }
