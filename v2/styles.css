@@ -2496,7 +2496,10 @@ textarea.form-control {
 
 /* ==========================================================================
    V2 EDITION: HERMES SILK SHADERGRADIENT & LIQUID GLASS OPTICAL LAYER
-   Inspired by rdev/liquid-glass-react & ruucm/shadergradient
+   Strictly Calibrated to Excelstra 60/25/15 Brand Style Guide:
+     - 60% Neutral Surfaces: #FFFFFF, #F8F7F5, #F4F3F0, #DEDAD2
+     - 25% Deep Brand Tones: #000E21 (Deep Navy), #1D353C (Excelstra Green), #14292F (Dark Green)
+     - 15% Scarce Gold Accent: #BF9B30 (Excelstra Gold), #DABE81 (Gold Light)
    ========================================================================== */
 
 /* 1. Hermes Silk Twill WebGL Canvas & Carre Framing */
@@ -2514,14 +2517,14 @@ textarea.form-control {
   display: block;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.92;
+  opacity: 0.94;
 }
 
 .hermes-carre-border {
   position: absolute;
   inset: 1.1rem;
-  border: 1px solid rgba(191, 155, 48, 0.32);
-  outline: 1px solid rgba(191, 155, 48, 0.14);
+  border: 1px solid rgba(29, 53, 60, 0.16);
+  outline: 1px solid rgba(191, 155, 48, 0.22);
   outline-offset: -5px;
   pointer-events: none;
   z-index: 1;
@@ -2529,27 +2532,27 @@ textarea.form-control {
 
 .section-dark .hermes-carre-border,
 .section-navy .hermes-carre-border {
-  border-color: rgba(218, 190, 129, 0.28);
-  outline-color: rgba(218, 190, 129, 0.12);
+  border-color: rgba(218, 190, 129, 0.24);
+  outline-color: rgba(29, 53, 60, 0.45);
 }
 
-/* Amplify Classical Hermes Engravings behind Liquid Glass for Rich Optical Refraction */
+/* Classical Hermes Intaglio Engravings in Brand Neutral / Slate Tone (No Yellow Sepia) */
 .hermes-hero-backdrop {
-  opacity: 0.27;
-  filter: invert(0.92) sepia(0.32) saturate(1.4) contrast(1.22) brightness(0.94);
+  opacity: 0.22;
+  filter: invert(0.93) grayscale(1) contrast(1.24) brightness(0.95);
   mix-blend-mode: multiply;
   z-index: 1;
-  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 68% 50%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 62%, rgba(0, 0, 0, 0.08) 100%);
-  mask-image: radial-gradient(ellipse 92% 88% at 68% 50%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 62%, rgba(0, 0, 0, 0.08) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 68% 50%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.42) 62%, rgba(0, 0, 0, 0.06) 100%);
+  mask-image: radial-gradient(ellipse 92% 88% at 68% 50%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.42) 62%, rgba(0, 0, 0, 0.06) 100%);
 }
 
 .hermes-hero-backdrop.hermes-auto-underlay {
-  opacity: 0.22;
+  opacity: 0.17;
 }
 
 .hermes-dark-backdrop {
-  opacity: 0.34;
-  filter: sepia(0.38) saturate(1.35) contrast(1.18);
+  opacity: 0.28;
+  filter: contrast(1.16) brightness(0.96);
   mix-blend-mode: screen;
   z-index: 1;
 }
@@ -2560,50 +2563,49 @@ textarea.form-control {
   z-index: 3;
 }
 
-/* 2. Floating Liquid Glass Capsule Header */
+/* 2. Full-Width Rectangular Sticky Header with Liquid Glass Optical Refraction */
 .site-header {
   position: sticky;
-  top: 0.85rem;
+  top: 0;
   z-index: 100;
-  width: min(96%, 1340px);
-  margin: 0.65rem auto -0.65rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(29, 53, 60, 0.18);
   background: linear-gradient(
-    135deg,
-    rgba(255, 253, 248, 0.64) 0%,
-    rgba(249, 242, 226, 0.44) 52%,
-    rgba(235, 219, 186, 0.56) 100%
+    180deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(248, 247, 245, 0.64) 60%,
+    rgba(244, 243, 240, 0.72) 100%
   );
-  backdrop-filter: url(#liquid-glass-pill-filter) blur(18px) saturate(180%) contrast(104%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%) contrast(104%);
+  backdrop-filter: url(#liquid-glass-pill-filter) blur(18px) saturate(165%) contrast(103%);
+  -webkit-backdrop-filter: blur(20px) saturate(165%) contrast(103%);
   box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.94),
-    inset 0 -1.5px 1px rgba(191, 155, 48, 0.48),
-    inset 1.5px 0 1px rgba(255, 255, 255, 0.75),
-    inset -1.5px 0 1px rgba(191, 155, 48, 0.32),
-    0 16px 40px -10px rgba(0, 14, 33, 0.16),
-    0 2px 10px rgba(191, 155, 48, 0.14);
-  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1),
-              background 280ms ease;
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(191, 155, 48, 0.32),
+    0 10px 30px -10px rgba(0, 14, 33, 0.08);
+  transition: box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1),
+              background 260ms ease,
+              border-color 260ms ease;
 }
 
 .site-header.scrolled {
   background: linear-gradient(
-    135deg,
-    rgba(255, 253, 249, 0.74) 0%,
-    rgba(248, 240, 223, 0.54) 55%,
-    rgba(232, 214, 177, 0.66) 100%
+    180deg,
+    rgba(255, 255, 255, 0.86) 0%,
+    rgba(248, 247, 245, 0.74) 100%
   );
+  border-bottom-color: rgba(191, 155, 48, 0.42);
   box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.98),
-    inset 0 -1.5px 1px rgba(191, 155, 48, 0.58),
-    0 22px 48px -12px rgba(0, 14, 33, 0.22),
-    0 4px 14px rgba(191, 155, 48, 0.18);
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    inset 0 -1px 0 rgba(191, 155, 48, 0.45),
+    0 16px 38px -12px rgba(0, 14, 33, 0.14);
 }
 
-/* 3. Liquid Glass Cards, Panels & Callout Vessels (Light & Cashmere Sections) */
+/* 3. Liquid Glass Cards & Panels (60% Pure White #FFFFFF & Light Beige #F8F7F5 — Zero Gold Card Fill) */
 .liquid-glass-surface,
 .arch-card,
 .tier-card,
@@ -2617,30 +2619,31 @@ textarea.form-control {
 .guarantee-banner,
 .matrix-wrap {
   position: relative;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.68) !important;
+  border-radius: 16px;
+  border: 1px solid rgba(29, 53, 60, 0.18) !important;
+  border-top: 2px solid #BF9B30 !important;
   background: linear-gradient(
     135deg,
-    rgba(255, 254, 250, 0.62) 0%,
-    rgba(251, 246, 235, 0.36) 52%,
-    rgba(236, 221, 190, 0.48) 100%
+    rgba(255, 255, 255, 0.80) 0%,
+    rgba(248, 247, 245, 0.62) 55%,
+    rgba(244, 243, 240, 0.74) 100%
   ) !important;
-  backdrop-filter: url(#liquid-glass-card-filter) blur(15px) saturate(170%) contrast(104%);
-  -webkit-backdrop-filter: blur(18px) saturate(175%) contrast(104%);
+  backdrop-filter: url(#liquid-glass-card-filter) blur(16px) saturate(160%) contrast(103%);
+  -webkit-backdrop-filter: blur(18px) saturate(165%) contrast(103%);
   box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.92),
-    inset 0 -1.5px 1px rgba(191, 155, 48, 0.44),
-    inset 1.5px 0 1px rgba(255, 255, 255, 0.68),
-    inset -1.5px 0 1px rgba(191, 155, 48, 0.28),
-    0 22px 48px -14px rgba(0, 14, 33, 0.14),
-    0 4px 14px rgba(191, 155, 48, 0.10) !important;
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.96),
+    inset 0 -1px 1px rgba(222, 218, 210, 0.75),
+    inset 1px 0 1px rgba(255, 255, 255, 0.85),
+    inset -1px 0 1px rgba(222, 218, 210, 0.55),
+    0 20px 46px -14px rgba(0, 14, 33, 0.10),
+    0 4px 12px rgba(29, 53, 60, 0.06) !important;
   overflow: hidden;
-  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 360ms cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 360ms ease;
+  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 340ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 340ms ease;
 }
 
-/* Interactive Specular Glare Highlight (Tracks Cursor Position via --glass-mx / --glass-my) */
+/* Interactive Pure-White Optical Specular Glare */
 .liquid-glass-surface::after {
   content: "";
   position: absolute;
@@ -2648,8 +2651,8 @@ textarea.form-control {
   border-radius: inherit;
   background: radial-gradient(
     440px circle at var(--glass-mx, 50%) var(--glass-my, 0%),
-    rgba(255, 255, 255, 0.58) 0%,
-    rgba(218, 190, 129, 0.18) 36%,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(248, 247, 245, 0.25) 38%,
     rgba(255, 255, 255, 0) 72%
   );
   pointer-events: none;
@@ -2667,54 +2670,54 @@ textarea.form-control {
 .tier-card:hover,
 .specialist-card:hover,
 .chair-plate:hover,
+.video-testimonial-card:hover,
 .page-hero-callout:hover {
   transform: translate3d(var(--glass-tx, 0px), calc(-4px + var(--glass-ty, 0px)), 0);
-  border-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(29, 53, 60, 0.36) !important;
+  border-top-color: #BF9B30 !important;
   box-shadow:
-    inset 0 2px 2px rgba(255, 255, 255, 0.98),
-    inset 0 -1.5px 1.5px rgba(191, 155, 48, 0.62),
-    inset 1.5px 0 1.5px rgba(255, 255, 255, 0.82),
-    0 28px 60px -12px rgba(0, 14, 33, 0.20),
-    0 6px 20px rgba(191, 155, 48, 0.18) !important;
+    inset 0 2px 2px rgba(255, 255, 255, 1),
+    inset 0 -1px 1px rgba(191, 155, 48, 0.35),
+    0 26px 56px -12px rgba(0, 14, 33, 0.15),
+    0 6px 18px rgba(29, 53, 60, 0.10) !important;
 }
 
-/* Featured Gold Tier Card in Liquid Glass */
+/* Featured Tier Card: Pure White / Light Beige Glass with Excelstra Green & Scarce Gold Border */
 .tier-card.featured {
   background: linear-gradient(
     135deg,
-    rgba(255, 252, 243, 0.72) 0%,
-    rgba(244, 230, 196, 0.48) 54%,
-    rgba(218, 190, 129, 0.42) 100%
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(248, 247, 245, 0.74) 100%
   ) !important;
+  border: 1px solid #1D353C !important;
+  border-top: 3px solid #BF9B30 !important;
   box-shadow:
-    inset 0 2px 1.5px rgba(255, 255, 255, 0.96),
-    inset 0 -2px 1.5px rgba(191, 155, 48, 0.68),
-    0 26px 58px -12px rgba(0, 14, 33, 0.18),
-    0 0 0 1px rgba(191, 155, 48, 0.45) !important;
+    inset 0 2px 1.5px rgba(255, 255, 255, 1),
+    0 26px 58px -12px rgba(0, 14, 33, 0.16) !important;
 }
 
-/* 4. Smoked Sapphire & Gold Liquid Glass for Sovereign Dark Sections */
+/* 4. 25% Deep Brand Tones (#000E21 Deep Navy, #1D353C Excelstra Green, #14292F Dark Green) Liquid Glass */
 .section-dark .liquid-glass-surface,
 .section-navy .liquid-glass-surface,
 .ledger-grid,
 .proof-metric-box,
 .unbroken-alignment-box,
 .architectural-break-card {
-  border-radius: 20px;
-  border: 1px solid rgba(218, 190, 129, 0.42) !important;
+  border-radius: 16px;
+  border: 1px solid rgba(218, 190, 129, 0.32) !important;
+  border-top: 2px solid #BF9B30 !important;
   background: linear-gradient(
     135deg,
-    rgba(10, 32, 62, 0.56) 0%,
-    rgba(0, 14, 33, 0.36) 55%,
-    rgba(191, 155, 48, 0.18) 100%
+    rgba(20, 41, 47, 0.72) 0%,
+    rgba(0, 14, 33, 0.62) 58%,
+    rgba(29, 53, 60, 0.56) 100%
   ) !important;
-  backdrop-filter: url(#liquid-glass-card-filter) blur(16px) saturate(175%) brightness(1.08);
-  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.08);
+  backdrop-filter: url(#liquid-glass-card-filter) blur(16px) saturate(165%) brightness(1.06);
+  -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(1.06);
   box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.38),
-    inset 0 -1.5px 1px rgba(218, 190, 129, 0.48),
-    inset 1px 0 1px rgba(255, 255, 255, 0.24),
-    0 24px 56px -10px rgba(0, 0, 0, 0.48) !important;
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px rgba(218, 190, 129, 0.32),
+    0 24px 56px -10px rgba(0, 14, 33, 0.52) !important;
 }
 
 .section-dark .liquid-glass-surface::after,
@@ -2725,8 +2728,8 @@ textarea.form-control {
 .architectural-break-card::after {
   background: radial-gradient(
     420px circle at var(--glass-mx, 50%) var(--glass-my, 0%),
-    rgba(218, 190, 129, 0.24) 0%,
-    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(218, 190, 129, 0.10) 40%,
     transparent 72%
   );
 }
@@ -2735,107 +2738,117 @@ textarea.form-control {
   background: transparent !important;
 }
 
-/* 5. Liquid Glass Buttons & Interactive Pills */
+/* 5. Solid Brand-Color Button Pills (Strict Official Swatches: #1D353C, #14292F, #BF9B30, #000E21, #FFFFFF) */
 .btn {
   border-radius: 999px;
-  backdrop-filter: url(#liquid-glass-pill-filter) blur(12px) saturate(165%);
-  -webkit-backdrop-filter: blur(14px) saturate(165%);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   position: relative;
   overflow: hidden;
-  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1),
-              background 260ms ease;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 200ms ease,
+              border-color 200ms ease,
+              color 200ms ease;
 }
 
+/* Primary Pill: Solid Excelstra Green (#1D353C) -> Hover Dark Green (#14292F) */
 .btn-primary {
-  background: linear-gradient(
-    135deg,
-    rgba(13, 79, 46, 0.86) 0%,
-    rgba(9, 56, 33, 0.76) 60%,
-    rgba(191, 155, 48, 0.42) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.52),
-    inset 0 -1px 1px rgba(218, 190, 129, 0.48),
-    0 10px 26px -6px rgba(13, 79, 46, 0.38);
+  background: #1D353C !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1D353C !important;
+  box-shadow: 0 8px 22px -6px rgba(0, 14, 33, 0.28) !important;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px) scale(1.015);
-  box-shadow:
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.68),
-    inset 0 -1.5px 1px rgba(218, 190, 129, 0.65),
-    0 14px 32px -6px rgba(13, 79, 46, 0.48);
+  background: #14292F !important;
+  border-color: #BF9B30 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(0, 14, 33, 0.38) !important;
 }
 
+/* Gold Pill: Solid Excelstra Gold (#BF9B30) with Deep Navy (#000E21) Text -> Hover Gold Light (#DABE81) */
 .btn-gold {
-  background: linear-gradient(
-    135deg,
-    rgba(229, 201, 133, 0.88) 0%,
-    rgba(191, 155, 48, 0.78) 65%,
-    rgba(255, 245, 214, 0.85) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.88),
-    inset 0 -1px 1px rgba(120, 90, 16, 0.35),
-    0 12px 28px -6px rgba(191, 155, 48, 0.42);
+  background: #BF9B30 !important;
+  color: #000E21 !important;
+  border: 1px solid #BF9B30 !important;
+  box-shadow: 0 8px 24px -6px rgba(0, 14, 33, 0.25) !important;
 }
 
+.btn-gold:hover {
+  background: #DABE81 !important;
+  border-color: #DABE81 !important;
+  color: #000E21 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(0, 14, 33, 0.35) !important;
+}
+
+/* Secondary / Outline Pill: Solid Pure White (#FFFFFF) on Light, Solid Excelstra Green (#1D353C) on Dark */
 .btn-outline {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.56) 0%,
-    rgba(248, 240, 222, 0.34) 100%
-  );
-  border: 1px solid rgba(191, 155, 48, 0.55);
-  box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.88),
-    inset 0 -1px 1px rgba(191, 155, 48, 0.35),
-    0 8px 22px -6px rgba(0, 14, 33, 0.10);
+  background: #FFFFFF !important;
+  color: #000E21 !important;
+  border: 1px solid #1D353C !important;
+  box-shadow: 0 6px 18px -6px rgba(0, 14, 33, 0.12) !important;
+}
+
+.btn-outline:hover {
+  background: #1D353C !important;
+  color: #FFFFFF !important;
+  border-color: #1D353C !important;
+  transform: translateY(-2px);
 }
 
 .section-dark .btn-outline,
 .section-navy .btn-outline {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.14) 0%,
-    rgba(218, 190, 129, 0.12) 100%
-  );
-  border-color: rgba(218, 190, 129, 0.58);
-  color: var(--bg-white);
-  box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.38),
-    inset 0 -1px 1px rgba(218, 190, 129, 0.42),
-    0 10px 26px rgba(0, 0, 0, 0.32);
+  background: #1D353C !important;
+  color: #FFFFFF !important;
+  border: 1px solid #DABE81 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
 }
 
-.bridge-node-btn {
-  border-radius: 14px;
-  background: rgba(255, 253, 248, 0.55);
-  backdrop-filter: blur(10px) saturate(150%);
-  -webkit-backdrop-filter: blur(10px) saturate(150%);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.85);
+.section-dark .btn-outline:hover,
+.section-navy .btn-outline:hover {
+  background: #14292F !important;
+  border-color: #BF9B30 !important;
+  color: #FFFFFF !important;
 }
 
-.bridge-node-btn.active {
-  background: linear-gradient(135deg, rgba(0, 14, 33, 0.88) 0%, rgba(13, 79, 46, 0.82) 100%);
-  box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.38),
-    inset 0 -1px 1px rgba(218, 190, 129, 0.52),
-    0 10px 24px rgba(0, 14, 33, 0.22);
+/* Interactive Node & Filter Buttons: Solid Neutral / Solid Brand Active */
+.bridge-node-btn,
+.video-filter-btn {
+  border-radius: 999px;
+  background: #FFFFFF !important;
+  color: #000E21 !important;
+  border: 1px solid #DEDAD2 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: 0 2px 8px rgba(0, 14, 33, 0.05);
+}
+
+.bridge-node-btn:hover,
+.video-filter-btn:hover {
+  border-color: #1D353C !important;
+  background: #F8F7F5 !important;
+}
+
+.bridge-node-btn.active,
+.video-filter-btn.active {
+  background: #000E21 !important;
+  color: #DABE81 !important;
+  border-color: #BF9B30 !important;
+  box-shadow: 0 8px 20px rgba(0, 14, 33, 0.22);
 }
 
 /* Keep Card Engraving Banners Rounded Inside Liquid Glass Cards */
 .card-engraving-banner {
-  border-top-left-radius: 19px;
-  border-top-right-radius: 19px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .hermes-plate-frame,
 .hero-portrait-frame {
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 /* 6. Floating Design Version Switcher Pill (Bottom-Right Corner) */
@@ -2849,19 +2862,9 @@ textarea.form-control {
   gap: 0.4rem;
   padding: 0.42rem 0.52rem 0.42rem 0.95rem;
   border-radius: 999px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 14, 33, 0.82) 0%,
-    rgba(8, 30, 58, 0.72) 60%,
-    rgba(191, 155, 48, 0.28) 100%
-  );
-  border: 1px solid rgba(218, 190, 129, 0.55);
-  backdrop-filter: url(#liquid-glass-pill-filter) blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.42),
-    inset 0 -1px 1px rgba(218, 190, 129, 0.45),
-    0 16px 38px rgba(0, 14, 33, 0.38);
+  background: #000E21;
+  border: 1px solid #BF9B30;
+  box-shadow: 0 16px 38px rgba(0, 14, 33, 0.42);
   font-family: var(--font-sans);
 }
 
@@ -2870,7 +2873,7 @@ textarea.form-control {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--gold-light);
+  color: #DABE81;
   margin-right: 0.35rem;
 }
 
@@ -2880,23 +2883,20 @@ textarea.form-control {
   letter-spacing: 0.06em;
   padding: 0.42rem 0.85rem;
   border-radius: 999px;
-  color: rgba(250, 248, 244, 0.78);
+  color: rgba(248, 247, 245, 0.82);
   text-decoration: none;
   transition: all 200ms ease;
 }
 
 .dvs-option:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  background: #1D353C;
 }
 
 .dvs-option.active {
-  background: linear-gradient(135deg, #e5c985 0%, #bf9b30 100%);
-  color: var(--deep-navy);
+  background: #BF9B30;
+  color: #000E21;
   font-weight: 700;
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.85),
-    0 4px 12px rgba(191, 155, 48, 0.38);
 }
 
 @media (max-width: 640px) {

@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const BUILD_VER = '20261025v2c';
+  const BUILD_VER = '20261025v2d';
 
   /* ------------------------------------------------------------------------
      0. Iframe Cache-Buster & Internal Link Versioning
@@ -120,7 +120,7 @@
     if (document.getElementById('excelstraLiquidGlassFilters')) return;
 
     const cardMapUrl = generateLensDisplacementDataURL(256, 256, 18, 42);
-    const pillMapUrl = generateLensDisplacementDataURL(256, 96, 48, 28);
+    const pillMapUrl = generateLensDisplacementDataURL(256, 96, 8, 28);
 
     const svgNS = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(svgNS, 'svg');
@@ -138,20 +138,20 @@
         /* Card & Panel Liquid Glass Filter with Bezel Refraction + Chromatic Aberration */
         '<filter id="liquid-glass-card-filter" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">' +
           '<feImage href="' + cardMapUrl + '" result="lensMap" preserveAspectRatio="none" />' +
-          '<feDisplacementMap in="SourceGraphic" in2="lensMap" scale="38" xChannelSelector="R" yChannelSelector="G" result="refracted" />' +
+          '<feDisplacementMap in="SourceGraphic" in2="lensMap" scale="36" xChannelSelector="R" yChannelSelector="G" result="refracted" />' +
           '<feColorMatrix in="refracted" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="rChan" />' +
-          '<feOffset in="rChan" dx="1.35" dy="0.6" result="rShift" />' +
+          '<feOffset in="rChan" dx="1.1" dy="0.45" result="rShift" />' +
           '<feColorMatrix in="refracted" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="gChan" />' +
           '<feColorMatrix in="refracted" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="bChan" />' +
-          '<feOffset in="bChan" dx="-1.35" dy="-0.6" result="bShift" />' +
+          '<feOffset in="bChan" dx="-1.1" dy="-0.45" result="bShift" />' +
           '<feBlend in="rShift" in2="gChan" mode="screen" result="rgBlend" />' +
           '<feBlend in="rgBlend" in2="bShift" mode="screen" result="finalGlass" />' +
         '</filter>' +
 
-        /* Pill / Header / Button Liquid Glass Filter */
+        /* Header Liquid Glass Filter */
         '<filter id="liquid-glass-pill-filter" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">' +
           '<feImage href="' + pillMapUrl + '" result="pillMap" preserveAspectRatio="none" />' +
-          '<feDisplacementMap in="SourceGraphic" in2="pillMap" scale="28" xChannelSelector="R" yChannelSelector="G" result="pillRefracted" />' +
+          '<feDisplacementMap in="SourceGraphic" in2="pillMap" scale="24" xChannelSelector="R" yChannelSelector="G" result="pillRefracted" />' +
         '</filter>' +
       '</defs>';
 
@@ -159,9 +159,10 @@
   }
 
   /* ------------------------------------------------------------------------
-     3. Hermes Silk Twill WebGL ShaderGradient Engine (ruucm/shadergradient style)
-     Renders organic draped silk waves, 3-color luxury blending, 45-degree
-     diagonal silk twill micro-weave, and tactile archival grain.
+     3. Hermes Silk Twill WebGL ShaderGradient Engine (Strict 60/25/15 Brand Canon)
+     60% Neutral Swatches: #FFFFFF, #F8F7F5, #F4F3F0, #DEDAD2
+     25% Deep Brand Swatches: #000E21 (Deep Navy), #1D353C (Excelstra Green), #14292F (Dark Green)
+     15% Scarce Gold Accent: #BF9B30, #DABE81
      ------------------------------------------------------------------------ */
   const VERTEX_SHADER = [
     'attribute vec2 a_position;',
@@ -178,7 +179,7 @@
     'uniform float u_time;',
     'uniform vec2 u_resolution;',
     'uniform vec2 u_mouse;',
-    'uniform float u_theme;', // 0.0 = Hermes Silk Ivory/Gold, 1.0 = Sovereign Navy/Gold, 2.0 = Warm Cashmere/Gold
+    'uniform float u_theme;', // 0.0 = 60% Neutral Silk (#FFFFFF/#F8F7F5/#F4F3F0/#DEDAD2), 1.0 = 25% Deep Brand (#000E21/#1D353C/#14292F), 2.0 = Warm Neutral Stone (#F4F3F0/#DEDAD2)
     '',
     'float hash(vec2 p) {',
     '  p = fract(p * vec2(123.34, 456.21));',
@@ -199,65 +200,65 @@
     '  float aspect = u_resolution.x / max(u_resolution.y, 1.0);',
     '  vec2 p = vec2(uv.x * aspect, uv.y);',
     '',
-    '  // Subtle mouse parallax offset',
-    '  vec2 m = (u_mouse - 0.5) * 0.18;',
+    '  vec2 m = (u_mouse - 0.5) * 0.14;',
     '  p += m;',
     '',
-    '  // ShaderGradient waterPlane domain-warped silk folds',
-    '  float t = u_time * 0.22;',
-    '  float n1 = noise(p * 2.1 + vec2(t * 0.7, -t * 0.5));',
-    '  float n2 = noise(p * 3.8 - vec2(t * 0.5, t * 0.65) + n1 * 1.15);',
-    '  float silkWave = sin((p.x * 3.2 + p.y * 2.4) + n1 * 3.4 + t) * 0.5 + 0.5;',
-    '  float secondaryWave = cos((p.x * 2.1 - p.y * 3.6) + n2 * 2.8 - t * 0.8) * 0.5 + 0.5;',
-    '  float foldCrest = pow( clamp(silkWave * 0.62 + secondaryWave * 0.38, 0.0, 1.0), 1.45 );',
+    '  // Draped silk folds (ShaderGradient waterPlane harmonic motion)',
+    '  float t = u_time * 0.18;',
+    '  float n1 = noise(p * 2.0 + vec2(t * 0.65, -t * 0.45));',
+    '  float n2 = noise(p * 3.5 - vec2(t * 0.45, t * 0.6) + n1 * 1.1);',
+    '  float silkWave = sin((p.x * 3.0 + p.y * 2.2) + n1 * 3.2 + t) * 0.5 + 0.5;',
+    '  float secondaryWave = cos((p.x * 2.0 - p.y * 3.4) + n2 * 2.6 - t * 0.75) * 0.5 + 0.5;',
+    '  float foldCrest = pow(clamp(silkWave * 0.6 + secondaryWave * 0.4, 0.0, 1.0), 1.4);',
     '',
-    '  // Hermes 45-degree diagonal silk twill weave & fine cross-thread',
+    '  // 45-degree diagonal silk twill micro-weave & archival cotton grain',
     '  vec2 pixelCoord = uv * u_resolution;',
     '  float twillDiag = sin((pixelCoord.x + pixelCoord.y) * 0.75) * 0.5 + 0.5;',
     '  float crossWeft = sin((pixelCoord.x - pixelCoord.y) * 0.38) * 0.5 + 0.5;',
     '  float silkMicroSheen = (twillDiag * 0.65 + crossWeft * 0.35) - 0.5;',
-    '',
-    '  // Fine tactile parchment / saddlery grain',
-    '  float grain = hash(pixelCoord + fract(u_time * 0.1)) - 0.5;',
+    '  float grain = hash(pixelCoord + fract(u_time * 0.08)) - 0.5;',
     '',
     '  vec3 col;',
     '  if (u_theme < 0.5) {',
-    '    // THEME 0: Hermes Silk Carre — Parchment Ivory, Champagne Silk, Burnished Gold & Warm Amber',
-    '    vec3 cIvory     = vec3(0.976, 0.961, 0.929); // #F9F5ED',
-    '    vec3 cChampagne = vec3(0.922, 0.875, 0.780); // #EBDFC7',
-    '    vec3 cGoldRibbon= vec3(0.835, 0.718, 0.455); // #D5B774',
-    '    vec3 cSaddleTint= vec3(0.878, 0.812, 0.690); // #E0CFB0',
+    '    // THEME 0: 60% Authorized Neutral Swatches (#FFFFFF, #F8F7F5, #F4F3F0, #DEDAD2)',
+    '    vec3 cPureWhite   = vec3(1.000, 1.000, 1.000); // #FFFFFF',
+    '    vec3 cLightBeige  = vec3(0.973, 0.969, 0.961); // #F8F7F5',
+    '    vec3 cWarmNeutral = vec3(0.957, 0.953, 0.941); // #F4F3F0',
+    '    vec3 cWarmBeige   = vec3(0.871, 0.855, 0.824); // #DEDAD2',
     '',
-    '    col = mix(cIvory, cChampagne, foldCrest * 0.85);',
-    '    float ribbonBand = smoothstep(0.42, 0.58, sin(p.x * 2.6 - p.y * 1.9 + n2 * 2.5));',
-    '    col = mix(col, cSaddleTint, ribbonBand * 0.52);',
-    '    float specularSheen = pow(foldCrest, 3.2) * 0.38;',
-    '    col = mix(col, cGoldRibbon, specularSheen);',
+    '    col = mix(cPureWhite, cLightBeige, foldCrest * 0.85);',
+    '    float stoneFold = smoothstep(0.35, 0.72, sin(p.x * 2.4 - p.y * 1.8 + n2 * 2.2) * 0.5 + 0.5);',
+    '    col = mix(col, cWarmNeutral, stoneFold * 0.75);',
+    '    col = mix(col, cWarmBeige, pow(foldCrest, 2.8) * 0.36);',
+    '    col += silkMicroSheen * 0.015;',
+    '    col += grain * 0.012;',
+    '  } else if (u_theme < 1.5) {',
+    '    // THEME 1: 25% Authorized Deep Brand Swatches (#000E21 Deep Navy, #14292F Dark Green, #1D353C Excelstra Green) + Scarce #BF9B30 Gold',
+    '    vec3 cDeepNavy       = vec3(0.000, 0.055, 0.129); // #000E21',
+    '    vec3 cDarkGreen      = vec3(0.078, 0.161, 0.184); // #14292F',
+    '    vec3 cExcelstraGreen = vec3(0.114, 0.208, 0.235); // #1D353C',
+    '    vec3 cExcelstraGold  = vec3(0.749, 0.608, 0.188); // #BF9B30',
+    '',
+    '    col = mix(cDeepNavy, cDarkGreen, foldCrest * 0.88);',
+    '    float greenDrape = smoothstep(0.28, 0.76, secondaryWave * n1);',
+    '    col = mix(col, cExcelstraGreen, greenDrape * 0.68);',
+    '    // Scarce 15% Gold crest shimmer',
+    '    float goldCrest = pow(foldCrest, 4.4) * 0.26;',
+    '    col = mix(col, cExcelstraGold, goldCrest);',
     '    col += silkMicroSheen * 0.018;',
     '    col += grain * 0.016;',
-    '  } else if (u_theme < 1.5) {',
-    '    // THEME 1: Sovereign Midnight — Deep Navy, Prussian Silk, Forest Emerald & Burnished Gold',
-    '    vec3 cDeepNavy  = vec3(0.004, 0.055, 0.129); // #010E21',
-    '    vec3 cPrussian  = vec3(0.039, 0.125, 0.235); // #0A203C',
-    '    vec3 cEmerald   = vec3(0.051, 0.245, 0.165); // Deep Excelstra Green undertone',
-    '    vec3 cGoldThread= vec3(0.780, 0.635, 0.265); // #C7A244',
-    '',
-    '    col = mix(cDeepNavy, cPrussian, foldCrest * 0.9);',
-    '    float emeraldCurrent = smoothstep(0.3, 0.75, secondaryWave * n1);',
-    '    col = mix(col, cEmerald, emeraldCurrent * 0.42);',
-    '    float goldCrest = pow(foldCrest, 3.6) * 0.48;',
-    '    col = mix(col, cGoldThread, goldCrest);',
-    '    col += silkMicroSheen * 0.022;',
-    '    col += grain * 0.02;',
     '  } else {',
-    '    // THEME 2: Warm Cashmere & Saddlery Parchment',
-    '    vec3 cWarmBase  = vec3(0.953, 0.929, 0.878); // #F3EDE0',
-    '    vec3 cCashmere  = vec3(0.890, 0.835, 0.733); // #E3D5BB',
-    '    vec3 cBronze    = vec3(0.765, 0.624, 0.325); // #C39F53',
-    '    col = mix(cWarmBase, cCashmere, foldCrest * 0.88);',
-    '    col = mix(col, cBronze, pow(foldCrest, 3.4) * 0.32);',
-    '    col += silkMicroSheen * 0.02;',
-    '    col += grain * 0.018;',
+    '    // THEME 2: 60% Authorized Warm Neutral & Warm Beige (#F8F7F5, #F4F3F0, #DEDAD2) with subtle #1D353C / #BF9B30 thread',
+    '    vec3 cLightBeige  = vec3(0.973, 0.969, 0.961); // #F8F7F5',
+    '    vec3 cWarmNeutral = vec3(0.957, 0.953, 0.941); // #F4F3F0',
+    '    vec3 cWarmBeige   = vec3(0.871, 0.855, 0.824); // #DEDAD2',
+    '    vec3 cGoldLight   = vec3(0.855, 0.745, 0.506); // #DABE81',
+    '',
+    '    col = mix(cLightBeige, cWarmNeutral, foldCrest * 0.82);',
+    '    col = mix(col, cWarmBeige, pow(foldCrest, 2.2) * 0.48);',
+    '    col = mix(col, cGoldLight, pow(foldCrest, 4.2) * 0.14);',
+    '    col += silkMicroSheen * 0.016;',
+    '    col += grain * 0.014;',
     '  }',
     '',
     '  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);',
