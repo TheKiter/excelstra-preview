@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const BUILD_VER = '20261025v2h';
+  const BUILD_VER = '20261026v5a';
 
   /* ------------------------------------------------------------------------
      0. Iframe Cache-Buster & Internal Link Versioning
@@ -32,7 +32,7 @@
   });
 
   /* ------------------------------------------------------------------------
-     1. Floating Design Version Switcher (V1 Classic vs V2 Hermes Liquid Glass vs V4 Scroll Film)
+     1. Floating Design Version Switcher (V1 / V2 / V4 / V5)
      ------------------------------------------------------------------------ */
   function mountVersionSwitcher() {
     if (document.getElementById('designVersionSwitcher')) return;
@@ -57,10 +57,11 @@
     bar.setAttribute('aria-label', 'Design Version Comparison Switcher');
 
     bar.innerHTML =
-      '<span class="dvs-label">Design Edition</span>' +
-      '<a href="../' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic Editorial</a>' +
-      '<a href="' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V2 &middot; Herm&egrave;s Liquid Glass</a>' +
-      '<a href="../v4/' + v4Target + '?v=' + BUILD_VER + '" class="dvs-option">V4 &middot; Scroll Film</a>';
+      '<span class="dvs-label">Edition</span>' +
+      '<a href="../' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic</a>' +
+      '<a href="' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V2 &middot; Liquid Glass</a>' +
+      '<a href="../v4/' + v4Target + '?v=' + BUILD_VER + '" class="dvs-option">V4 &middot; Sovereign</a>' +
+      '<a href="../v5/' + v4Target + '?v=' + BUILD_VER + '" class="dvs-option">V5 &middot; Light Luxury</a>';
 
     document.body.appendChild(bar);
   }

@@ -2,8 +2,8 @@
 (function () {
   'use strict';
 
-  /* ── 0. Cache-Buster & Floating Design Version Switcher (V1 / V2 / V4) ── */
-  var BUILD_VER = '20261025v2h';
+  /* ── 0. Cache-Buster & Floating Design Version Switcher (V1 / V2 / V4 / V5) ── */
+  var BUILD_VER = '20261026v5a';
   try {
     var currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.indexOf('http') === 0 && currentUrl.searchParams.get('v') !== BUILD_VER) {
@@ -61,10 +61,11 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Design Version Comparison Switcher');
     bar.innerHTML =
-      '<span class="dvs-label">Design Edition</span>' +
-      '<a href="../' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic Editorial</a>' +
-      '<a href="../v2/' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V2 &middot; Herm&egrave;s Liquid Glass</a>' +
-      '<a href="' + v4File + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V4 &middot; Scroll Film</a>';
+      '<span class="dvs-label">Edition</span>' +
+      '<a href="../' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic</a>' +
+      '<a href="../v2/' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V2 &middot; Liquid Glass</a>' +
+      '<a href="' + v4File + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V4 &middot; Sovereign</a>' +
+      '<a href="../v5/' + v4File + '?v=' + BUILD_VER + '" class="dvs-option">V5 &middot; Light Luxury</a>';
     document.body.appendChild(bar);
   }
 
