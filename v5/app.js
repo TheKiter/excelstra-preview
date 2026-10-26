@@ -8,8 +8,8 @@
 (function () {
   'use strict';
 
-  /* ── 0. Cache-Buster & Floating Design Version Switcher (V1 / V2 / V4 / V5) ── */
-  var BUILD_VER = '20261026v5a';
+  /* ── 0. Cache-Buster & Floating Design Version Switcher (V1 / V2 / V5) ── */
+  var BUILD_VER = '20261026v5b';
   try {
     var currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.indexOf('http') === 0 && currentUrl.searchParams.get('v') !== BUILD_VER) {
@@ -70,7 +70,6 @@
       '<span class="dvs-label">Edition</span>' +
       '<a href="../' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic</a>' +
       '<a href="../v2/' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V2 &middot; Liquid Glass</a>' +
-      '<a href="../v4/' + v5File + '?v=' + BUILD_VER + '" class="dvs-option">V4 &middot; Sovereign</a>' +
       '<a href="' + v5File + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V5 &middot; Light Luxury</a>';
     document.body.appendChild(bar);
   }

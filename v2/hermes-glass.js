@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const BUILD_VER = '20261026v5a';
+  const BUILD_VER = '20261026v5b';
 
   /* ------------------------------------------------------------------------
      0. Iframe Cache-Buster & Internal Link Versioning
@@ -32,14 +32,14 @@
   });
 
   /* ------------------------------------------------------------------------
-     1. Floating Design Version Switcher (V1 / V2 / V4 / V5)
+     1. Floating Design Version Switcher (V1 / V2 / V5)
      ------------------------------------------------------------------------ */
   function mountVersionSwitcher() {
     if (document.getElementById('designVersionSwitcher')) return;
     const pathName = window.location.pathname;
     const fileName = (pathName.split('/').pop() || 'index.html').split('?')[0] || 'index.html';
     const targetFile = fileName.endsWith('.html') ? fileName : 'index.html';
-    const v4Map = {
+    const v5Map = {
       'index.html': 'index.html',
       'integration.html': 'the-architecture.html',
       'membership.html': 'membership.html',
@@ -48,7 +48,7 @@
       'assessment.html': 'wealth-assessment.html',
       'connect.html': 'book-a-call.html'
     };
-    const v4Target = v4Map[targetFile] || 'index.html';
+    const v5Target = v5Map[targetFile] || 'index.html';
 
     const bar = document.createElement('div');
     bar.id = 'designVersionSwitcher';
@@ -60,8 +60,7 @@
       '<span class="dvs-label">Edition</span>' +
       '<a href="../' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic</a>' +
       '<a href="' + targetFile + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V2 &middot; Liquid Glass</a>' +
-      '<a href="../v4/' + v4Target + '?v=' + BUILD_VER + '" class="dvs-option">V4 &middot; Sovereign</a>' +
-      '<a href="../v5/' + v4Target + '?v=' + BUILD_VER + '" class="dvs-option">V5 &middot; Light Luxury</a>';
+      '<a href="../v5/' + v5Target + '?v=' + BUILD_VER + '" class="dvs-option">V5 &middot; Light Luxury</a>';
 
     document.body.appendChild(bar);
   }
