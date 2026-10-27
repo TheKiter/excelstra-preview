@@ -1,785 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Excelstra · Wealth Integrators for the Discerning</title>
-  <meta name="description" content="Where wealth is integrated with intention, transformed with artistry, and delivered with mastery. A boutique wealth integration firm bridging tax, wealth, and transition.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Excelstra · Wealth Integrators for the Discerning">
-  <meta property="og:description" content="You are the wealth generator; we are the wealth integrators. Discover what becomes possible when your financial life is integrated with intention.">
-  <meta property="og:image" content="assets/share.png">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="styles.css?v=20261026v5b">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Excelstra &middot; Seen. Heard. Held. | The Ripple Architecture of Whole Wealth</title>
+<meta name="description" content="Stop settling for cookie-cutter strategies that sink like rocks. Excelstra aligns your personal clarity, enterprise trajectory, tax stewardship, and family legacy so every move creates a lasting ripple.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Excelstra &middot; Seen. Heard. Held.">
+<meta property="og:description" content="Where inner clarity meets institutional wealth architecture. Discover the ripple effect when your wealth and who you are becoming move as one.">
+<meta property="og:image" content="share.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261027v6a">
 </head>
-<body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+<body class="home-page">
 
-  <!-- ======================== GLOBAL HEADER ======================== -->
-  <header class="site-header">
-    <div class="container nav-inner">
-      <a href="index.html?v=20261026v5b" class="brand-logo" aria-label="Excelstra Home">
-        <img src="assets/logo-black.png" alt="Excelstra">
-        <span class="brand-logo-sub">Wealth Empowered</span>
-      </a>
+<!-- ══════════ LOADER ══════════ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <img class="loader-mark" src="logo-black.png" alt="Excelstra">
+    <div class="loader-track"><div class="loader-bar" id="loaderBar"></div></div>
+    <div class="loader-pct" id="loaderPct">0%</div>
+  </div>
+</div>
 
-      <nav aria-label="Primary Navigation">
-        <ul class="nav-links">
-          <li><a href="index.html?v=20261026v5b" class="nav-link active" aria-current="page">Home</a></li>
-          <li><a href="integration.html?v=20261026v5b" class="nav-link">The Integration Model</a></li>
-          <li><a href="membership.html?v=20261026v5b" class="nav-link">Membership</a></li>
-          <li><a href="philosophy.html?v=20261026v5b" class="nav-link">Our Philosophy</a></li>
-          <li><a href="about.html?v=20261026v5b" class="nav-link">Leadership &amp; Team</a></li>
-          <li><a href="assessment.html?v=20261026v5b" class="nav-link">Wealth Assessment</a></li>
-        </ul>
-      </nav>
+<!-- ══════════ GLOBAL: PRIMARY NAVIGATION (TIGHT 5-PAGE ARCHITECTURE) ══════════ -->
+<nav id="nav" class="solid">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="Excelstra Home"><img src="logo-black.png" alt="Excelstra"></a>
+    <ul class="nav-links">
+      <li><a class="nav-link active" href="index.html">Home</a></li>
+      <li><a class="nav-link" href="the-architecture.html">The Ripple Architecture</a></li>
+      <li><a class="nav-link" href="membership.html">Membership &amp; Tribe</a></li>
+      <li><a class="nav-link" href="about.html">About &amp; Team</a></li>
+      <li><a class="nav-link" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Wealth Assessment</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="btn btn-gold btn-sm" href="book-a-call.html">Request Private&nbsp;Consultation</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
-      <div class="nav-actions">
-        <a href="connect.html?v=20261026v5b" class="btn btn-primary btn-sm">Private Consultation</a>
-        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu" aria-expanded="false">
-          Menu
+<div class="nav-mobile" id="navMobile">
+  <a class="active" href="index.html">Home</a>
+  <a href="the-architecture.html">The Ripple Architecture</a>
+  <a href="membership.html">Membership &amp; Tribe</a>
+  <a href="about.html">About &amp; Team</a>
+  <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Wealth Assessment</a>
+  <a class="btn btn-gold" href="book-a-call.html">Request Private&nbsp;Consultation</a>
+</div>
+
+<!-- ══════════ HERO · SCROLL FILM OVERTURE (REWRITTEN AROUND CURIOSITY, RIPPLE & SEEN/HEARD/HELD) ══════════ -->
+<section id="heroStage" class="scroll-stage hero-scroll-stage">
+  <div class="sticky-frame">
+    <div class="hero-canvas-wrap">
+      <canvas id="heroFilmCanvas" role="img" aria-label="Cinematic film: an expansive architectural overlook transitioning across mountain waters into an Italian harbor."></canvas>
+    </div>
+    <div class="film-vignette"></div>
+    <div class="film-grade"></div>
+    <div class="film-scrim" id="filmScrim"></div>
+
+    <div class="hero-copy stage hero-stage" data-stage="0">
+      <p class="eyebrow reveal-line">Excelstra &middot; Driven by Curiosity</p>
+      <h1 class="hero-h">Stop Settling for Strategies<br>That Sink Like&nbsp;Rocks.<br><em>Design the Ripple&nbsp;Effect.</em></h1>
+    </div>
+
+    <div class="hero-copy stage hero-stage" data-stage="1">
+      <h2 class="hero-sub">You have carried the emotional labor, the hard knocks, and the cookie-cutter advice long&nbsp;enough.<br><em>Step into the sanctuary where you are finally seen, heard, and&nbsp;held.</em></h2>
+    </div>
+
+    <div class="hero-copy stage hero-stage" data-stage="2">
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#ripple-engine">Experience the Ripple&nbsp;Engine</a>
+        <p class="cta-note">Nothing cookie-cutter. Clarify what you truly want, align your frequency, and command your whole picture.</p>
+        <a class="btn btn-ghost btn-sm" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Begin Your Wealth&nbsp;Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CREDIBILITY PEDIGREE STRIP ══════════ -->
+<div class="pedigree-strip rv in">
+  <div class="pedigree-inner">
+    <p class="pedigree-label">Advisory Pedigree Across Trusted Institutions &amp; Leadership Circles</p>
+    <ul class="pedigree-names">
+      <li class="pedigree-name">Deloitte</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">EY</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">Booz&amp;Co</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">Coca-Cola</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">Bank of America</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">American Express</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">Uber</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">Toyota</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">Marquis Who's Who</li>
+      <span class="pedigree-dot" aria-hidden="true">&bull;</span>
+      <li class="pedigree-name">Fortune 500</li>
+    </ul>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════ SECTION 01 · THE UNSPOKEN TRUTH OF OWNERSHIP ══════════ -->
+<section class="sect" id="unspoken-weight">
+  <span class="ghost-num prlx" data-depth="0.09" aria-hidden="true">01</span>
+  <div class="wrap">
+    <div class="purpose-grid">
+      <p class="purpose-q rv in">The Unspoken Truth</p>
+      <h2 class="h2 rv lead-statement in">You Are Afraid of Losing What You&nbsp;Built.<div>And Just as Afraid of Losing&nbsp;Yourself.</div></h2>
+    </div>
+    <div class="purpose-foot">
+      <div>
+        <p class="body rv in">Traditional advisors only talk about spreadsheets and asset buckets. They never ask about the quiet weight you carry at 2:00 a.m.: the desire to reinvent who you are without losing your relevance, your purpose, or the fortune you spent decades building.</p>
+        <p class="body rv in">Before we touch a single tax code or trust structure, we name the four realities that keep accomplished business owners stuck repeating old patterns instead of choosing their next trajectory.</p>
+      </div>
+      <div>
+        <p class="pull rv in">Finding relevance begins with knowing what you truly want versus what you really do not want, so you can forget the exhausting tactics and love what you do again.</p>
+      </div>
+    </div>
+
+    <div class="unspoken-grid">
+      <article class="unspoken-card rv">
+        <div>
+          <span class="unspoken-kicker">Reality 01 &middot; The Scar of Past Advice</span>
+          <h3 class="unspoken-title">Hesitant After Bad Advice &amp; Industry Consolidation</h3>
+          <p class="body">Perhaps a CPA, attorney, or financial advisor gave you bad advice in the past that cost you money or got you in trouble, leaving you anxious about experiencing more of the same. Or your industry is consolidating, and you have watched peers suffer through poorly structured transitions.</p>
+        </div>
+        <div class="unspoken-shift">
+          <strong>The Shift:</strong> Contrast creates wisdom. We turn past hard knocks into a coordinated shield so you never step into a blind spot again.
+        </div>
+      </article>
+
+      <article class="unspoken-card rv">
+        <div>
+          <span class="unspoken-kicker">Reality 02 &middot; Imposed Cookie-Cutter Tactics</span>
+          <h3 class="unspoken-title">Tired of Advisors Pushing Their Strategies Without Knowing Your Why</h3>
+          <p class="body">Your financial team wants you to invest in their products and their pre-packaged strategies, without understanding the bigger picture or the hard knocks you navigate inside the business every day. Nothing feels personalized to you.</p>
+        </div>
+        <div class="unspoken-shift">
+          <strong>The Shift:</strong> Zero cookie-cutter playbooks. Every strategy answers to your personal vision, your timing, and your life.
+        </div>
+      </article>
+
+      <article class="unspoken-card rv">
+        <div>
+          <span class="unspoken-kicker">Reality 03 &middot; The Overgiver's Emotional Labor</span>
+          <h3 class="unspoken-title">Carrying Everyone Else While Leaving Yourself Last</h3>
+          <p class="body">You overgive and help everyone around you more than you should: your team, your clients, your extended family. You are paid not only for your work, but for the immense emotional labor that goes with it, unable to let go of what you have taken ownership of.</p>
+        </div>
+        <div class="unspoken-shift">
+          <strong>The Shift:</strong> We hold the strategic weight so you can release pattern ownership and ask: what is my highest, most effective activity right now?
+        </div>
+      </article>
+
+      <article class="unspoken-card rv">
+        <div>
+          <span class="unspoken-kicker">Reality 04 &middot; The Herd Illusion</span>
+          <h3 class="unspoken-title">Hiding in the Middle of the Pack Instead of Choosing Your Trajectory</h3>
+          <p class="body">There is a false perception that if you stay in the middle of the herd doing what everyone else is doing, you will somehow be safe, even when nobody in the herd understands what is actually happening beneath the surface.</p>
+        </div>
+        <div class="unspoken-shift">
+          <strong>The Shift:</strong> Step out of the herd. Move from scanning for what is wrong to consciously manifesting what is possible.
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 02 · DYNAMIC SKIPPING STONE VS. SINKING ROCK PHYSICS ENGINE ══════════ -->
+<section class="sect sect-panel" id="ripple-engine">
+  <span class="ghost-num prlx" data-depth="0.07" aria-hidden="true">02</span>
+  <div class="wrap">
+    <div style="text-align:center; max-width:820px; margin-inline:auto; margin-bottom:2.8rem;">
+      <p class="eyebrow rv in">Interactive Physics Simulation</p>
+      <h2 class="h2 rv in">The Skipping Stone vs. The Sinking&nbsp;Rock</h2>
+      <p class="body rv centered in">When an advisor throws an isolated tactic at you without understanding your life, it drops into the water and sinks like a rock. When your inner relevance and outer architecture are mastered together, a single intentional move skips across the surface and sends ripples through every dimension of your world.</p>
+    </div>
+
+    <div class="ripple-theater rv in">
+      <div class="ripple-controls-bar">
+        <div class="ripple-mode-group" role="group" aria-label="Simulation Trajectory Mode">
+          <button type="button" class="ripple-mode-btn active" data-ripple-mode="skip" aria-pressed="true">Skip an Aligned Decision (The Ripple Effect)</button>
+          <button type="button" class="ripple-mode-btn" data-ripple-mode="sink" aria-pressed="false">Throw a Sinking Strategy (Typical Advisory)</button>
+        </div>
+        <button type="button" class="ripple-relaunch-btn" id="rippleRelaunchBtn">Relaunch Stone &circlearrowright;</button>
+      </div>
+
+      <div class="ripple-stage-box">
+        <div class="ripple-telemetry-hud">
+          <span class="ripple-hud-badge" id="rippleHudBadge">Trajectory: Mastered Angle &middot; 5 Harmonic Ripples Active</span>
+          <span class="ripple-hud-hint">Click any numbered node or water surface to trigger live ripples</span>
+        </div>
+        <canvas id="ripplePhysicsCanvas" aria-label="Interactive Skipping Stone vs. Sinking Rock Physics Simulation"></canvas>
+      </div>
+
+      <div class="ripple-nodes-bar" role="tablist" aria-label="Five Ripples of Integrated Wealth">
+        <button type="button" class="ripple-skip-pill active" data-skip-index="0">
+          <span class="ripple-skip-num">Ripple 01</span>
+          <span class="ripple-skip-name">Inner Relevance &amp; Curiosity</span>
+        </button>
+        <button type="button" class="ripple-skip-pill" data-skip-index="1">
+          <span class="ripple-skip-num">Ripple 02</span>
+          <span class="ripple-skip-name">Highest-Value Flow</span>
+        </button>
+        <button type="button" class="ripple-skip-pill" data-skip-index="2">
+          <span class="ripple-skip-num">Ripple 03</span>
+          <span class="ripple-skip-name">Strategic Tax Stewardship</span>
+        </button>
+        <button type="button" class="ripple-skip-pill" data-skip-index="3">
+          <span class="ripple-skip-num">Ripple 04</span>
+          <span class="ripple-skip-name">Wealth Amplifies Frequency</span>
+        </button>
+        <button type="button" class="ripple-skip-pill" data-skip-index="4">
+          <span class="ripple-skip-num">Ripple 05</span>
+          <span class="ripple-skip-name">Family &amp; Legacy Resonance</span>
         </button>
       </div>
-    </div>
 
-    <div class="mobile-drawer" id="mobileDrawer">
-      <a href="index.html?v=20261026v5b">Home</a>
-      <a href="integration.html?v=20261026v5b">The Integration Model</a>
-      <a href="membership.html?v=20261026v5b">Membership</a>
-      <a href="philosophy.html?v=20261026v5b">Our Philosophy</a>
-      <a href="about.html?v=20261026v5b">Leadership &amp; Team</a>
-      <a href="assessment.html?v=20261026v5b">Whole Wealth Assessment</a>
-      <a href="connect.html?v=20261026v5b">Request Private Consultation</a>
-    </div>
-  </header>
-
-  <main id="main-content">
-    <!-- ======================== EDITORIAL HERO ======================== -->
-    <section class="hero-editorial">
-      <div class="hermes-hero-backdrop" style="background-image: url('assets/hermes-hero-architecture.jpg'); background-position: left center; opacity: 0.12;"></div>
-      <div class="container hero-grid">
+      <div class="ripple-readout-panel" aria-live="polite">
         <div>
-          <span class="eyebrow">Wealth Integrators for the Discerning</span>
-          <h1>Where wealth is integrated with intention, <em>transformed with artistry,</em> and delivered with mastery.</h1>
-          <p class="lead" style="margin-top: 1.4rem;">
-            You are the wealth generator; we are the wealth integrators. We are a boutique wealth integration firm built for self-made leaders who are building something meaningful and are ready to elevate it.
-          </p>
-
-          <div class="hero-declaration-box">
-            <p>
-              <em>Wealth, in full view - integrated with intention. Life, elevated with purpose.</em> We transform what feels fragmented into what feels whole across tax, wealth, and transition. We lead with heart. We earn trust through action.
-            </p>
-          </div>
-
-          <div class="hero-ctas btn-group">
-            <a href="integration.html?v=20261026v5b" class="btn btn-primary">Explore the Integration Model</a>
-            <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" class="btn btn-gold">Begin Whole Wealth Assessment</a>
-          </div>
-          <p class="hero-microcopy">
-            100% Fee-Only Independence &middot; Zero Commissions or Product Sales &middot; 3x Demonstrated Value Commitment
-          </p>
+          <span class="ripple-readout-kicker" id="rippleReadoutKicker">Skip 01 &middot; Inner Relevance &amp; Curiosity</span>
+          <h3 class="ripple-readout-title" id="rippleReadoutTitle">Knowing What You Want vs. What You Really Do Not Want</h3>
+          <p class="ripple-readout-desc" id="rippleReadoutDesc">Before touching a single tax or investment tactic, we start with curiosity and personal relevance. Most owners are stuck scanning for what is wrong or repeating old patterns. When you clarify what you truly want versus what you refuse to carry anymore, the angle of the stone is set.</p>
         </div>
+        <div class="ripple-readout-metric">
+          <span id="rippleReadoutMetricLabel">Frequency Shift</span>
+          <p id="rippleReadoutMetricValue">From Pattern Repetition &amp; Fear to Curiosity &amp; What Is Possible</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div>
-          <div class="hero-portrait-frame">
-            <img src="assets/eunicia-portrait-white.jpg?v=20261026v5b" alt="Eunicia Peret, Founder and CEO of Excelstra">
-            <div class="hero-portrait-caption">
-              <div>
-                <div class="hero-portrait-name">Eunicia Peret</div>
-                <div class="hero-portrait-credo">"We listen to who you are before we look at what you have."</div>
-              </div>
-              <span class="hero-portrait-role">Founder &amp; CEO</span>
+<!-- ══════════ SECTION 03 · THE FOUR ENERGETIC LAWS OF WHOLE WEALTH ══════════ -->
+<section class="sect" id="energetic-laws">
+  <span class="ghost-num prlx" data-depth="0.08" aria-hidden="true">03</span>
+  <div class="wrap">
+    <p class="eyebrow rv in">Inner &amp; Outer Alignment</p>
+    <h2 class="h2 rv in">Your Business Can Only Develop as Far as Your Personal Development&nbsp;Does.</h2>
+    <div class="cols">
+      <p class="body rv in">Many accomplished founders avoid personal development because of the quiet fear of what they might find when they slow down. Instead, they stay busy doing more of the same, managing tactics and putting out fires.</p>
+      <p class="body rv in">At Excelstra, we bridge the inner work and the outer balance sheet. Because whatever is showing up in your enterprise and financial life today is a reflection of where your energy has been focused.</p>
+    </div>
+
+    <div class="pillars" data-stagger="" style="margin-top:2.8rem;">
+      <div class="pillar rv stagger-1 in">
+        <span class="pillar-ghost">I</span>
+        <h3 class="h3">You Are Always<br>Manifesting</h3>
+        <p class="pillar-lede">Where Focus Goes, Trajectory Follows.</p>
+        <p class="body">Whatever is in your life today, you have helped create through where you focus your energy. When you stop scanning exclusively for what is wrong or what might break, and begin designing what is possible, your entire advisory architecture shifts from defense to creation.</p>
+      </div>
+
+      <div class="pillar rv off-1 stagger-2 in">
+        <span class="pillar-ghost">II</span>
+        <h3 class="h3">Contrast Creates<br>Wisdom</h3>
+        <p class="pillar-lede">Turning Hard Knocks into Mastery.</p>
+        <p class="body">We need contrast for wisdom. The hardest chapters you have lived through, the bad advice you survived, and the friction inside your industry are the exact raw material that clarifies what you truly want versus what you will never tolerate again.</p>
+      </div>
+
+      <div class="pillar rv off-2 stagger-3 in">
+        <span class="pillar-ghost">III</span>
+        <h3 class="h3">Money Amplifies<br>Your Frequency</h3>
+        <p class="pillar-lede">Your Vibe Is Your Tribe.</p>
+        <p class="body">Wealth is an amplifier of who you already are. When your inner clarity, your tax stewardship, your capital, and your legacy plan are integrated into one frequency, money deepens your freedom and your connection with family and those you love.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EDITORIAL PHOTO BREAK: ARCHITECTURAL INTERIOR ══════════ -->
+<div class="photo-break rv in">
+  <img src="images/editorial-interior.jpg" alt="Excelstra Sanctuary" loading="lazy">
+  <div class="photo-break-scrim"></div>
+  <div class="photo-break-caption">
+    <p class="photo-break-quote">"The ultimate definition of bespoke partnership: being seen, being heard, being held."</p>
+    <span class="photo-break-tag">Sanctuary</span>
+  </div>
+</div>
+
+<!-- ══════════ SECTION 04 · SEEN. HEARD. HELD. & SOCIAL PROOF ══════════ -->
+<section class="sect sect-light" id="seen-heard-held">
+  <span class="ghost-num prlx" data-depth="0.09" aria-hidden="true">04</span>
+  <div class="wrap center">
+    <p class="eyebrow rv in">The Excelstra Standard</p>
+    <h2 class="h2 rv in">What Happens When Nothing Feels Like a Cookie&nbsp;Cutter.</h2>
+    <p class="body rv centered narrow-c in">You do not need another isolated specialist imposing their playbook on you. You need a dedicated firm that understands the emotional and strategic weight of ownership, coordinates every discipline around your life, and holds the whole picture.</p>
+
+    <div class="sanctuary-triptych">
+      <div class="sanctuary-card rv">
+        <span class="sanctuary-word">Seen.</span>
+        <p class="body" style="margin:0;">We see the whole person behind the enterprise: your history, the hard knocks you have weathered, your family dynamics, and who you are becoming next.</p>
+      </div>
+      <div class="sanctuary-card featured-sanctuary rv">
+        <span class="sanctuary-word">Heard.</span>
+        <p class="body" style="margin:0;">We listen before we design. No pre-packaged strategies imposed on you. Every move begins with what you truly want versus what you are ready to let go of.</p>
+      </div>
+      <div class="sanctuary-card rv">
+        <span class="sanctuary-word">Held.</span>
+        <p class="body" style="margin:0;">Our multidisciplinary bench carries the inter-advisor coordination across tax, wealth, legal structure, and transition so you can stop carrying it alone.</p>
+      </div>
+    </div>
+
+    <div class="monument-stat-box rv in" style="margin-top:4rem;">
+      <span class="monument-fig">$500,000,000+</span>
+      <p class="monument-cap">In Combined Member Wealth Identified &amp; Protected<br>Across Tax, Investment, and Transition Structures</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 05 · VERIFIED MEMBER PERSPECTIVES (V5 TEXT TESTIMONIALS) ══════════ -->
+<section class="sect sect-panel" id="client-testimonials">
+  <span class="ghost-num prlx" data-depth="0.08" aria-hidden="true">Proof</span>
+  <div class="wrap center">
+    <p class="eyebrow rv in">Verified Member&nbsp;Perspectives</p>
+    <h2 class="h2 rv in">From Carrying the Weight in Pieces to Commanding the&nbsp;Whole.</h2>
+    <span class="draw-rule rv in"></span>
+
+    <div class="testimonial-grid rv in">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"Before Excelstra, I had a top-tier CPA, a reputable wealth manager, and corporate counsel. None of them talked. Eunicia's team stepped in, uncovered $1.8M in annual tax drag, and aligned our exit roadmap. It is the single most valuable room I sit in."</p>
+        <div class="testimonial-author">
+          <span class="testimonial-title">Tech Founder &middot; $48M Enterprise Exit</span>
+          <span class="testimonial-context">Member Since 2022</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"Most advisors sell products. Excelstra built our architecture. They looked at our real estate portfolio, statutory trusts, and cross-entity liquidity as one living organism. The peace of mind is immeasurable."</p>
+        <div class="testimonial-author">
+          <span class="testimonial-title">Commercial Real Estate Principal</span>
+          <span class="testimonial-context">Portfolio Value $85M+</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"The two-minute assessment showed me an $850k annual gap I didn't know existed. Within six months, the integration team had restructured our holding entities and recovered the capital. The standard of work is unmatched."</p>
+        <div class="testimonial-author">
+          <span class="testimonial-title">Healthcare Network Founder</span>
+          <span class="testimonial-context">Operating Enterprise Principal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 06 · MEET EUNICIA & THE PRACTICE ══════════ -->
+<section class="sect" id="the-team">
+  <span class="ghost-num prlx" data-depth="0.07" aria-hidden="true">05</span>
+  <div class="wrap">
+    <div class="profile">
+      <div class="profile-copy">
+        <p class="eyebrow rv in">Leadership &amp; Sanctuary</p>
+        <h2 class="h2 rv in">Led by Eunicia Peret: Institutional Mastery Delivered with Personal&nbsp;Care.</h2>
+        <p class="body rv in">After more than a decade in the rooms where Fortune 500 strategy is made across Deloitte, EY, and Booz&amp;Co, Eunicia Peret built the firm she wished private business owners had: a sanctuary where technical excellence in tax, capital, and exit design meets deep human understanding.</p>
+        <p class="body rv in">Here, you never have to translate between siloed advisors or wonder if a recommendation is serving someone else's agenda. Our entire bench works as one to protect what you have built and honor who you are becoming.</p>
+
+        <div class="rv in" style="margin-top:2.2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a class="btn btn-gold btn-sm" href="about.html">Meet Eunicia &amp; The Firm &rarr;</a>
+          <a class="btn btn-ghost btn-sm" href="the-architecture.html">Explore The Ripple Architecture &rarr;</a>
+        </div>
+      </div>
+
+      <div class="rv in">
+        <div class="portrait-card">
+          <img src="images/eunicia-portrait.jpg" alt="Eunicia Peret · Founder &amp; Wealth Integrator" loading="lazy">
+          <div class="portrait-card-caption">
+            <div>
+              <span class="portrait-card-name">Eunicia Peret</span>
+              <span class="stat-cap" style="display:block; margin-top:0.2rem;">Founder, Excelstra &middot; Wealth Integrator</span>
             </div>
+            <span class="portrait-card-title">Leadership</span>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- ======================== PEDIGREE RIBBON ======================== -->
-    <div class="pedigree-bar" aria-label="Institutional Strategy Pedigree">
-      <div class="container pedigree-inner">
-        <span class="pedigree-label">Executive Strategy Pedigree Across</span>
-        <ul class="pedigree-list">
-          <li class="pedigree-item">Deloitte</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">EY</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">Booz &amp; Co.</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">Coca-Cola</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">Bank of America</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">American Express</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">Uber</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">Toyota</li>
-          <li class="pedigree-sep" aria-hidden="true"></li>
-          <li class="pedigree-item">Marquis Who's Who</li>
+<!-- ══════════ SECTION 07 · CLOSING INVITATION ══════════ -->
+<section class="sect sect-summit" id="closing-invitation">
+  <div class="wrap center">
+    <p class="eyebrow rv in">Choose Your Trajectory</p>
+    <h2 class="h2 rv big venture in"><div>You Built the Remarkable.</div><span style="color:#c9a869;"><i>Now Let Every Move Ripple.</i></span></h2>
+    <p class="body rv centered narrow-c in" style="margin-top:1.8rem;">Whether you want a two-minute read on your current numbers or a private conversation about what is next for your business and your life, there is no pitch and no cookie-cutter agenda. Only clarity.</p>
+    <div class="rv in" style="margin-top:3rem; display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
+      <a class="btn btn-gold" href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Begin Your Wealth&nbsp;Assessment</a>
+      <a class="btn btn-ghost" href="book-a-call.html">Request Private&nbsp;Consultation</a>
+    </div>
+    <p class="cta-microcopy" style="margin-top:1.2rem;">Strictly Confidential &middot; Zero Cookie-Cutter Advice &middot; Seen, Heard &amp; Held</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ GLOBAL: FOOTER ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-mark center-sm">
+      <a href="index.html"><img class="foot-logo" src="logo-white.png" alt="Excelstra"></a>
+      <span>Wealth Integrators for the Discerning.</span>
+    </div>
+
+    <div class="foot-directory">
+      <div class="foot-col">
+        <h3 class="foot-col-title">The&nbsp;Firm</h3>
+        <p class="body dim" style="font-size:0.86rem; line-height:1.6; margin-bottom:1rem;">
+          Excelstra LLC, 6340 Sugarloaf Parkway, Suite 200, Duluth, GA 30097
+        </p>
+        <p class="body dim" style="font-size:0.86rem;">
+          Contact: <a href="mailto:contact@excelstra.com" style="color:var(--gold); text-decoration:none;">contact@excelstra.com</a>
+        </p>
+        <div class="foot-socials">
+          <a href="https://www.linkedin.com/in/euniciaperet" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.youtube.com/channel/UCYEEKN0lPrqchL4_H0aOGhw" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/efp_official_team_page" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/empoweredfinancialplanner" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h3 class="foot-col-title">Architecture</h3>
+        <ul>
+          <li><a href="index.html">Home &middot; The Ripple Engine</a></li>
+          <li><a href="the-architecture.html">The Ripple Architecture</a></li>
+          <li><a href="the-architecture.html#architectural-hub">Five-Discipline Council</a></li>
+          <li><a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Whole Wealth Assessment</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h3 class="foot-col-title">Membership &amp;&nbsp;Tribe</h3>
+        <ul>
+          <li><a href="membership.html">Diamond &amp; Gold Partnership</a></li>
+          <li><a href="membership.html#true-wealth-mastery">True Wealth Mastery</a></li>
+          <li><a href="membership.html#voice-and-stage">Keynotes &amp; Podcast</a></li>
+          <li><a href="about.html">About Eunicia &amp; Our Team</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h3 class="foot-col-title">Private&nbsp;Inquiry</h3>
+        <ul>
+          <li><a href="book-a-call.html">Request Consultation</a></li>
+          <li><a href="book-a-call.html#diagnostic">Relevance &amp; Ripple Diagnostic</a></li>
+          <li><a href="book-a-call.html#questions-to-ask">Questions You Should Be Asking</a></li>
         </ul>
       </div>
     </div>
 
-    <!-- ======================== SECTION 01: THE INTEGRATED PHILOSOPHY & BRIDGE ======================== -->
-    <section class="section-white" id="integrated-philosophy">
-      <div class="container">
-        <div class="grid-2" style="align-items: start; margin-bottom: 3.5rem;">
-          <div>
-            <span class="eyebrow">The Integrated Philosophy</span>
-            <h2>We see the whole before we change the parts.</h2>
-            <blockquote class="editorial-quote">
-              "To advise is common. To lead is to elevate by seeing the whole and integrating it strategically."
-            </blockquote>
-          </div>
-          <div>
-            <p class="body-copy">
-              When a member interacts with Excelstra, they feel it immediately: warmth that is genuine and intentional, and confidence in knowing someone sees the full picture and is orchestrating each part of it with care.
-            </p>
-            <p class="body-copy">
-              We act as the bridge between your existing teams and current strategies, connecting what operates in isolation and revealing where deeper alignment to your vision is possible. When wealth is in full view, the value it creates is both meaningful and measurable. Established family offices reach out to us for strategic support and collaboration. That is the caliber of the work.
-            </p>
-            <p class="venture-signature" style="margin-top: 1.25rem;">
-              Venture Beyond. We see the whole before we change the parts - and that changes everything.
-            </p>
-          </div>
-        </div>
-
-        <!-- Interactive Bridge & Alignment Schematic -->
-        <div class="bridge-explorer">
-          <div class="bridge-diagram-wrap">
-            <svg class="bridge-svg" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Excelstra Bridge Architecture Diagram">
-              <!-- Subtle Architectural Grid & Corner Marks -->
-              <rect x="10" y="10" width="660" height="420" fill="#FAF9F6" stroke="rgba(29,53,60,0.14)" stroke-width="1"/>
-              <path d="M 18 28 L 18 18 L 28 18 M 652 18 L 662 18 L 662 28 M 18 412 L 18 422 L 28 422 M 652 422 L 662 422 L 662 412" fill="none" stroke="#BF9B30" stroke-width="1.25"/>
-              <circle cx="340" cy="220" r="145" fill="none" stroke="rgba(191,155,48,0.38)" stroke-width="1" stroke-dasharray="4 4"/>
-              <circle cx="340" cy="220" r="95" fill="rgba(191,155,48,0.05)" stroke="rgba(29,53,60,0.12)" stroke-width="1"/>
-
-              <!-- Connector Lines & Alignment Nodes -->
-              <line x1="340" y1="220" x2="155" y2="95" stroke="#BF9B30" stroke-width="1.5"/>
-              <line x1="340" y1="220" x2="525" y2="95" stroke="#BF9B30" stroke-width="1.5"/>
-              <line x1="340" y1="220" x2="565" y2="275" stroke="#BF9B30" stroke-width="1.5"/>
-              <line x1="340" y1="220" x2="115" y2="275" stroke="#BF9B30" stroke-width="1.5"/>
-              <line x1="340" y1="220" x2="340" y2="375" stroke="#BF9B30" stroke-width="1.5"/>
-
-              <circle cx="247" cy="157" r="3" fill="#BF9B30"/>
-              <circle cx="432" cy="157" r="3" fill="#BF9B30"/>
-              <circle cx="452" cy="247" r="3" fill="#BF9B30"/>
-              <circle cx="227" cy="247" r="3" fill="#BF9B30"/>
-              <circle cx="340" cy="297" r="3" fill="#BF9B30"/>
-
-              <!-- Node: Tax Stewardship -->
-              <g class="bridge-node" data-bridge-key="tax" tabindex="0" role="button" aria-label="Tax Stewardship" transform="translate(155, 95)">
-                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
-                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">TAX</text>
-                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Stewardship</text>
-              </g>
-
-              <!-- Node: Wealth Amplification -->
-              <g class="bridge-node" data-bridge-key="wealth" tabindex="0" role="button" aria-label="Wealth Amplification" transform="translate(525, 95)">
-                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
-                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">WEALTH</text>
-                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Amplification</text>
-              </g>
-
-              <!-- Node: Legacy Exit Planning -->
-              <g class="bridge-node" data-bridge-key="exit" tabindex="0" role="button" aria-label="Transition and Legacy Exit Planning" transform="translate(565, 275)">
-                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
-                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">TRANSITION</text>
-                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Exit &amp; Legacy</text>
-              </g>
-
-              <!-- Node: Existing Advisors -->
-              <g class="bridge-node" data-bridge-key="advisors" tabindex="0" role="button" aria-label="Your Existing CPA and Counsel" transform="translate(115, 275)">
-                <circle class="node-bg" cx="0" cy="0" r="46" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
-                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">YOUR TEAM</text>
-                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">CPA &amp; Counsel</text>
-              </g>
-
-              <!-- Node: Holistic Longevity -->
-              <g class="bridge-node" data-bridge-key="longevity" tabindex="0" role="button" aria-label="Longevity and Family Flourishing" transform="translate(340, 375)">
-                <circle class="node-bg" cx="0" cy="0" r="44" fill="#FFFFFF" stroke="#1D353C" stroke-width="1.5"/>
-                <text class="node-label" x="0" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" fill="#000E21">LONGEVITY</text>
-                <text class="node-sub" x="0" y="12" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9.5" fill="#5A6B72">Health &amp; Heirs</text>
-              </g>
-
-              <!-- Central Core: Excelstra Bridge -->
-              <g class="bridge-node active" data-bridge-key="bridge" tabindex="0" role="button" aria-label="Excelstra Central Bridge" transform="translate(340, 220)">
-                <circle class="node-bg" cx="0" cy="0" r="60" fill="#1D353C" stroke="#BF9B30" stroke-width="2.5"/>
-                <text class="node-label" x="0" y="-5" text-anchor="middle" font-family="Lora, serif" font-size="13" font-weight="600" fill="#FFFFFF" letter-spacing="1">EXCELSTRA</text>
-                <text class="node-sub" x="0" y="13" text-anchor="middle" font-family="Inter, sans-serif" font-size="8.5" font-weight="600" fill="#DABE81" letter-spacing="1.5">THE BRIDGE</text>
-              </g>
-            </svg>
-          </div>
-
-          <div class="bridge-detail-panel">
-            <span class="eyebrow">Interactive Alignment Map</span>
-            <p class="body-copy" style="margin-bottom: 1rem;">
-              Select any dimension to examine how Excelstra orchestrates alignment across your financial life:
-            </p>
-            <div class="bridge-pills" role="group" aria-label="Alignment Dimensions">
-              <button type="button" class="bridge-pill active" data-bridge-key="bridge" aria-pressed="true">The Bridge</button>
-              <button type="button" class="bridge-pill" data-bridge-key="tax" aria-pressed="false">Tax Stewardship</button>
-              <button type="button" class="bridge-pill" data-bridge-key="wealth" aria-pressed="false">Wealth Amplification</button>
-              <button type="button" class="bridge-pill" data-bridge-key="exit" aria-pressed="false">Exit &amp; Legacy</button>
-              <button type="button" class="bridge-pill" data-bridge-key="advisors" aria-pressed="false">Your Existing Team</button>
-              <button type="button" class="bridge-pill" data-bridge-key="longevity" aria-pressed="false">Longevity &amp; Family</button>
-            </div>
-
-            <div class="bridge-active-card" aria-live="polite">
-              <div class="bridge-card-pane active" data-bridge-pane="bridge">
-                <div class="arch-card-kicker">The Central Bridge</div>
-                <h3>Excelstra: Seeing the Whole Before Changing the Parts</h3>
-                <p class="arch-card-sub">Where wealth is integrated with intention, transformed with artistry, and delivered with mastery.</p>
-                <p class="body-copy">
-                  You are the wealth generator; we are the wealth integrators. We act as the bridge between your existing teams and current strategies, connecting what operates in isolation and revealing where deeper alignment to your vision is possible. Retained exclusively through engagement fees, our sole allegiance is to your long-term wellbeing.
-                </p>
-              </div>
-
-              <div class="bridge-card-pane" data-bridge-pane="tax">
-                <div class="arch-card-kicker">Pillar I &middot; Strategic Tax Stewardship</div>
-                <h3>Keep More, With Integrity</h3>
-                <p class="arch-card-sub">Tax as a pathway to freedom and purposeful capital.</p>
-                <p class="body-copy">
-                  Of the many dimensions in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. Working alongside your CPA and our specialized tax strategists, we identify, corroborate, and implement multi-year strategies that emerge only through full-picture integration.
-                </p>
-              </div>
-
-              <div class="bridge-card-pane" data-bridge-pane="wealth">
-                <div class="arch-card-kicker">Pillar II &middot; Wealth Amplification</div>
-                <h3>Grow More, With Intention</h3>
-                <p class="arch-card-sub">Portfolios built around the life they are meant to serve.</p>
-                <p class="body-copy">
-                  We examine what you hold with clarity and discipline, understanding which vehicles genuinely advance your vision. We preserve what works, reconstruct with intention, and amplify through curated, off-market opportunities available through true independence and discerning relationships.
-                </p>
-              </div>
-
-              <div class="bridge-card-pane" data-bridge-pane="exit">
-                <div class="arch-card-kicker">Pillar III &middot; Legacy-Centered Exit Planning</div>
-                <h3>Live More. Leave More.</h3>
-                <p class="arch-card-sub">Your full value revealed and your transition navigated years in advance.</p>
-                <p class="body-copy">
-                  Whether you are a business owner preparing for a future transition, or an executive or surgeon shifting from active compensation to enduring portfolio income, we align your future income streams, enterprise value, and generational preparedness long before the transition date arrives.
-                </p>
-              </div>
-
-              <div class="bridge-card-pane" data-bridge-pane="advisors">
-                <div class="arch-card-kicker">Collaborative Orchestration</div>
-                <h3>Harmonizing Your Existing CPA, Advisor, and Attorney</h3>
-                <p class="arch-card-sub">We do not replace your trusted professionals; we elevate what they can achieve together.</p>
-                <p class="body-copy">
-                  Your CPA, financial advisor, and estate attorney bring dedicated skill to their respective disciplines. Excelstra provides the unified strategic design that connects their work, ensuring tax filings, legal entities, and investment allocations advance one shared blueprint.
-                </p>
-              </div>
-
-              <div class="bridge-card-pane" data-bridge-pane="longevity">
-                <div class="arch-card-kicker">The Fifth Discipline &middot; Wealth Serving Life</div>
-                <h3>Holistic Health, Longevity, and Family Flourishing</h3>
-                <p class="arch-card-sub">Money is the vehicle; a life fully lived is the destination.</p>
-                <p class="body-copy">
-                  A legacy is best experienced by the leader who built it. Our integration encompasses holistic health, longevity, and preparing the next generation to steward what they receive with clarity, responsibility, and an understanding of the values behind the wealth.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================== SECTION 02: STRUCTURAL INTEGRITY & BUSINESS MODEL ======================== -->
-    <section class="section-dark" id="structural-integrity">
-      <div class="hermes-dark-backdrop" style="background-image: url('assets/hermes-hero-assessment.jpg'); background-position: right center;"></div>
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">The Standard of Independence</span>
-          <h2>Independence from commissions is the structural proof of our counsel.</h2>
-          <p class="lead">
-            Discerning leaders deserve counsel that is uncompromised. How a firm is compensated determines what it is able to see. Excelstra is retained strictly through engagement fees, ensuring each strategy serves your vision alone.
-          </p>
-        </div>
-
-        <div class="ledger-grid">
-          <div class="ledger-col">
-            <span class="arch-card-kicker">What Excelstra Does</span>
-            <h3>Orchestrating the Full Picture</h3>
-            <ul class="ledger-list">
-              <li>
-                <span class="ledger-mark">I.</span>
-                <span><strong>Integrates across tax, wealth, and transition:</strong> Unifying your core financial disciplines into one living strategy architected around the life you are building.</span>
-              </li>
-              <li>
-                <span class="ledger-mark">II.</span>
-                <span><strong>Acts as the bridge between your existing teams:</strong> Collaborating directly with your CPA, financial advisor, and attorney while introducing vetted specialists where needed.</span>
-              </li>
-              <li>
-                <span class="ledger-mark">III.</span>
-                <span><strong>Reveals possibilities that only integration can create:</strong> Surfacing lawful tax stewardship, curated off-market opportunities, and pre-exit structuring.</span>
-              </li>
-              <li>
-                <span class="ledger-mark">IV.</span>
-                <span><strong>Retained strictly through engagement fees:</strong> When additional services support your strategy, our focus is on minimizing your cost and ensuring each recommendation serves your vision.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="ledger-col">
-            <span class="arch-card-kicker">What Excelstra Does Not Do</span>
-            <h3>Preserving Your Sovereignty</h3>
-            <ul class="ledger-list">
-              <li>
-                <span class="ledger-mark">&middot;</span>
-                <span><strong>Does not replace your trusted advisors:</strong> We honor the relationships you have built, elevating your existing CPA, attorney, and advisor through unified coordination.</span>
-              </li>
-              <li>
-                <span class="ledger-mark">&middot;</span>
-                <span><strong>Does not manage assets (Zero AUM fees):</strong> We do not charge a percentage of your investable assets or require asset transfers to work together.</span>
-              </li>
-              <li>
-                <span class="ledger-mark">&middot;</span>
-                <span><strong>Does not sell financial or insurance products:</strong> We accept zero commissions, referral kickbacks, or product placement fees.</span>
-              </li>
-              <li>
-                <span class="ledger-mark">&middot;</span>
-                <span><strong>Does not take custody or make decisions for you:</strong> We build mastery, not dependence. You remain in full command of each decision.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="proof-metrics-grid">
-          <div class="proof-metric-box">
-            <span class="proof-metric-num">3x Value Guarantee</span>
-            <span class="proof-metric-title">Our Foundational Commitment</span>
-            <p class="proof-metric-desc">
-              Our commitment is to demonstrate at least 3x potential benefit gains over a member's engagement investment. The member chooses which strategies to implement.
-            </p>
-          </div>
-
-          <div class="proof-metric-box">
-            <span class="proof-metric-num">7&ndash;50x+</span>
-            <span class="proof-metric-title">Typical Year-1 Demonstrated ROI</span>
-            <p class="proof-metric-desc">
-              Demonstrated first-year return on engagement investment identified across Strategic Tax Stewardship, Wealth Amplification, and Legacy-Centered Exit Planning.
-            </p>
-          </div>
-
-          <div class="proof-metric-box">
-            <span class="proof-metric-num">100% Fee-Only</span>
-            <span class="proof-metric-title">Pure Alignment of Incentives</span>
-            <p class="proof-metric-desc">
-              Three engagement altitudes (Gold, Diamond, and Continuance) tailored to the complexity of your enterprise and personal vision, with zero product bias.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================== SECTION 03: THE THREE PILLARS ======================== -->
-    <section class="section-warm-beige" id="three-pillars">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">How We Serve, Lead, and Elevate</span>
-          <h2>The Three Pillars of Wealth Integration</h2>
-          <p class="lead">
-            Strategic Tax Stewardship strengthens what Wealth Amplification builds. Wealth Amplification deepens what Legacy-Centered Exit Planning protects. Legacy-Centered Exit Planning gives the journey its purpose and its destination.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <!-- Pillar 1 -->
-          <article class="arch-card">
-            <div>
-              <div class="card-engraving-banner">
-                <img src="assets/hermes-hero-architecture.jpg" alt="Classical engraving of Hermes with architectural compass and scroll" style="object-position: left center;" loading="lazy">
-                <span class="card-engraving-tag">Plate I &middot; Stewardship</span>
-              </div>
-              <div class="arch-card-header-row">
-                <span class="arch-card-kicker">Pillar I</span>
-                <span class="arch-card-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L4 7v6c0 5 3.5 7.5 8 8 4.5-.5 8-3 8-8V7l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-                </span>
-              </div>
-              <h3>Strategic Tax Stewardship</h3>
-              <p class="arch-card-sub">Keep more, with integrity.</p>
-              <p class="body-copy">
-                Of the many dimensions in a financial life, tax is the one you have the most power to shape, and the one that rewards intention most richly. We see tax as a pathway to freedom.
-              </p>
-              <p class="body-copy">
-                Working closely with our specialized experts, we help you identify the strategies worth pursuing, coordinate their rigorous evaluation, and engage all appropriate stakeholders to ensure each move is examined, corroborated, and masterfully implemented.
-              </p>
-            </div>
-            <div class="arch-card-footer">
-              <span>Transforming what is preserved into what is purposeful</span>
-              <a href="integration.html?v=20261026v5b#pillar-tax" class="text-gold">Explore &rarr;</a>
-            </div>
-          </article>
-
-          <!-- Pillar 2 -->
-          <article class="arch-card">
-            <div>
-              <div class="card-engraving-banner">
-                <img src="assets/hermes-hero-podcast.jpg" alt="Classical engraving of Hermes holding a golden celestial globe" style="object-position: right center;" loading="lazy">
-                <span class="card-engraving-tag">Plate II &middot; Amplification</span>
-              </div>
-              <div class="arch-card-header-row">
-                <span class="arch-card-kicker">Pillar II</span>
-                <span class="arch-card-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-                </span>
-              </div>
-              <h3>Wealth Amplification</h3>
-              <p class="arch-card-sub">Grow more, with intention.</p>
-              <p class="body-copy">
-                At Excelstra, portfolios are designed around a single principle: alignment with what our members dream to achieve. We examine what you hold with clarity and discipline, understanding which vehicles genuinely advance your vision.
-              </p>
-              <p class="body-copy">
-                We preserve what works, reconstruct with intention, and amplify through curated, off-market opportunities available to members whose integrators operate with true independence and discerning relationships.
-              </p>
-            </div>
-            <div class="arch-card-footer">
-              <span>Portfolios built around the life they are meant to serve</span>
-              <a href="integration.html?v=20261026v5b#pillar-wealth" class="text-gold">Explore &rarr;</a>
-            </div>
-          </article>
-
-          <!-- Pillar 3 -->
-          <article class="arch-card">
-            <div>
-              <div class="card-engraving-banner">
-                <img src="assets/hermes-hero-membership.jpg" alt="Classical engraving of Hermes ascending marble temple steps toward a golden star" style="object-position: center;" loading="lazy">
-                <span class="card-engraving-tag">Plate III &middot; Continuity</span>
-              </div>
-              <div class="arch-card-header-row">
-                <span class="arch-card-kicker">Pillar III</span>
-                <span class="arch-card-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20h18M5 20V8l7-5 7 5v12M9 20v-6h6v6"/></svg>
-                </span>
-              </div>
-              <h3>Legacy-Centered Exit Planning</h3>
-              <p class="arch-card-sub">Live more. Leave more.</p>
-              <p class="body-copy">
-                Legacy-Centered Exit Planning begins long before the transition arrives, because the most powerful financial decisions are made before the resignation, retirement date, or liquidity event is finalized.
-              </p>
-              <p class="body-copy">
-                We encompass three dimensions: enhancing future income streams, orchestrating business exit strategies for your long-term wellbeing, and preparing those who inherit to steward what they receive with clarity and responsibility.
-              </p>
-            </div>
-            <div class="arch-card-footer">
-              <span>Your full value revealed and navigated on your terms</span>
-              <a href="integration.html?v=20261026v5b#pillar-exit" class="text-gold">Explore &rarr;</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================== ARCHITECTURAL BREAK: WEALTH SERVING LIFE ======================== -->
-    <div class="architectural-break" aria-label="Architectural Sanctuary Visual Break">
-      <div class="architectural-break-media">
-        <img src="assets/editorial-pavilion.jpg" alt="Modernist stone and glass sanctuary pavilion at twilight overlooking calm water" loading="lazy">
-        <div class="architectural-break-scrim">
-          <div class="container">
-            <div class="architectural-break-card">
-              <span class="eyebrow">Core Principle &middot; Wealth Serving Life</span>
-              <h3>Money is the vehicle; a life fully lived is the destination.</h3>
-              <p>
-                Security that is felt, not hoped for. Freedom that is designed, not left to chance. Generosity that flows from abundance. Impact that reaches beyond your lifetime.
-              </p>
-            </div>
-          </div>
-        </div>
+    <div class="foot-newsletter">
+      <div class="foot-newsletter-inner">
+        <p class="foot-newsletter-text">Receive our insights on integrated&nbsp;wealth.</p>
+        <form class="newsletter-form foot-newsletter-form">
+          <input type="email" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn-gold">Join</button>
+        </form>
       </div>
     </div>
 
-    <!-- ======================== SECTION 04: WHO WE SERVE (DREAM MEMBERS) ======================== -->
-    <section class="section-ivory" id="who-we-serve">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">For Self-Made Leaders</span>
-          <h2>Built for those who sense there is a higher altitude available to them.</h2>
-          <p class="lead">
-            Our members are not shopping; they are choosing. They have built something meaningful and recognize that the strategies that brought them here can be elevated into one cohesive design.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <div class="arch-card">
-            <div>
-              <div class="arch-card-kicker">Profile 01 &middot; Enterprise Builders</div>
-              <h3>Business Owners ($3M&ndash;$50M+ Revenue)</h3>
-              <p class="arch-card-sub">Particularly effective for founders operating without a full-time strategic CFO.</p>
-              <p class="body-copy">
-                You view yourself as a builder with an operating business, commercial real estate, rentals, and retirement plans. You have outgrown isolated advice across your CPA, financial advisor, and attorney, and are ready for one integrated strategy designed around your enterprise and family vision.
-              </p>
-            </div>
-            <div class="arch-card-footer">
-              <span>Filtered by annual revenue, not investable AUM</span>
-              <a href="membership.html?v=20261026v5b" class="text-gold">Membership &rarr;</a>
-            </div>
-          </div>
-
-          <div class="arch-card">
-            <div>
-              <div class="arch-card-kicker">Profile 02 &middot; Career &amp; Practice Leaders</div>
-              <h3>Executives, Surgeons &amp; Physicians ($500K+ Income)</h3>
-              <p class="arch-card-sub">Navigating high-income tax stewardship, equity, and career transition.</p>
-              <p class="body-copy">
-                For corporate executives and medical specialists managing complex compensation, equity vesting, deferred distributions, and substantial annual tax exposure. We align your core financial dimensions before you transition from active compensation to enduring portfolio income.
-              </p>
-            </div>
-            <div class="arch-card-footer">
-              <span>Filtered by annual household income ($500K+)</span>
-              <a href="membership.html?v=20261026v5b" class="text-gold">Membership &rarr;</a>
-            </div>
-          </div>
-
-          <div class="arch-card">
-            <div>
-              <div class="arch-card-kicker">Profile 03 &middot; Multi-Generational Stewards</div>
-              <h3>Established Family Offices &amp; Founders Post-Exit</h3>
-              <p class="arch-card-sub">Strategic collaboration, curated access, and generational preparedness.</p>
-              <p class="body-copy">
-                Established family offices and post-liquidity founders partner with Excelstra for specialized tax stewardship, independent off-market amplification, and preparing the next generation to steward wealth with clarity and purpose.
-              </p>
-            </div>
-            <div class="arch-card-footer">
-              <span>Bespoke collaborative engagements</span>
-              <a href="membership.html?v=20261026v5b" class="text-gold">Membership &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================== SECTION 04B: VOICES FROM THE ROOM (FORT LAUDERDALE) ======================== -->
-    <section class="section-warm-beige" id="member-perspectives">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Voices from the Room &middot; Fort Lauderdale Executive Session</span>
-          <h2>Experienced in the room. Measured in the results.</h2>
-          <p class="lead">
-            Hear directly from members, founders, and executive peers on what happens when tax stewardship, wealth amplification, and whole-life legacy are brought under one roof.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="video-testimonial-card" data-video-category="legacy">
-            <div class="video-frame-wrap">
-              <video preload="metadata" playsinline poster="assets/videos/testimonials/erin-hurley-legacy-poster.jpg" src="assets/videos/testimonials/erin-hurley-legacy.mp4"></video>
-              <span class="video-kicker-pill">Legacy & Impact</span>
-              <span class="video-duration-pill">0:48</span>
-              <div class="video-play-overlay" role="button" tabindex="0" aria-label="Play video testimonial from Dr. Erin Hurley">
-                <div class="video-play-medallion">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
-                </div>
-              </div>
-            </div>
-            <div class="video-card-body">
-              <p class="video-quote-text">"People may want to grow their wealth for security, freedom, or safety. What Eunicia does is look at all the areas of your life: how can you leave a legacy and create the biggest impact for your family and future generations?"</p>
-              <div class="video-speaker-footer">
-                <span class="video-speaker-name">Dr. Erin Hurley</span>
-                <span class="video-speaker-role">Founder &amp; Leadership Strategist</span>
-              </div>
-            </div>
-          </article>
-          <article class="video-testimonial-card" data-video-category="integration">
-            <div class="video-frame-wrap">
-              <video preload="metadata" playsinline poster="assets/videos/testimonials/mike-mcmanus-roi-poster.jpg" src="assets/videos/testimonials/mike-mcmanus-roi.mp4"></video>
-              <span class="video-kicker-pill">Measurable ROI</span>
-              <span class="video-duration-pill">0:57</span>
-              <div class="video-play-overlay" role="button" tabindex="0" aria-label="Play video testimonial from Dr. Mike McManus">
-                <div class="video-play-medallion">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
-                </div>
-              </div>
-            </div>
-            <div class="video-card-body">
-              <p class="video-quote-text">"She always has an ROI associated with what you invest. She ends up finding strategies and structures you were not aware of that make a huge impact on your business and personal wealth."</p>
-              <div class="video-speaker-footer">
-                <span class="video-speaker-name">Dr. Mike McManus</span>
-                <span class="video-speaker-role">Healthcare Executive &amp; Founder</span>
-              </div>
-            </div>
-          </article>
-          <article class="video-testimonial-card" data-video-category="integration">
-            <div class="video-frame-wrap">
-              <video preload="metadata" playsinline poster="assets/videos/testimonials/julie-delong-integration-poster.jpg" src="assets/videos/testimonials/julie-delong-integration.mp4"></video>
-              <span class="video-kicker-pill">Full Integration</span>
-              <span class="video-duration-pill">1:05</span>
-              <div class="video-play-overlay" role="button" tabindex="0" aria-label="Play video testimonial from Julie DeLong">
-                <div class="video-play-medallion">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
-                </div>
-              </div>
-            </div>
-            <div class="video-card-body">
-              <p class="video-quote-text">"Everybody has pieces of the puzzle, and you have to go to a million places to get all the pieces. Eunicia brings all of those pieces under one roof so you feel whole and complete."</p>
-              <div class="video-speaker-footer">
-                <span class="video-speaker-name">Julie DeLong</span>
-                <span class="video-speaker-role">Enterprise Leader &amp; Advisor</span>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="btn-group" style="justify-content: center; margin-top: 2.75rem;">
-          <a href="membership.html?v=20261026v5b#member-perspectives" class="btn btn-primary">Watch All 12 Member &amp; Peer Perspectives &rarr;</a>
-          <a href="connect.html?v=20261026v5b" class="btn btn-outline">Request Private Consultation</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================== SECTION 05: HUMAN TRUST & LEADERSHIP ======================== -->
-    <section class="section-white" id="human-trust">
-      <div class="container">
-        <div class="grid-2" style="align-items: center;">
-          <div>
-            <span class="eyebrow">Integrity and Human Trust</span>
-            <h2>The more artificial our world becomes, the more human trust matters.</h2>
-            <p class="body-copy" style="margin-top: 1.2rem;">
-              Our insights are shaped by one purpose: your long-term wellbeing. We listen to who you are before we look at what you have. Our strategies are built on human trust and our commitment to be honest about what matters in your financial life: the opportunities hidden in fragmentation, the hard truths, and the possibilities.
-            </p>
-            <p class="body-copy">
-              Our members come to us for warmth in a complex and ever-growing automated world, for the assurance that someone is holding the whole picture with care, competence, and honesty across seasons, the favorable and the difficult alike. As the world leans further into the artificial, we use advanced analytical tools while ensuring that the human relationship remains sacred at the heart of our work.
-            </p>
-            <blockquote class="editorial-quote">
-              "Security that is felt, not hoped for. Freedom that is designed, not left to chance. Generosity that flows from abundance. Impact that reaches beyond your lifetime."
-            </blockquote>
-            <div class="btn-group" style="margin-top: 1.75rem;">
-              <a href="philosophy.html?v=20261026v5b" class="btn btn-primary">Read Our Philosophy &amp; Core Values</a>
-              <a href="about.html?v=20261026v5b" class="btn btn-outline">Meet Eunicia &amp; The Team</a>
-            </div>
-          </div>
-
-          <div style="display: grid; gap: 1.75rem;">
-            <figure class="hermes-plate-frame">
-              <div class="hermes-plate-media">
-                <img src="assets/hermes-hero-events.jpg" alt="Classical engraving of Hermes presenting an armillary sphere to a council of scholars around a blueprint table" loading="lazy">
-              </div>
-              <figcaption class="hermes-plate-caption">
-                <span class="hermes-plate-num">Archival Plate &middot; The Council</span>
-                <span class="hermes-plate-title">Five disciplines answering to one shared vision</span>
-              </figcaption>
-            </figure>
-
-            <div class="arch-card" style="background-color: var(--bg-ivory); border-color: var(--rule-warm);">
-              <span class="arch-card-kicker">The Five Core Values</span>
-              <h3>The Principles Behind Every Strategy</h3>
-              <p class="arch-card-sub">Our practice, our standards, pursued relentlessly.</p>
-              <ul style="display: grid; gap: 0.9rem; margin-top: 0.35rem;">
-                <li>
-                  <strong style="color: var(--ink-primary);">1. Creators:</strong>
-                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> We see the whole before we change the parts.</span>
-                </li>
-                <li>
-                  <strong style="color: var(--ink-primary);">2. Elevating Excellence:</strong>
-                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> Excellence is a living practice - one that deepens and continuously rises to meet the moment.</span>
-                </li>
-                <li>
-                  <strong style="color: var(--ink-primary);">3. Integrity and Human Trust:</strong>
-                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> We feel deeply, speak honestly, and act with intention. We lead with heart.</span>
-                </li>
-                <li>
-                  <strong style="color: var(--ink-primary);">4. Wealth Serving Life:</strong>
-                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> Each decision creates a ripple across members, team, partners, and community.</span>
-                </li>
-                <li>
-                  <strong style="color: var(--ink-primary);">5. Service Through Leadership:</strong>
-                  <span style="color: var(--ink-secondary); font-size: 0.92rem;"> True leadership owns outcomes. We provide strategic positioning, orchestrate alignment, and deliver integration.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================== SECTION 06: CLOSING INVITATION ======================== -->
-    <section class="section-navy">
-      <div class="hermes-dark-backdrop" style="background-image: url('assets/hermes-hero-3.jpg'); background-position: center;"></div>
-      <div class="container-narrow" style="text-align: center;">
-        <span class="eyebrow">The Invitation</span>
-        <h2>For those who sense the difference, <em>and are ready to experience it.</em></h2>
-        <p class="lead" style="margin-top: 1.25rem; margin-inline: auto;">
-          Begin with our private two-minute Whole Wealth Assessment for an immediate perspective on what integration makes visible in your financial life, or request a private conversation with our leadership team.
-        </p>
-        <div class="btn-group" style="justify-content: center; margin-top: 2.5rem;">
-          <a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener" class="btn btn-gold">Begin Whole Wealth Assessment</a>
-          <a href="connect.html?v=20261026v5b" class="btn btn-outline">Request Private Consultation</a>
-        </div>
-        <p class="venture-signature" style="margin-top: 2.25rem;">
-          Venture Beyond. Elevation awaits.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <!-- ======================== GLOBAL FOOTER ======================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-top">
-        <div>
-          <img src="assets/logo-white.png" alt="Excelstra" class="footer-logo">
-          <div class="footer-tagline">Wealth Integrators for the Discerning.</div>
-          <p style="font-size: 0.88rem; line-height: 1.65; margin-bottom: 1rem;">
-            Where wealth is integrated with intention, transformed with artistry, and delivered with mastery.
-          </p>
-          <p style="font-size: 0.84rem; color: var(--text-on-dark-muted);">
-            Excelstra LLC<br>
-            6340 Sugarloaf Parkway, Suite 200<br>
-            Duluth, GA 30097<br>
-            <a href="mailto:contact@excelstra.com" style="color: var(--gold-light);">contact@excelstra.com</a>
-          </p>
-        </div>
-
-        <div>
-          <h3 class="footer-col-title">The Practice</h3>
-          <ul class="footer-links">
-            <li><a href="index.html?v=20261026v5b">Home</a></li>
-            <li><a href="integration.html?v=20261026v5b">The Integration Model</a></li>
-            <li><a href="membership.html?v=20261026v5b">Membership Altitudes</a></li>
-            <li><a href="philosophy.html?v=20261026v5b">Our Philosophy &amp; Values</a></li>
-            <li><a href="about.html?v=20261026v5b">Leadership &amp; Specialist Bench</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-col-title">Three Pillars</h3>
-          <ul class="footer-links">
-            <li><a href="integration.html?v=20261026v5b#pillar-tax">Strategic Tax Stewardship</a></li>
-            <li><a href="integration.html?v=20261026v5b#pillar-wealth">Wealth Amplification</a></li>
-            <li><a href="integration.html?v=20261026v5b#pillar-exit">Legacy-Centered Exit Planning</a></li>
-            <li><a href="membership.html?v=20261026v5b#guarantee">The 3x Value Guarantee</a></li>
-            <li><a href="philosophy.html?v=20261026v5b#quadruple-benefit">The Quadruple Benefit</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-col-title">Begin the Conversation</h3>
-          <ul class="footer-links">
-            <li><a href="assessment.html?v=20261026v5b">Interactive Readiness Diagnostic</a></li>
-            <li><a href="https://go.excelstra.com/whole-wealth-assessment" target="_blank" rel="noopener">Official Whole Wealth Assessment</a></li>
-            <li><a href="connect.html?v=20261026v5b">Request Private Consultation</a></li>
-            <li><a href="connect.html?v=20261026v5b#discerning-questions">Questions Discerning Leaders Ask</a></li>
-            <li><a href="connect.html?v=20261026v5b#faq">Frequently Asked Questions</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>&copy; 2026 Excelstra LLC. Wealth Empowered. All rights reserved.</span>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="https://www.linkedin.com/in/euniciaperet" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://www.youtube.com/channel/UCYEEKN0lPrqchL4_H0aOGhw" target="_blank" rel="noopener">YouTube</a>
-          <a href="connect.html?v=20261026v5b#governance">Privacy &amp; Terms</a>
-        </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 Excelstra LLC. All rights reserved.</span>
+      <div style="display:flex; gap:1.5rem;">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script src="main.js?v=20261026v5b"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js?v=20261027v6a"></script>
+<script src="hero-film.js?v=20261027v6a"></script>
 </body>
 </html>

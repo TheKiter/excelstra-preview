@@ -8,8 +8,8 @@
 (function () {
   'use strict';
 
-  /* ── 0. Cache-Buster & Floating Design Version Switcher (V1 / V2 / V5) ── */
-  var BUILD_VER = '20261026v5b';
+  /* ── 0. Cache-Buster & Floating Design Version Switcher (Just V5 & V6) ── */
+  var BUILD_VER = '20261027v6a';
   try {
     var currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.indexOf('http') === 0 && currentUrl.searchParams.get('v') !== BUILD_VER) {
@@ -39,27 +39,27 @@
     var pathName = window.location.pathname;
     var fileName = (pathName.split('/').pop() || 'index.html').split('?')[0] || 'index.html';
     var v5File = fileName.slice(-5) === '.html' ? fileName : 'index.html';
-    var v1v2Map = {
+    var v6Map = {
       'index.html': 'index.html',
-      'the-architecture.html': 'integration.html',
+      'the-architecture.html': 'the-architecture.html',
       'membership.html': 'membership.html',
-      'events.html': 'philosophy.html',
-      'mastermind.html': 'philosophy.html',
-      'speaking.html': 'philosophy.html',
-      'podcast.html': 'philosophy.html',
-      'member-stories.html': 'philosophy.html',
-      'newsletter.html': 'philosophy.html',
+      'events.html': 'membership.html',
+      'mastermind.html': 'membership.html',
+      'speaking.html': 'membership.html',
+      'podcast.html': 'membership.html',
+      'member-stories.html': 'membership.html',
+      'newsletter.html': 'membership.html',
       'our-team.html': 'about.html',
       'about-eunicia.html': 'about.html',
-      'wealth-assessment.html': 'assessment.html',
-      'wealth-calculator.html': 'assessment.html',
-      'questions-to-ask.html': 'assessment.html',
-      'book-a-call.html': 'connect.html',
-      'faq.html': 'connect.html',
-      'privacy.html': 'index.html',
-      'terms.html': 'index.html'
+      'wealth-assessment.html': 'book-a-call.html',
+      'wealth-calculator.html': 'book-a-call.html',
+      'questions-to-ask.html': 'book-a-call.html',
+      'book-a-call.html': 'book-a-call.html',
+      'faq.html': 'book-a-call.html',
+      'privacy.html': 'privacy.html',
+      'terms.html': 'terms.html'
     };
-    var mappedTarget = v1v2Map[v5File] || 'index.html';
+    var mappedV6 = v6Map[v5File] || 'index.html';
 
     var bar = document.createElement('div');
     bar.id = 'designVersionSwitcher';
@@ -68,9 +68,8 @@
     bar.setAttribute('aria-label', 'Design Version Comparison Switcher');
     bar.innerHTML =
       '<span class="dvs-label">Edition</span>' +
-      '<a href="../' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V1 &middot; Classic</a>' +
-      '<a href="../v2/' + mappedTarget + '?v=' + BUILD_VER + '" class="dvs-option">V2 &middot; Liquid Glass</a>' +
-      '<a href="' + v5File + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V5 &middot; Light Luxury</a>';
+      '<a href="' + v5File + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V5 &middot; Light Luxury</a>' +
+      '<a href="../' + mappedV6 + '?v=' + BUILD_VER + '" class="dvs-option">V6 &middot; Ripple &amp; Frequency</a>';
     document.body.appendChild(bar);
   }
 
