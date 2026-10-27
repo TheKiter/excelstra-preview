@@ -9,7 +9,7 @@
   'use strict';
 
   /* ── 0. Cache-Buster & Floating Design Version Switcher (Just V5 & V6) ── */
-  var BUILD_VER = '20261027v6a';
+  var BUILD_VER = '20261027v6b';
   try {
     var currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.indexOf('http') === 0 && currentUrl.searchParams.get('v') !== BUILD_VER) {
@@ -69,7 +69,7 @@
     bar.innerHTML =
       '<span class="dvs-label">Edition</span>' +
       '<a href="' + v5File + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V5 &middot; Light Luxury</a>' +
-      '<a href="../' + mappedV6 + '?v=' + BUILD_VER + '" class="dvs-option">V6 &middot; Ripple &amp; Frequency</a>';
+      '<a href="../' + mappedV6 + '?v=' + BUILD_VER + '" class="dvs-option">V6 &middot; The Ripple</a>';
     document.body.appendChild(bar);
   }
 
