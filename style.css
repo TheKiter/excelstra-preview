@@ -2364,7 +2364,8 @@ body.home-page #nav:not(.solid) .nav-toggle span {
   bottom: 0.8rem;
   left: 0.8rem;
   background: rgba(8, 8, 10, 0.85);
-  backdrop-
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(201, 168, 105, 0.3);
   color: #f3efe6;
   font-family: var(--serif);
@@ -3305,8 +3306,8 @@ p, .body, .pillar p, .level-desc, .faq-item p, .step p {
 
 #nav.scrolled, #nav.solid {
   background: rgba(244, 243, 240, 0.92) !important;
-  backdrop- !important;
-  -webkit-backdrop- !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   box-shadow: 0 1px 0 rgba(0, 14, 33, 0.08), 0 8px 24px rgba(0, 14, 33, 0.04) !important;
 }
 
@@ -3348,8 +3349,8 @@ p, .body, .pillar p, .level-desc, .faq-item p, .step p {
 /* Mobile Nav Drawer */
 .nav-mobile {
   background: rgba(244, 243, 240, 0.98) !important;
-  backdrop- !important;
-  -webkit-backdrop- !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
 }
 
 .nav-mobile a {
@@ -3958,19 +3959,44 @@ p.photo-break-quote,
   margin-top: 2.5rem;
 }
 
-.sanctuary-card {
+.sanctuary-card,
+.sanctuary-pillar {
   background: #FFFFFF;
   border: 1px solid rgba(0, 14, 33, 0.08);
-  border-top: 3px solid #1D353C;
+  border-top: 3px solid var(--gold);
   border-radius: 14px;
-  padding: 2.2rem 2rem;
+  padding: 2.4rem 2.1rem;
   text-align: left;
   box-shadow: 0 12px 32px rgba(0, 14, 33, 0.04);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
 
-.sanctuary-card.featured-sanctuary {
-  border-top-color: var(--gold);
+.sanctuary-card:hover,
+.sanctuary-pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 44px rgba(0, 14, 33, 0.08);
+}
+
+.sanctuary-card.featured-sanctuary,
+.sanctuary-pillar:nth-child(2) {
+  border-top-color: #1D353C;
   background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F2 100%);
+}
+
+.sanctuary-num {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.65rem;
+}
+
+.sanctuary-pillar .h3 {
+  margin-bottom: 0.85rem;
+  font-style: italic;
 }
 
 .sanctuary-word {
@@ -3982,6 +4008,99 @@ p.photo-break-quote,
   margin-bottom: 0.6rem;
 }
 
+/* 3B. V6 Monument Stat & Voices From Inside the Sanctuary (#the-proof) */
+.monument {
+  margin: 2.5rem auto 3.5rem;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 14, 33, 0.08);
+  border-top: 3px solid var(--gold);
+  border-radius: 16px;
+  text-align: center;
+  max-width: 900px;
+  box-shadow: 0 20px 50px rgba(0, 14, 33, 0.05);
+}
+
+.monument-num {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 7vw, 5.4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--navy) !important;
+  margin-bottom: 0.85rem;
+}
+
+.monument-label {
+  font-family: var(--sans);
+  font-size: 0.96rem;
+  color: var(--ink-body) !important;
+  letter-spacing: 0.02em;
+  max-width: 58ch;
+  margin-inline: auto;
+  line-height: 1.6;
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.quote-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 14, 33, 0.08);
+  border-top: 2px solid rgba(191, 155, 48, 0.55);
+  border-radius: 14px;
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  text-align: left;
+  box-shadow: 0 12px 32px rgba(0, 14, 33, 0.04);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.quote-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 44px rgba(0, 14, 33, 0.07);
+}
+
+.quote-text {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--navy) !important;
+  margin: 0 0 1.75rem;
+}
+
+.quote-footer {
+  border-top: 1px solid rgba(0, 14, 33, 0.08);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.quote-author {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.quote-role {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
 /* 4. Interactive Relevance & Ripple Diagnostic (Page 5) */
 .v6-diagnostic-card {
   background: #FFFFFF;
@@ -3989,66 +4108,253 @@ p.photo-break-quote,
   border-top: 3px solid var(--gold);
   border-radius: 16px;
   padding: clamp(2rem, 4vw, 3.2rem);
-  max-width: 860px;
+  max-width: 920px;
   margin: 2.5rem auto 0;
   text-align: left;
   box-shadow: 0 20px 50px rgba(0, 14, 33, 0.06);
+}
+
+.v6-diag-step {
+  padding-bottom: 1.8rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 14, 33, 0.08);
+}
+
+.v6-diag-step:last-of-type {
+  border-bottom: none;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.v6-diag-q-num {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.45rem;
+}
+
+.v6-diag-q-title {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  font-weight: 500;
+  color: var(--navy) !important;
+  line-height: 1.3;
+  margin: 0 0 1.25rem;
 }
 
 .v6-diag-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin: 1.6rem 0 2rem;
+  margin: 1.2rem 0 0.5rem;
 }
 
-.v6-diag-option {
+.v6-diag-options--3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.v6-diag-option,
+.v6-diag-opt {
   display: flex;
   align-items: flex-start;
-  gap: 0.85rem;
-  padding: 1.2rem 1.3rem;
+  gap: 0.9rem;
+  padding: 1.25rem 1.35rem;
   border: 1px solid rgba(0, 14, 33, 0.12);
   border-radius: 12px;
   background: #FAF7F2;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.v6-diag-option:hover {
+.v6-diag-option:hover,
+.v6-diag-opt:hover {
   border-color: var(--gold);
   background: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 14, 33, 0.05);
 }
 
-.v6-diag-option input[type="radio"] {
-  margin-top: 0.25rem;
+.v6-diag-opt:has(input[type="radio"]:checked),
+.v6-diag-option:has(input[type="radio"]:checked) {
+  border-color: var(--gold);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 1px var(--gold), 0 10px 24px rgba(191, 155, 48, 0.12);
+}
+
+.v6-diag-option input[type="radio"],
+.v6-diag-opt input[type="radio"] {
+  margin-top: 0.28rem;
   accent-color: #1D353C;
-  transform: scale(1.15);
+  transform: scale(1.18);
+  flex-shrink: 0;
 }
 
-.v6-diag-option strong {
+.v6-diag-opt-box {
+  display: block;
+  flex: 1;
+}
+
+.v6-diag-option strong,
+.v6-diag-opt strong,
+.v6-diag-opt-box strong {
   display: block;
   font-family: var(--serif);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
+  font-weight: 600;
   color: var(--navy);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
 }
 
-.v6-diag-option span {
+.v6-diag-option span,
+.v6-diag-opt-box > span {
   display: block;
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   color: var(--ink-dim);
-  line-height: 1.45;
+  line-height: 1.5;
+}
+
+.v6-diag-result {
+  margin-top: 1.75rem;
+  padding: 2rem 2.2rem;
+  background: linear-gradient(180deg, #FAF7F2 0%, #F4EFE6 100%);
+  border: 1px solid rgba(191, 155, 48, 0.38);
+  border-left: 4px solid var(--gold);
+  border-radius: 14px;
+}
+
+.v6-diag-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.v6-diag-res-item {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 14, 33, 0.08);
+  border-radius: 10px;
+  padding: 1.15rem 1.25rem;
+}
+
+.v6-diag-res-k {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.v6-diag-res-item p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--navy) !important;
+  margin: 0;
+}
+
+/* 5. Footer Bottom Bar Alignment & Spacing */
+footer .foot-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(0, 14, 33, 0.08);
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+}
+
+/* 6. Interactive SVG Council Active Highlight & Touch Target Ergonomics (44px+ WCAG Minimum) */
+.hub-node {
+  cursor: pointer;
+}
+
+.hub-node.active-hub-node .hub-node-circle {
+  fill: #FAF5EA !important;
+  stroke: #BF9B30 !important;
+  stroke-width: 2.5px !important;
+}
+
+.ripple-mode-btn,
+.ripple-relaunch-btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-sm {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+}
+
+.dvs-option {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Protect Dark Ripple Theater Typography from Global Light-Theme Overrides */
+.ripple-theater h3,
+.ripple-theater h4 {
+  color: #F4F3F0 !important;
+}
+
+.ripple-theater p {
+  color: rgba(244, 243, 240, 0.84) !important;
+}
+
+/* Visible Keyboard Focus Rings (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.ripple-node-card:focus-visible {
+  outline: 2px solid var(--gold) !important;
+  outline-offset: 3px !important;
 }
 
 @media (max-width: 960px) {
   .unspoken-grid,
   .sanctuary-triptych,
+  .quotes-grid,
   .ripple-readout-panel,
-  .v6-diag-options {
+  .v6-diag-options,
+  .v6-diag-options--3col,
+  .v6-diag-result-grid {
     grid-template-columns: 1fr;
   }
   .ripple-nodes-bar {
     grid-template-columns: 1fr 1fr;
+  }
+  footer .foot-bottom {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -4057,4 +4363,16 @@ p.photo-break-quote,
     grid-template-columns: 1fr;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 
