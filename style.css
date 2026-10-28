@@ -4344,6 +4344,130 @@ textarea:focus-visible,
   outline-offset: 3px !important;
 }
 
+/* 7. V6 Card Text-Fit, Grid Proportions & Inner Padding Protection Across All Pages */
+/* About & Team: 2x2 executive grid for Specialist Advisory Bench so titles & footers never cram or touch card edges */
+.advisory-chairs {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1.8rem !important;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chair-plate {
+  padding: 2.2rem 2rem 1.8rem !important;
+  border-radius: 14px;
+}
+
+.chair-plate > div {
+  min-width: 0;
+}
+
+.chair-num {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em !important;
+  line-height: 1.4;
+}
+
+.chair-role {
+  font-size: 1.32rem !important;
+  line-height: 1.3 !important;
+  overflow-wrap: break-word;
+}
+
+.chair-spec {
+  font-size: 0.8rem !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.45;
+}
+
+.chair-foot {
+  white-space: normal !important;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  letter-spacing: 0.1em !important;
+}
+
+/* Dossier Cards (The Architecture, Membership, About, Home): prevent meta collision & $3M-$50M wrapping */
+.dossier {
+  border-radius: 14px;
+  padding: clamp(1.8rem, 3.2vw, 2.6rem) !important;
+  overflow: hidden;
+}
+
+.dossier-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.14em !important;
+  line-height: 1.4;
+}
+
+.dossier-meta span:last-child {
+  text-align: right;
+}
+
+.dossier .bignum-fig.sm {
+  font-size: clamp(2rem, 3.4vw, 2.75rem) !important;
+  line-height: 1.15 !important;
+  white-space: nowrap;
+}
+
+/* Membership Faculty Cards (.people / .person): prevent subtitle edge-to-edge crowding */
+.person {
+  border-radius: 14px;
+  padding: 2.2rem 2rem !important;
+}
+
+.person-title {
+  letter-spacing: 0.1em !important;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.person-topic {
+  overflow-wrap: break-word;
+}
+
+/* Level Cards (About & Book-a-Call): clean 3-column proportion & min-width protection */
+.level-card {
+  grid-template-columns: 60px 1.35fr 2fr;
+  gap: 1.75rem;
+  padding: 1.75rem 2.2rem;
+  border-radius: 14px;
+}
+
+.level-card > * {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.level-title {
+  font-size: 1.24rem;
+  line-height: 1.35;
+}
+
+/* Ripple Skip Pills: prevent text crowding on mid-width viewports */
+.ripple-skip-pill {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1180px) {
+  .ripple-nodes-bar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1080px) {
+  .people {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 960px) {
   .unspoken-grid,
   .sanctuary-triptych,
@@ -4354,6 +4478,11 @@ textarea:focus-visible,
   .v6-diag-result-grid {
     grid-template-columns: 1fr;
   }
+  .level-card {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 1.5rem 1.6rem;
+  }
   .ripple-nodes-bar {
     grid-template-columns: 1fr 1fr;
   }
@@ -4363,9 +4492,19 @@ textarea:focus-visible,
   }
 }
 
+@media (max-width: 768px) {
+  .advisory-chairs,
+  .people {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 560px) {
   .ripple-nodes-bar {
     grid-template-columns: 1fr;
+  }
+  .dossier .bignum-fig.sm {
+    white-space: normal;
   }
 }
 
@@ -4379,5 +4518,6 @@ textarea:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
 
 
