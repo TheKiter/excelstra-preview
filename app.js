@@ -13,8 +13,8 @@
 (function () {
   'use strict';
 
-  /* ── 0. Cache-Buster & Floating Design Version Switcher (Just V5 & V6) ── */
-  var BUILD_VER = '20261028v6e';
+  /* ── 0. Cache-Buster & Floating Design Version Switcher (V4 / V5 / V6) ── */
+  var BUILD_VER = '20261103v456';
   try {
     var currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.indexOf('http') === 0 && currentUrl.searchParams.get('v') !== BUILD_VER) {
@@ -50,6 +50,7 @@
     };
     var v5Target = v5Map[v6File] || 'index.html';
     var inV6Subdir = pathName.indexOf('/v6/') !== -1;
+    var v4Prefix = inV6Subdir ? '../v4/' : 'v4/';
     var v5Prefix = inV6Subdir ? '../v5/' : 'v5/';
 
     var bar = document.createElement('div');
@@ -59,6 +60,7 @@
     bar.setAttribute('aria-label', 'Design Version Comparison Switcher');
     bar.innerHTML =
       '<span class="dvs-label">Edition</span>' +
+      '<a href="' + v4Prefix + v5Target + '?v=' + BUILD_VER + '" class="dvs-option">V4 &middot; Sovereign</a>' +
       '<a href="' + v5Prefix + v5Target + '?v=' + BUILD_VER + '" class="dvs-option">V5 &middot; Light Luxury</a>' +
       '<a href="' + v6File + '?v=' + BUILD_VER + '" class="dvs-option active" aria-current="true">V6 &middot; The Ripple</a>';
     document.body.appendChild(bar);
