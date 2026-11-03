@@ -14,7 +14,7 @@
   'use strict';
 
   /* ── 0. Cache-Buster & Floating Design Version Switcher (V4 / V5 / V6) ── */
-  var BUILD_VER = '20261103v456';
+  var BUILD_VER = '20261103v456b';
   try {
     var currentUrl = new URL(window.location.href);
     if (currentUrl.protocol.indexOf('http') === 0 && currentUrl.searchParams.get('v') !== BUILD_VER) {
