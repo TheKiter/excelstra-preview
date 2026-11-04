@@ -1650,6 +1650,14 @@ body.home-page #nav:not(.solid) .nav-toggle span {
   padding: clamp(2rem, 5vw, 3.8rem);
   box-shadow: 0 30px 80px rgba(22, 21, 19, 0.05);
 }
+.booking-wrap.leadconnector-wrap {
+  background: #ffffff !important;
+  padding: 0 !important;
+  border: 1px solid rgba(0, 14, 33, 0.08) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 60px -15px rgba(0, 14, 33, 0.08) !important;
+}
 .time-slots {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3059,7 +3067,33 @@ body {
 
 
 
-/* ══════════ FLOATING DESIGN EDITION SWITCHER PILL (V1 / V2 / V4) ══════════ */
+/* ═══════════ DARK NAVY AUTHORITY FOOTER ═══════════ */
+footer {
+  background: var(--navy) !important;
+  border-top: 1px solid rgba(201, 168, 105, 0.25) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  box-shadow: none !important;
+}
+footer .foot-col-title {
+  color: var(--gold) !important;
+}
+footer .body, footer p, footer a, footer .foot-legal, footer .foot-newsletter-text, footer .foot-mark span {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+footer a:hover {
+  color: var(--gold) !important;
+}
+footer .foot-socials a {
+  color: var(--gold) !important;
+}
+footer .foot-socials a:hover {
+  color: #FFFFFF !important;
+}
+footer .foot-legal span {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* ══════════ FLOATING DESIGN EDITION SWITCHER PILL (V4 / V5 / V6) ══════════ */
 .design-version-switcher {
   position: fixed;
   bottom: 1.35rem;

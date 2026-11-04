@@ -1,4 +1,4 @@
-/* ═══════════ EXCELSTRA — Cinematic Scroll Film Engine ═══════════ */
+/* ═══════════ EXCELSTRA - Cinematic Scroll Film Engine ═══════════ */
 (function () {
   'use strict';
 
