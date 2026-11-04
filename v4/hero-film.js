@@ -97,7 +97,7 @@
 
   /* ── Hero copy stages: [start, full, hold, end] in scroll progress ── */
   var STAGE_WINDOWS = [
-    [0.10, 0.20, 0.36, 0.46],   // "To Advise Is Common. To Integrate Is Rare."
+    [0.00, 0.00, 0.36, 0.46],   // "To Advise Is Common. To Integrate Is Rare."
     [0.50, 0.58, 0.68, 0.78],   // "You have advisors for the parts..."
     [0.82, 0.90, 1.00, 1.01]    // [ See the Architecture ] + Calculator Note
   ];
@@ -106,7 +106,8 @@
     for (var s = 0; s < stages.length; s++) {
       var w = STAGE_WINDOWS[s];
       var o = 0;
-      if (p >= w[0] && p < w[1]) o = (p - w[0]) / (w[1] - w[0]);
+      if (w[0] === 0 && w[1] === 0 && p <= w[2]) o = 1;
+      else if (p >= w[0] && p < w[1]) o = (p - w[0]) / (w[1] - w[0]);
       else if (p >= w[1] && p <= w[2]) o = 1;
       else if (p > w[2] && p < w[3]) o = 1 - (p - w[2]) / (w[3] - w[2]);
       var el = stages[s];

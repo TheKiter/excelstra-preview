@@ -1,4 +1,4 @@
-/* ═══════════ EXCELSTRA — Global Interaction & UI Logic ═══════════ */
+/* ═══════════ EXCELSTRA - Global Interaction & UI Logic ═══════════ */
 (function () {
   'use strict';
 
@@ -272,18 +272,18 @@
         var revVal = revInput ? revInput.value : '10m';
 
         // Calculate dynamic projections
-        var taxEst = '$420,000 — $1,180,000';
-        var capGrowth = '2.4x — 3.8x';
+        var taxEst = '$420,000 - $1,180,000';
+        var capGrowth = '2.4x - 3.8x';
 
         if (revVal === '3m') {
-          taxEst = '$180,000 — $450,000';
-          capGrowth = '2.1x — 3.2x';
+          taxEst = '$180,000 - $450,000';
+          capGrowth = '2.1x - 3.2x';
         } else if (revVal === '25m') {
-          taxEst = '$1,200,000 — $3,400,000';
-          capGrowth = '2.8x — 4.2x';
+          taxEst = '$1,200,000 - $3,400,000';
+          capGrowth = '2.8x - 4.2x';
         } else if (revVal === '50m') {
-          taxEst = '$2,800,000 — $7,500,000+';
-          capGrowth = '3.2x — 5.0x';
+          taxEst = '$2,800,000 - $7,500,000+';
+          capGrowth = '3.2x - 5.0x';
         }
 
         var memoTax = document.getElementById('memoTaxRec');
